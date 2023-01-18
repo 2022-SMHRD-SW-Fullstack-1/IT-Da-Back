@@ -1,6 +1,5 @@
 package or.kr.smhrd.portal.domain;
 
-import javax.websocket.Encoder.Binary;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

@@ -1,6 +1,5 @@
 package or.kr.smhrd.portal.controller;
 
-import java.io.UnsupportedEncodingException;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
