@@ -25,7 +25,8 @@ public class MemberService {
          data.get("tel"), 
          data.get("address"), 
          data.get("gender"), 
-         data.get("expire")));
+         data.get("expire"),
+         data.get("key")));
    }
 
    public Member login(Map<String, String> data) {
