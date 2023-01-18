@@ -31,9 +31,21 @@ public class CourseRestController {
         return courseAllList;
     }
 
+    @GetMapping("/select_on_course")
+    public List<Course> selectOnCourse() {
+        List<Course> courseOnList = courseService.selectOnCourse();
+        return courseOnList;
+    }
+
     @GetMapping("/select_course_subject")
     public List<String> selectCourseSubject() {
         List<String> courseSubjectList = courseService.selectCourseSubject();
         return courseSubjectList;
     }
+
+    @PostMapping("/edit_course")
+    public void editCourse(Course course) {
+        courseService.editCourse(course);
+    }
+ 
 }

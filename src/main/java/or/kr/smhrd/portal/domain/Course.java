@@ -10,7 +10,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Course {
-    Binary course_key;
+    String course_key;
     String course_subject;
     String course_name;
     String course_campus;

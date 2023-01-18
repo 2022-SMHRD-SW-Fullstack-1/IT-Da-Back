@@ -34,4 +34,9 @@ public class CourseService {
         return courseMapper.selectCourseSubject();
     }
 
+    public void editCourse(Course course) {
+        courseMapper.editCourse(course);
+    }
+
+   
 }

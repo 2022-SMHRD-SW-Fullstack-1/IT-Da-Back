@@ -1,6 +1,10 @@
 package or.kr.smhrd.portal.service;
 
+import java.io.UnsupportedEncodingException;
+import java.util.HashMap;
 import java.util.List;
+
+import javax.websocket.Decoder.Binary;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -20,6 +24,14 @@ public class EnterpriseService {
 
     public List<Enterprise> selectAllEnterprise() {
         return enterpriseMapper.selectAllEnterprise();
+    }
+
+    public void editEnterprise(Enterprise enterprise) {
+        enterpriseMapper.editEnterprise(enterprise);
+    }
+
+    public void deleteEnterprise(Enterprise enterprise) {
+        enterpriseMapper.deleteEnterprise(enterprise);
     }
 
 }

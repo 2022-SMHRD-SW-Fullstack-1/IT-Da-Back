@@ -1,5 +1,6 @@
 package or.kr.smhrd.portal.controller;
 
+import java.io.UnsupportedEncodingException;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,9 +25,21 @@ public class EnterpriseRestController {
         enterpriseService.makeEnterprise(enterprise);
     }
 
-    @GetMapping("/select_all_enterprise")
+    @GetMapping("/select_e")
     public List<Enterprise> selectAllEnterprise() {
+        System.out.println(enterpriseService.selectAllEnterprise());
         return enterpriseService.selectAllEnterprise();
+    }
+
+    @PostMapping("/edit_e")
+    public void editEnterprise(@RequestBody Enterprise enterprise) {
+        System.out.println("컨트롤러로 넘어온 값" + enterprise);
+        enterpriseService.editEnterprise(enterprise);
+    }
+
+    @PostMapping("/delete_e")
+    public void deleteEnterprise(@RequestBody Enterprise enterprise) {
+        enterpriseService.deleteEnterprise(enterprise);
     }
 
 }
