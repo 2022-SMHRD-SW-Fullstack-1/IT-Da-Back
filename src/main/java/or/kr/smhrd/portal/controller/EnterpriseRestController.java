@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 import or.kr.smhrd.portal.domain.Enterprise;
 import or.kr.smhrd.portal.service.EnterpriseService;
 
-@RequestMapping("/")
+@RequestMapping("enterprise")
 @RestController
 public class EnterpriseRestController {
 
