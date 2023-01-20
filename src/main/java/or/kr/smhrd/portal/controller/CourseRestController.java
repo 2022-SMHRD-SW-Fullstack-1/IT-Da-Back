@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 import or.kr.smhrd.portal.domain.Course;
 import or.kr.smhrd.portal.service.CourseService;
 
-@RequestMapping("/")
+@RequestMapping("/course")
 @RestController
 public class CourseRestController {
 
@@ -22,6 +22,16 @@ public class CourseRestController {
     @PostMapping("/make_course")
     public void makeCourse(@RequestBody Course course) {
         courseService.makeCourse(course);
+    }
+
+    @PostMapping("/make_teacher")
+    public void makeTeacher(@RequestBody Course course) {
+        courseService.makeTeacher(course);
+    }
+
+    @PostMapping("/select_course")
+    public String selectCourse(@RequestBody Course course) {
+        return courseService.selectCourse(course);
     }
 
     @GetMapping("/select_all_course")
@@ -43,8 +53,8 @@ public class CourseRestController {
     }
 
     @PostMapping("/edit_course")
-    public void editCourse(Course course) {
+    public void editCourse(@RequestBody Course course) {
+        System.out.println("받아온 값" + course);
         courseService.editCourse(course);
     }
- 
 }

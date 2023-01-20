@@ -24,19 +24,19 @@ public class EnterpriseRestController {
         enterpriseService.makeEnterprise(enterprise);
     }
 
-    @GetMapping("/select_e")
+    @GetMapping("/select_enterprise")
     public List<Enterprise> selectAllEnterprise() {
         System.out.println(enterpriseService.selectAllEnterprise());
         return enterpriseService.selectAllEnterprise();
     }
 
-    @PostMapping("/edit_e")
+    @PostMapping("/edit_enterprise")
     public void editEnterprise(@RequestBody Enterprise enterprise) {
         System.out.println("컨트롤러로 넘어온 값" + enterprise);
         enterpriseService.editEnterprise(enterprise);
     }
 
-    @PostMapping("/delete_e")
+    @PostMapping("/delete_enterprise")
     public void deleteEnterprise(@RequestBody Enterprise enterprise) {
         enterpriseService.deleteEnterprise(enterprise);
     }

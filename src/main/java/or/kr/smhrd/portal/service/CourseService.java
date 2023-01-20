@@ -16,8 +16,17 @@ public class CourseService {
 
     public void makeCourse(Course course) {
         courseMapper.makeCourse(course);
-        String id = course.getCourse_s_dt().substring(2) + course.getCourse_teacher();
-        courseMapper.makeTeacher(id, course.getCourse_teacher());
+    }
+
+    public void makeTeacher(Course course) {
+        String mb_id = course.getCourse_s_dt().substring(2) + course.getCourse_teacher();
+        courseMapper.makeTeacher(mb_id, course.getCourse_teacher(), course.getCourse_key());
+    }
+
+    public String selectCourse(Course course) {
+        String key = courseMapper.selectCourse(course);
+        System.out.println(key);
+        return key;
     }
 
     public List<Course> selectAllCourse() {
@@ -34,8 +43,7 @@ public class CourseService {
     }
 
     public void editCourse(Course course) {
+        System.out.println("서비스 받아온 값" + course);
         courseMapper.editCourse(course);
     }
-
-   
 }
