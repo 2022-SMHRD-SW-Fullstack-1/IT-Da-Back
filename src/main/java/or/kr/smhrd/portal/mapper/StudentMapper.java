@@ -62,6 +62,11 @@ public interface StudentMapper {
 
 
     // 초기 이력서, 자소서 입력하기 */
+    @Insert("insert into t_resume values(default, mb_id=#{id})")
+    public void createResume(String id);
+    @Insert("insert into t_cover_letter values(default, mb_id=#{id})")
+    public void createCoverLetter(String id);
+
     // 모든 이력서는 단방향으로 저장(초기 화면 select-> delete&insert) 
     // 이력서 수정
     @Update("update t_resume set name=#{name}, gender=#{gender}, birthday=#{birthday}, major=#{major}, phone=#{phone}, email=#{email}, addr=#{addr}, skills=#{skills}, wish_field=#{wish_field}, wish_salary=#{wish_salary}, wish_area1=#{wish_area1}, wish_area2=#{wish_area2}, wish_area3=#{wish_area3} where mb_id=#{id}")

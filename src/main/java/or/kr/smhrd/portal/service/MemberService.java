@@ -2,6 +2,7 @@ package or.kr.smhrd.portal.service;
 
 import or.kr.smhrd.portal.domain.Member;
 import or.kr.smhrd.portal.mapper.MemberMapper;
+import or.kr.smhrd.portal.mapper.StudentMapper;
 
 import java.util.Map;
 
@@ -14,6 +15,7 @@ import lombok.RequiredArgsConstructor;
 public class MemberService {
     
    private final MemberMapper memberMapper;
+   private final StudentMapper studentMapper;
 
    public void register(Map<String, String> data) {
       memberMapper.register(new Member(
@@ -27,6 +29,9 @@ public class MemberService {
          data.get("gender"), 
          data.get("expire"),
          data.get("key")));
+      studentMapper.createResume(data.get("id"));
+      studentMapper.createCoverLetter(data.get("id"));
+         
    }
 
    public Member login(Map<String, String> data) {
