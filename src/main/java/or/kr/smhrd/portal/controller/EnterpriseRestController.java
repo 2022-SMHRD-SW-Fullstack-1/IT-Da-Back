@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import or.kr.smhrd.portal.domain.Company;
 import or.kr.smhrd.portal.domain.Enterprise;
 import or.kr.smhrd.portal.service.EnterpriseService;
 
@@ -26,7 +27,6 @@ public class EnterpriseRestController {
 
     @GetMapping("/select_enterprise")
     public List<Enterprise> selectAllEnterprise() {
-        System.out.println(enterpriseService.selectAllEnterprise());
         return enterpriseService.selectAllEnterprise();
     }
 
@@ -39,6 +39,27 @@ public class EnterpriseRestController {
     @PostMapping("/delete_enterprise")
     public void deleteEnterprise(@RequestBody Enterprise enterprise) {
         enterpriseService.deleteEnterprise(enterprise);
+    }
+
+    // 기업공고
+    @PostMapping("/make_company")
+    public void makeCompany(@RequestBody Company company) {
+        enterpriseService.makeCompany(company);
+    }
+
+    @GetMapping("/select_company")
+    public List<Company> selectCompany() {
+        return enterpriseService.selectCompany();
+    }
+
+    @PostMapping("/edit_company")
+    public void editCompany(@RequestBody Company company) {
+        enterpriseService.editCompany(company);
+    }
+
+    @PostMapping("/delete_company")
+    public void delete(@RequestBody Company company) {
+        enterpriseService.deleteCompany(company);
     }
 
 }
