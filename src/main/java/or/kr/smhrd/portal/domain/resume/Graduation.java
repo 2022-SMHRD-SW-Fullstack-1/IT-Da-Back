@@ -8,6 +8,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Graduation {
+    String grad_num;
     String mb_id;
     String grad_school;
     String school_type;

@@ -7,10 +7,11 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class Certification {
-    String cert_num;
+public class CoverLetter {
+    String coverletter_num;
     String mb_id;
-    String cert_org;
-    String cert_name;
-    String cert_dt;
+    String growth;
+    String pros_cons;
+    String goal_and_crisis;
+    String motivation;
 }

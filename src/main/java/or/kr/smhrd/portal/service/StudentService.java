@@ -3,10 +3,12 @@ package or.kr.smhrd.portal.service;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.stereotype.Service;
 
 import lombok.RequiredArgsConstructor;
+import or.kr.smhrd.portal.domain.resume.CoverLetter;
 import or.kr.smhrd.portal.domain.resume.Resume;
 import or.kr.smhrd.portal.mapper.StudentMapper;
 
@@ -18,14 +20,6 @@ public class StudentService {
 
     /** 학생 전체 이력서 조회 */
     public List<Resume> selectAllResume() {
-        // HashMap<String, Object> resumeAll = new HashMap<String, Object>();
-        // resumeAll.put("resume", studentMapper.selectAllResume());
-        // resumeAll.put("graduation", studentMapper.selectAllGraduation());
-        // resumeAll.put("career", studentMapper.selectAllCareer());
-        // resumeAll.put("certification", studentMapper.selectAllCertification());
-        // resumeAll.put("prize", studentMapper.selectAllPrize());
-        // resumeAll.put("military", studentMapper.selectAllMilitary());
-
         return studentMapper.selectAllResume();
     }
 
@@ -51,58 +45,90 @@ public class StudentService {
      * resume만 update,
      * 나머지는 delete 후 insert
      */
-    public void updateResume(HashMap<String, Object> params) {
-        String id = (String) params.get("id");
-        // System.out.println(params.get("resume").getClass().getName());
-
-        // 인적사항
-        studentMapper.updateResume(params.get("resume"), id);
-
-        // 학력정보
-        studentMapper.deleteGraduation(id);
-        ArrayList<Object> graduation = (ArrayList<Object>) params.get("graduation");
-        // System.out.println(graduation.size());
-        for (int i = 0; i < graduation.size(); i++) {
-            // System.out.println(graduation.get(i) + " " + " " + id);
-            studentMapper.insertGraduation(graduation.get(i), id);
-        }
-
-        // 경력
-        studentMapper.deleteCareer(id);
-        ArrayList<Object> career = (ArrayList<Object>) params.get("career");
-        // System.out.println(career.size());
-        for (int i = 0; i < career.size(); i++) {
-            // System.out.println(career.get(i) + " " + " " + id);
-            studentMapper.insertCareer(career.get(i), id);
-        }
-
-        // 자격증
-        studentMapper.deleteCertification(id);
-        ArrayList<Object> certification = (ArrayList<Object>) params.get("certification");
-        // System.out.println(certification.size());
-        for (int i = 0; i < certification.size(); i++) {
-            // System.out.println(certification.get(i) + " " + " " + id);
-            studentMapper.insertCertification(certification.get(i), id);
-        }
-
-        // 수상
-        studentMapper.deletePrize(id);
-        ArrayList<Object> prize = (ArrayList<Object>) params.get("prize");
-        // System.out.println(prize.size());
-        for (int i = 0; i < prize.size(); i++) {
-            // System.out.println(prize.get(i) + " " + " " + id);
-            studentMapper.insertPrize(prize.get(i), id);
-        }
-        // 병역
-        studentMapper.deleteMilitary(id);
-        ArrayList<Object> military = (ArrayList<Object>) params.get("military");
-        // System.out.println(military.size());
-        for (int i = 0; i < military.size(); i++) {
-            studentMapper.insertMilitary(military.get(i), id);
-        }
+    public void updateResume(Map<String, String> data) {
+        studentMapper.updateResume(data);
 
         // 날짜 업데이트
-        studentMapper.updateUpdate(id);
+        studentMapper.updateUpdate(data.get("id"));
 
+    }
+
+    /** 학력 추가 */
+    public void addGraduation(Map<String, String> data) {
+        studentMapper.addGraduation(data);
+        // 날짜 업데이트
+        studentMapper.updateUpdate(data.get("id"));
+    }
+
+    /** 경력추가 */
+    public void addCareer(Map<String, String> data) {
+        studentMapper.addCareer(data);
+        // 날짜 업데이트
+        studentMapper.updateUpdate(data.get("id"));
+    }
+
+    /** 자격증 추가 */
+    public void addCertification(Map<String, String> data) {
+        studentMapper.addCertification(data);
+        // 날짜 업데이트
+        studentMapper.updateUpdate(data.get("id"));
+    }
+
+    /** 수상 추가 */
+    public void addPrize(Map<String, String> data) {
+        studentMapper.addPrize(data);
+        System.out.println(data);
+        // 날짜 업데이트
+        studentMapper.updateUpdate(data.get("id"));
+    }
+
+    /** 병역 추가 */
+    public void addMilitary(Map<String, String> data) {
+        studentMapper.addMilitary(data);
+        // 날짜 업데이트
+        studentMapper.updateUpdate(data.get("id"));
+    }
+
+    /** 학력 제거 */
+    public void deleteGraduation(Map<String, String> data) {
+        studentMapper.deleteGraduation(data);
+        studentMapper.updateUpdate(data.get("id"));
+    }
+    
+    /** 경력 제거 */
+    public void deleteCareer(Map<String, String> data) {
+        studentMapper.deleteCareer(data);
+        studentMapper.updateUpdate(data.get("id"));
+    }
+    
+    /** 자격증 제거 */
+    public void deleteCertification(Map<String, String> data) {
+        studentMapper.deleteCertification(data);
+        studentMapper.updateUpdate(data.get("id"));
+    }
+    
+    /** 수상 제거 */
+    public void deletePrize(Map<String, String> data) {
+        System.out.println(data);
+        studentMapper.deletePrize(data);
+        studentMapper.updateUpdate(data.get("id"));
+    }
+    
+    /** 병역 제거 */
+    public void deleteMilitary(Map<String, String> data) {
+        studentMapper.deleteMilitary(data);
+        studentMapper.updateUpdate(data.get("id"));
+    }
+
+    public List<CoverLetter> selectAllCoverLetter() {
+        return studentMapper.selectAllCoverLetter();
+    }
+
+    public CoverLetter selectCoverLetter(String id) {
+        return studentMapper.selectCoverLetter(id);
+    }
+
+    public void updateCoverLetter(Map<String, String> data) {
+        studentMapper.updateCoverLetter(data);
     }
 }

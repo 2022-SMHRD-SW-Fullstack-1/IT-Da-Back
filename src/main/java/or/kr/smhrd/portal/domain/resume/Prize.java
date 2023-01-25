@@ -8,6 +8,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Prize {
+    String prize_num;
     String mb_id;
     String prize_org;
     String prize_name;

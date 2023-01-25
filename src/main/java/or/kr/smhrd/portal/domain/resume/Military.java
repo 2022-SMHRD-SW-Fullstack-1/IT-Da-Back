@@ -8,6 +8,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Military {
+    String mili_num;
     String mb_id;
     String mili_title;
     String mili_army;

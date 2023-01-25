@@ -3,6 +3,7 @@ package or.kr.smhrd.portal.mapper;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
@@ -12,6 +13,7 @@ import org.apache.ibatis.annotations.Update;
 
 import or.kr.smhrd.portal.domain.resume.Career;
 import or.kr.smhrd.portal.domain.resume.Certification;
+import or.kr.smhrd.portal.domain.resume.CoverLetter;
 import or.kr.smhrd.portal.domain.resume.Graduation;
 import or.kr.smhrd.portal.domain.resume.Military;
 import or.kr.smhrd.portal.domain.resume.Prize;
@@ -62,40 +64,59 @@ public interface StudentMapper {
     // 초기 이력서, 자소서 입력하기 */
     // 모든 이력서는 단방향으로 저장(초기 화면 select-> delete&insert) 
     // 이력서 수정
-    @Update("update t_resume set name=#{resume.name}, gender=#{resume.gender}, birthday=#{resume.birthday}, major=#{resume.major}, phone=#{resume.phone}, email=#{resume.email}, addr=#{resume.addr}, skills=#{resume.skills}, wish_field=#{resume.wish_field}, wish_salary=#{resume.wish_salary}, wish_area1=#{resume.wish_area1}, wish_area2=#{resume.wish_area2}, wish_area3=#{resume.wish_area3} where mb_id=#{id}")
-    void updateResume(Object resume, String id);
-    // 교육
-    @Delete("delete from t_graduation where mb_id =#{id}")
-    public void deleteGraduation(String id);
-    @Insert("insert into t_graduation values(default, #{id}, #{graduation.grad_school}, #{graduation.school_type}, #{graduation.grad_dt}, #{graduation.grad_type}, #{graduation.grad_score})")
-    public void insertGraduation(Object graduation, String id);
+    @Update("update t_resume set name=#{name}, gender=#{gender}, birthday=#{birthday}, major=#{major}, phone=#{phone}, email=#{email}, addr=#{addr}, skills=#{skills}, wish_field=#{wish_field}, wish_salary=#{wish_salary}, wish_area1=#{wish_area1}, wish_area2=#{wish_area2}, wish_area3=#{wish_area3} where mb_id=#{id}")
+    void updateResume(Map<String, String> data);
+    // 학력 제거
+    @Delete("delete from t_graduation where grad_type=#{grad_type} and grad_school=#{grad_school} and grad_dt=#{grad_dt} and school_type=#{school_type} and mb_id=#{id}")
+    public void deleteGraduation(Map<String, String> data);
 
-    // 경력
-    @Delete("delete from t_career where mb_id =#{id}")
-    public void deleteCareer(String id);
-    @Insert("insert into t_career values(default, #{id}, #{career.cr_organization}, #{career.cr_position}, #{career.cr_s_dt}, #{career.cr_e_dt}, #{career.cr_activity})")
-    public void insertCareer(Object career, String id);
+    // 경력 제거
+    @Delete("delete from t_career where cr_organization=#{cr_organization} and cr_position=#{cr_position} and cr_s_dt=#{cr_s_dt} and cr_e_dt=#{cr_e_dt} and mb_id=#{id}")
+    public void deleteCareer(Map<String, String> data);
 
-    // 자격증
-    @Delete("delete from t_certification where mb_id =#{id}")
-    public void deleteCertification(String id);
-    @Insert("insert into t_certification values(default, #{id}, #{certification.cert_org}, #{certification.cert_name}, #{certification.cert_dt})")
-    public void insertCertification(Object certification, String id);
+    // 자격증 제거
+    @Delete("delete from t_certification where cert_org=#{cert_org} and cert_name=#{cert_name} and cert_dt=#{cert_dt} and mb_id=#{id}")
+    public void deleteCertification(Map<String, String> data);
 
-    // 수상
-    @Delete("delete from t_prize where mb_id =#{id}")
-    public void deletePrize(String id);
-    @Insert("insert into t_prize values(default, #{id}, #{prize.prize_org}, #{prize.prize_name}, #{prize.prize_dt})")
-    public void insertPrize(Object prize, String id);
+    // 수상 제거
+    @Delete("delete from t_prize where prize_name=#{prize_name} and prize_org=#{prize_org} and prize_dt=#{prize_dt} and mb_id=#{id}")
+    public void deletePrize(Map<String, String> data);
 
-    // 병역
-    @Delete("delete from t_military where mb_id =#{id}")
-    public void deleteMilitary(String id);
-    @Insert("insert into t_military values(default, #{id}, #{military.mili_title}, #{military.mili_army}, #{military.mili_s_dt}, #{military.mili_e_dt}, #{military.veteran_yn})")
-    public void insertMilitary(Object military, String id);
+    // 병역 제거
+    @Delete("delete from t_military where mili_title=#{mili_title} and mili_army=#{mili_army} and mb_id=#{id}")
+    public void deleteMilitary(Map<String, String> data);
 
     //업데이트 날짜 수정
     @Update("update t_member set mb_update=now() where mb_id=#{id}")
     public void updateUpdate(String id);
+
+    /**학력추가 */
+    @Insert("insert into t_graduation values(default, #{id}, #{grad_school}, #{school_type}, #{grad_dt}, #{grad_type}, #{grad_score})")
+    void addGraduation(Map<String, String> data);
+    
+    /**경력추가 */
+    @Insert("insert into t_career values(default, #{id}, #{cr_organization}, #{cr_position}, #{cr_s_dt}, #{cr_e_dt}, #{cr_activity})")
+    void addCareer(Map<String, String> data);
+    
+    /**자격증추가 */
+    @Insert("insert into t_certification values(default, #{id}, #{cert_org}, #{cert_name}, #{cert_dt})")
+    void addCertification(Map<String, String> data);
+
+    /**수상추가 */
+    @Insert("insert into t_prize values(default, #{id}, #{prize_org}, #{prize_name}, #{prize_dt})")
+    void addPrize(Map<String, String> data);
+
+    /**병역추가 */
+    @Insert("insert into t_military values(default, #{id}, #{mili_title}, #{mili_army}, #{mili_s_dt}, #{mili_e_dt}, #{veteran_yn})")
+    void addMilitary(Map<String, String> data);
+
+    @Select("select * from t_cover_letter")
+    List<CoverLetter> selectAllCoverLetter();
+
+    @Select("select * from t_cover_letter where mb_id=#{id}")
+    CoverLetter selectCoverLetter(String id);
+
+    @Update("update t_cover_letter set growth=#{growth}, pros_cons=#{pros_cons},goal_and_crisis=#{goal_and_crisis},motivation=#{motivation} where mb_id=#{id}")
+    void updateCoverLetter(Map<String, String> data);
 
 }
