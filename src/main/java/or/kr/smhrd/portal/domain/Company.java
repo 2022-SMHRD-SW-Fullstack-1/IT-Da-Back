@@ -15,8 +15,10 @@ public class Company {
     String company_employ;
     String company_grade;
     String company_position;
+    String company_qual;
+    String company_essential;
     String company_advantage;
-    String company_salary;
-    String company_require;
     String company_etc;
+    String company_salary;
+    String company_apply;
 }

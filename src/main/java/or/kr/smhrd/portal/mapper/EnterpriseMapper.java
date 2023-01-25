@@ -29,13 +29,13 @@ public interface EnterpriseMapper {
     public void deleteEnterprise(Enterprise enterprise);
 
     // 기업공고 생성
-    @Insert("insert into t_company value(default, #{company_name}, #{company_deadline}, #{company_area}, #{company_employ}, #{company_grade}, #{company_position}, #{company_advantage}, #{company_salary}, #{company_require}, #{company_etc})")
+    @Insert("insert into t_company value(default, #{company_name}, #{company_deadline}, #{company_area}, #{company_employ}, #{company_grade}, #{company_position}, #{company_qual}, #{company_essential}, #{company_advantage}, #{company_etc}, #{company_salary}, #{company_apply})")
     public void makeCompany(Company company);
 
     @Select("select * from t_company")
     public List<Company> selectCompany();
 
-    @Update("update t_company set company_deadline=#{company_deadline}, company_area=#{company_area}, company_employ=#{company_employ}, company_grade=#{company_grade}, company_position=#{company_position}, company_advantage=#{company_advantage}, company_salary=#{company_salary}, company_require=#{company_require}, company_etc=#{company_etc} where company_name=#{company_name}")
+    @Update("update t_company set company_deadline=#{company_deadline}, company_area=#{company_area}, company_employ=#{company_employ}, company_grade=#{company_grade}, company_position=#{company_position}, company_qual=#{company_qual}, company_essential=#{company_essential}, company_advantage=#{company_advantage}, company_etc=#{company_etc}, company_salary=#{company_salary}, company_apply=#{company_apply} where company_name=#{company_name}")
     public void editCompany(Company company);
 
     @Delete("delete from t_company where company_name=#{company_name}")
