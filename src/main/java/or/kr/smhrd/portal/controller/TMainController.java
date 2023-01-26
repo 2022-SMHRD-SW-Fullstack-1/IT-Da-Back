@@ -22,6 +22,7 @@ public class TMainController {
 
    private final TMainService tMainService;
 
+   // 공지사항 관련
    @PostMapping("/addPost")
    public void addPost(@RequestBody Map<String, String> data) {
       tMainService.addPost(data);
@@ -46,5 +47,38 @@ public class TMainController {
    public void deletePost(@RequestParam String key) {
       tMainService.deletePost(key);
    }
-   
+
+
+   // 공유자료실 관련
+   @PostMapping("/addArchive")
+   public void addArchive(@RequestBody Map<String, String> data) {
+      tMainService.addArchive(data);
+   }
+
+   @PostMapping("/editArchive")
+   public void editArchive(@RequestBody Map<String, String> data) {
+      tMainService.editArchive(data);
+   }
+
+   @GetMapping("/getArchive")
+   public List<Board> getArchive(@RequestParam String key) {
+       return tMainService.getArchive(key);
+   }
+
+   @GetMapping("/getOneArchive")
+   public Board getOneArchive(@RequestParam String key) {
+      return tMainService.getOneArchive(key);
+   }
+
+   @GetMapping("/deleteArchive")
+   public void deleteArchive(@RequestParam String key) {
+      tMainService.deleteArchive(key);
+   }
+
+
+   // 학생 정보 관련
+   @GetMapping("/getCourseInfo")
+   public String getCourseInfo(@RequestParam String key) {
+      return tMainService.getCourseInfo(key);
+   }
 }
