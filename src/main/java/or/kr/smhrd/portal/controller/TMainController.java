@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import or.kr.smhrd.portal.domain.Board;
 
-
 @RequiredArgsConstructor
 @RequestMapping("/announcement")
 @RestController
@@ -35,7 +34,7 @@ public class TMainController {
 
    @GetMapping("/getPost")
    public List<Board> getPost(@RequestParam String key) {
-       return tMainService.getPost(key);
+      return tMainService.getPost(key);
    }
 
    @GetMapping("/getOnePost")
@@ -47,7 +46,6 @@ public class TMainController {
    public void deletePost(@RequestParam String key) {
       tMainService.deletePost(key);
    }
-
 
    // 공유자료실 관련
    @PostMapping("/addArchive")
@@ -62,7 +60,7 @@ public class TMainController {
 
    @GetMapping("/getArchive")
    public List<Board> getArchive(@RequestParam String key) {
-       return tMainService.getArchive(key);
+      return tMainService.getArchive(key);
    }
 
    @GetMapping("/getOneArchive")
@@ -75,10 +73,21 @@ public class TMainController {
       tMainService.deleteArchive(key);
    }
 
-
    // 학생 정보 관련
    @GetMapping("/getCourseInfo")
    public String getCourseInfo(@RequestParam String key) {
       return tMainService.getCourseInfo(key);
    }
+
+   // 전체공지
+   @PostMapping("/manager_write")
+   public void managerAnnouncementWrite(@RequestBody Board board) {
+      tMainService.managerAnnouncementWrite(board);
+   }
+
+   @GetMapping("/get_manager_post")
+   public List<Board> getManagerPost(@RequestParam String key) {
+      return tMainService.getManagerPost(key);
+   }
+
 }

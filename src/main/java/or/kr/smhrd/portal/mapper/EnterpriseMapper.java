@@ -32,7 +32,7 @@ public interface EnterpriseMapper {
     @Insert("insert into t_company value(default, #{company_name}, #{company_deadline}, #{company_area}, #{company_employ}, #{company_grade}, #{company_position}, #{company_qual}, #{company_essential}, #{company_advantage}, #{company_etc}, #{company_salary}, #{company_apply})")
     public void makeCompany(Company company);
 
-    @Select("select * from t_company")
+    @Select("select * from t_company order by company_deadline")
     public List<Company> selectCompany();
 
     @Update("update t_company set company_deadline=#{company_deadline}, company_area=#{company_area}, company_employ=#{company_employ}, company_grade=#{company_grade}, company_position=#{company_position}, company_qual=#{company_qual}, company_essential=#{company_essential}, company_advantage=#{company_advantage}, company_etc=#{company_etc}, company_salary=#{company_salary}, company_apply=#{company_apply} where company_name=#{company_name}")
