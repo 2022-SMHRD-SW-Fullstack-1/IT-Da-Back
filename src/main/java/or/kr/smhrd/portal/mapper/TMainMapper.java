@@ -13,7 +13,7 @@ import or.kr.smhrd.portal.domain.Course;
 
 @Mapper
 public interface TMainMapper {
-   
+
    @Insert("insert into t_board values(default, #{title}, #{content}, '', now(), #{id}, '공지사항', UNHEX(concat(#{key},'000000000000000000000000')))")
    public void addPost(String title, String content, String id, String key);
 
@@ -29,7 +29,6 @@ public interface TMainMapper {
    @Delete("delete from t_board where b_num = UNHEX(concat(#{b_num},'000000000000000000000000'))")
    public void deletePost(String key);
 
-   
    @Insert("insert into t_board values(default, #{title}, #{content}, '', now(), #{id}, '자료실', UNHEX(concat(#{key},'000000000000000000000000')))")
    public void addArchive(String title, String content, String id, String key);
 
@@ -45,7 +44,13 @@ public interface TMainMapper {
    @Delete("delete from t_board where b_num = UNHEX(concat(#{b_num},'000000000000000000000000'))")
    public void deleteArchive(String key);
 
-
    @Select("select * from t_course where course_key = UNHEX(concat(#{key},'000000000000000000000000'))")
    public Course getCourseInfo(String key);
+
+   // 관리자 전체공지 생성
+   @Insert("insert into t_board values(default, #{b_title}, #{b_content}, '', now(), #{mb_id}, '공지사항', UNHEX(concat('52D8EECC','000000000000000000000000')))")
+   public void managerAnnouncementWrite(Board board);
+
+   @Select("select LEFT(HEX(b_num),8) as b_num, b_title, b_content, b_file, DATE_FORMAT(b_dt,'%Y-%m-%d'), mb_id from t_board where course_key = UNHEX(concat('52D8EECC','000000000000000000000000'))")
+   public List<Board> getManagerPost(String key);
 }

@@ -58,7 +58,19 @@ public class TMainService {
 
    public String getCourseInfo(String key) {
       Course course = tMainMapper.getCourseInfo(key);
-      return "[" + course.getCourse_subject() + "] " + course.getCourse_name() + " (" + course.getCourse_s_dt().substring(2, 4) + "." + course.getCourse_s_dt().substring(4, 6) + "." + course.getCourse_s_dt().substring(6) + " ~ " + course.getCourse_e_dt().substring(2, 4) + "." + course.getCourse_e_dt().substring(4, 6) + "." + course.getCourse_e_dt().substring(6) + " / " + course.getCourse_teacher() + " 연구원)";
+      return "[" + course.getCourse_subject() + "] " + course.getCourse_name() + " ("
+            + course.getCourse_s_dt().substring(2, 4) + "." + course.getCourse_s_dt().substring(4, 6) + "."
+            + course.getCourse_s_dt().substring(6) + " ~ " + course.getCourse_e_dt().substring(2, 4) + "."
+            + course.getCourse_e_dt().substring(4, 6) + "." + course.getCourse_e_dt().substring(6) + " / "
+            + course.getCourse_teacher() + " 연구원)";
    }
 
+   // 전체공지
+   public void managerAnnouncementWrite(Board board) {
+      tMainMapper.managerAnnouncementWrite(board);
+   }
+
+   public List<Board> getManagerPost(String key) {
+      return tMainMapper.getManagerPost(key);
+   }
 }
