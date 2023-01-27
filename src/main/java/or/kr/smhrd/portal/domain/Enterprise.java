@@ -9,6 +9,10 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Enterprise {
-    String enter_num;
+    String enter_id;
+    String enter_pw;
     String enter_name;
+    String enter_manager;
+    String enter_tel;
+    char enter_approve;
 }

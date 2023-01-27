@@ -40,4 +40,12 @@ public interface EnterpriseMapper {
 
     @Delete("delete from t_company where company_name=#{company_name}")
     public void deleteCompany(Company company);
+
+    // 기업 회원가입
+    @Insert("insert into t_enterprise value(#{enter_id}, #{enter_pw}, #{enter_name}, #{enter_manager}, #{enter_tel}, 'N')")
+    public void register(Enterprise enterprise);
+
+    // 기업 로그인
+    @Select("select * from t_enterprise where enter_id = #{id} and enter_pw = #{pw}")
+    public Enterprise login(String id, String pw);
 }

@@ -1,6 +1,7 @@
 package or.kr.smhrd.portal.controller;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -61,5 +62,17 @@ public class EnterpriseRestController {
     public void delete(@RequestBody Company company) {
         enterpriseService.deleteCompany(company);
     }
+
+    // 기업 회원가입
+    @PostMapping("/register")
+    public void register(@RequestBody Map<String, String> data) {
+        enterpriseService.register(data);
+    }
+
+    // 기업 로그인
+    @PostMapping("/login")
+   public Enterprise login(@RequestBody Map<String, String> data) {
+      return enterpriseService.login(data);
+   }
 
 }
