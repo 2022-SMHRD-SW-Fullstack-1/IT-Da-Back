@@ -37,7 +37,7 @@ public interface EnterpriseMapper {
     public void deleteCompany(Company company);
 
     // 기업 회원가입
-    @Insert("insert into t_enterprise value(#{enter_id}, #{enter_pw}, #{enter_name}, #{enter_manager}, #{enter_tel}, 'N', #{enter_address}, #{address_num} )")
+    @Insert("insert into t_enterprise value(#{enter_id}, #{enter_pw}, #{enter_name}, #{enter_manager}, #{enter_tel}, 'N', #{enter_address}, #{enter_num} )")
     public void register(Enterprise enterprise);
 
     // 기업 로그인
