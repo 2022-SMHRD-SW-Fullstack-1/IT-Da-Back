@@ -20,7 +20,7 @@ public interface TMainMapper {
    @Update("update t_board set b_title = #{title}, b_content = #{content} where b_num = UNHEX(concat(#{b_num},'000000000000000000000000'))")
    public void editPost(String title, String content, String b_num);
 
-   @Select("select LEFT(HEX(b_num),8) as b_num, b_title, b_content, b_file, DATE_FORMAT(b_dt,'%Y-%m-%d'), mb_id from t_board where course_key = UNHEX(concat(#{key},'000000000000000000000000')) and b_type = '공지사항' order by b_dt desc")
+   @Select("select LEFT(HEX(b_num),8) as b_num, b_title, b_content, b_file, DATE_FORMAT(b_dt,'%Y-%m-%d'), mb_id from t_board where course_key = UNHEX(concat(#{key},'000000000000000000000000')) and b_type  = '공지사항' or course_key = UNHEX(concat('52D8EECC','000000000000000000000000')) order by b_dt desc")
    public List<Board> getPost(String key);
 
    @Select("select LEFT(HEX(b_num),8) as b_num, b_title, b_content, b_file, DATE_FORMAT(b_dt,'%Y-%m-%d'), mb_id from t_board where b_num = UNHEX(concat(#{key},'000000000000000000000000'))")

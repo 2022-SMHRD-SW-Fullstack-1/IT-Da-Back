@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import or.kr.smhrd.portal.domain.Company;
@@ -75,9 +76,9 @@ public class EnterpriseRestController {
         return enterpriseService.enterApproveList(enter_name, enter_id);
     }
 
-    @PostMapping("/approve")
-    public void enterApprove(String enter_id) {
-        System.out.println(enter_id);
+    @GetMapping("/approve")
+    public void enterApprove(@RequestParam String enter_id) {
+        System.out.println("받아온값 : " + enter_id);
         enterpriseService.enterApprove(enter_id);
     }
 
