@@ -15,4 +15,6 @@ public class Enterprise {
     String enter_manager;
     String enter_tel;
     char enter_approve;
+    String enter_address;
+    String enter_num;
 }

@@ -16,10 +16,6 @@ public class EnterpriseService {
     @Autowired
     EnterpriseMapper enterpriseMapper;
 
-    public void makeEnterprise(Enterprise enterprise) {
-        enterpriseMapper.makeEnterprise(enterprise);
-    }
-
     public List<Enterprise> selectAllEnterprise() {
         return enterpriseMapper.selectAllEnterprise();
     }
@@ -50,14 +46,8 @@ public class EnterpriseService {
     }
 
     // 기업 회원가입
-    public void register(Map<String, String> data) {
-        enterpriseMapper.register(new Enterprise(
-                data.get("id"),
-                data.get("pw"),
-                data.get("enter_name"),
-                data.get("manager"),
-                data.get("tel"),
-                'N'));
+    public void register(Enterprise enterprise) {
+        enterpriseMapper.register(enterprise);
     }
 
     // 기업 로그인

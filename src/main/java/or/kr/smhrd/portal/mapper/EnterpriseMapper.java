@@ -14,13 +14,10 @@ import or.kr.smhrd.portal.domain.Enterprise;
 @Mapper
 public interface EnterpriseMapper {
 
-    @Insert("insert into t_enterprise values(default, #{enter_name})")
-    public void makeEnterprise(Enterprise enterprise);
-
     @Select("select * from t_enterprise")
     public List<Enterprise> selectAllEnterprise();
 
-    @Update("update t_enterprise set enter_pw=#{enter_pw}, enter_manager=#{enter_manager}, enter_tel=#{enter_tel} where enter_id= #{enter_id}")
+    @Update("update t_enterprise set enter_pw=#{enter_pw}, enter_manager=#{enter_manager}, enter_tel=#{enter_tel}, enter_address=#{enter_address} where enter_id= #{enter_id}")
     public void editEnterprise(Enterprise enterprise);
 
     @Delete("delete from t_enterprise where enter_id=#{enter_id}")
@@ -40,7 +37,7 @@ public interface EnterpriseMapper {
     public void deleteCompany(Company company);
 
     // 기업 회원가입
-    @Insert("insert into t_enterprise value(#{enter_id}, #{enter_pw}, #{enter_name}, #{enter_manager}, #{enter_tel}, 'N')")
+    @Insert("insert into t_enterprise value(#{enter_id}, #{enter_pw}, #{enter_name}, #{enter_manager}, #{enter_tel}, 'N', #{enter_address}, #{address_num} )")
     public void register(Enterprise enterprise);
 
     // 기업 로그인

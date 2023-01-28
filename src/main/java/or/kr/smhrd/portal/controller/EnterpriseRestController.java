@@ -21,11 +21,6 @@ public class EnterpriseRestController {
     @Autowired
     EnterpriseService enterpriseService;
 
-    @PostMapping("/make_enterprise")
-    public void makeEnterprise(@RequestBody Enterprise enterprise) {
-        enterpriseService.makeEnterprise(enterprise);
-    }
-
     @GetMapping("/select_enterprise")
     public List<Enterprise> selectAllEnterprise() {
         return enterpriseService.selectAllEnterprise();
@@ -64,8 +59,8 @@ public class EnterpriseRestController {
 
     // 기업 회원가입
     @PostMapping("/register")
-    public void register(@RequestBody Map<String, String> data) {
-        enterpriseService.register(data);
+    public void register(@RequestBody Enterprise enterprise) {
+        enterpriseService.register(enterprise);
     }
 
     // 기업 로그인
