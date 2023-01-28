@@ -131,4 +131,12 @@ public class StudentService {
     public void updateCoverLetter(Map<String, String> data) {
         studentMapper.updateCoverLetter(data);
     }
+    
+    public void updatePhoto(Map<String, String> data) {
+        studentMapper.updatePhoto(data);
+    }
+    
+    public void deletePhoto(Map<String, String> data) {
+        studentMapper.deletePhoto(data);
+    }
 }

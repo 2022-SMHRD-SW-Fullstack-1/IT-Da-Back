@@ -1,6 +1,5 @@
 package or.kr.smhrd.portal.controller;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -66,6 +65,18 @@ public class StudentRestController {
     public void updateResume(@RequestBody Map<String, String> data) {
         System.out.println(data);
         studentService.updateResume(data);
+    }
+    
+    // 이미지 추가 삭제
+    @PostMapping("/student/photo/update")
+    public void updatePhoto(@RequestBody Map<String, String> data){
+        System.out.println(data);
+        studentService.updatePhoto(data);
+    }
+    @PostMapping("/student/photo/delete")
+    public void deletePhoto(@RequestBody Map<String, String> data){
+        System.out.println(data);
+        studentService.deletePhoto(data);
     }
 
     // 추가
