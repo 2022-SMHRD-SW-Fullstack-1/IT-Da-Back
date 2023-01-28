@@ -52,17 +52,26 @@ public class EnterpriseService {
     // 기업 회원가입
     public void register(Map<String, String> data) {
         enterpriseMapper.register(new Enterprise(
-           data.get("id"), 
-           data.get("pw"), 
-           data.get("enter_name"),
-           data.get("manager"),
-           data.get("tel"),
-           'N'));
-     }
+                data.get("id"),
+                data.get("pw"),
+                data.get("enter_name"),
+                data.get("manager"),
+                data.get("tel"),
+                'N'));
+    }
 
-     // 기업 로그인
-     public Enterprise login(Map<String, String> data) {
+    // 기업 로그인
+    public Enterprise login(Map<String, String> data) {
         return enterpriseMapper.login(data.get("id"), data.get("pw"));
-     }
+    }
+
+    // 기업 승인
+    public List<Enterprise> enterApproveList(String enter_name, String enter_id) {
+        return enterpriseMapper.enterApproveList(enter_name, enter_id);
+    }
+
+    public void enterApprove(String enter_id) {
+        enterpriseMapper.enterApprove(enter_id);
+    }
 
 }

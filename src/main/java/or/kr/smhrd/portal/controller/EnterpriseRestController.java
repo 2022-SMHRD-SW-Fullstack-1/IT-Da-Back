@@ -33,7 +33,6 @@ public class EnterpriseRestController {
 
     @PostMapping("/edit_enterprise")
     public void editEnterprise(@RequestBody Enterprise enterprise) {
-        System.out.println("컨트롤러로 넘어온 값" + enterprise);
         enterpriseService.editEnterprise(enterprise);
     }
 
@@ -71,8 +70,20 @@ public class EnterpriseRestController {
 
     // 기업 로그인
     @PostMapping("/login")
-   public Enterprise login(@RequestBody Map<String, String> data) {
-      return enterpriseService.login(data);
-   }
+    public Enterprise login(@RequestBody Map<String, String> data) {
+        return enterpriseService.login(data);
+    }
+
+    // 기업승인
+    @GetMapping("/approve_list")
+    public List<Enterprise> enterApproveList(String enter_name, String enter_id) {
+        return enterpriseService.enterApproveList(enter_name, enter_id);
+    }
+
+    @PostMapping("/approve")
+    public void enterApprove(String enter_id) {
+        System.out.println(enter_id);
+        enterpriseService.enterApprove(enter_id);
+    }
 
 }

@@ -14,18 +14,16 @@ import or.kr.smhrd.portal.domain.Enterprise;
 @Mapper
 public interface EnterpriseMapper {
 
-    // 기업키 생성
-
     @Insert("insert into t_enterprise values(default, #{enter_name})")
     public void makeEnterprise(Enterprise enterprise);
 
-    @Select("select enter_name, LEFT(HEX(enter_num),8) as enter_num from t_enterprise")
+    @Select("select * from t_enterprise")
     public List<Enterprise> selectAllEnterprise();
 
-    @Update("update t_enterprise set enter_name=#{enter_name} where enter_num= UNHEX(concat(#{enter_num},'000000000000000000000000'))")
+    @Update("update t_enterprise set enter_pw=#{enter_pw}, enter_manager=#{enter_manager}, enter_tel=#{enter_tel} where enter_id= #{enter_id}")
     public void editEnterprise(Enterprise enterprise);
 
-    @Delete("delete from t_enterprise where enter_num= UNHEX(concat(#{enter_num},'000000000000000000000000'))")
+    @Delete("delete from t_enterprise where enter_id=#{enter_id}")
     public void deleteEnterprise(Enterprise enterprise);
 
     // 기업공고 생성
@@ -48,4 +46,11 @@ public interface EnterpriseMapper {
     // 기업 로그인
     @Select("select * from t_enterprise where enter_id = #{id} and enter_pw = #{pw}")
     public Enterprise login(String id, String pw);
+
+    // 위젯 기업리스트
+    @Select("select enter_name, enter_id from t_enterprise where enter_approve='N'")
+    public List<Enterprise> enterApproveList(String enter_name, String enter_id);
+
+    @Update("update t_enterprise set enter_approve='Y' where enter_id=#{enter_id}")
+    public void enterApprove(String enter_id);
 }
