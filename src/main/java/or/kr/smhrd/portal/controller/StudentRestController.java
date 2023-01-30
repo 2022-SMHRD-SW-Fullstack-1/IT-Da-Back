@@ -86,6 +86,10 @@ public class StudentRestController {
     public List<Portfolio> selectPortfolio(@RequestParam HashMap<String, String> params){
         return studentService.selectPortfolio(params);
     }
+    @GetMapping("/portfolio/selectOne")
+    public Portfolio selectOnePortfolio(@RequestParam HashMap<String, String> params){
+        return studentService.selectOnePortfolio(params);
+    }
 
     // 추가
     @PostMapping("/portfolio/add")

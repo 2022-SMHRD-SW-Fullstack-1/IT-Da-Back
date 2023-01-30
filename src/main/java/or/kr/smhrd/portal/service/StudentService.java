@@ -156,4 +156,8 @@ public class StudentService {
     public void deletePortfolio(Map<String, String> data) {
         studentMapper.deletePortfolio(data);
     }
+
+    public Portfolio selectOnePortfolio(HashMap<String, String> params) {
+        return studentMapper.selectOnePortfolio(params.get("portfolio_num"));
+    }
 }

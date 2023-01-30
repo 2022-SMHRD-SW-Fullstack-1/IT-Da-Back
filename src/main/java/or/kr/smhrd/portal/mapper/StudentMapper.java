@@ -134,12 +134,15 @@ public interface StudentMapper {
     @Select("select * from t_portfolio where mb_id=#{id}")
     List<Portfolio> selectPortfolio(String string);
 
-    @Insert("insert into t_portfolio values(default), #{id}, #{portfolio_title}, #{portfolio_period}, #{portfolio_etc}, #{portfolio_img1}, #{portfolio_img2}, #{portfolio_img3}, #{portfolio_content}, #{portfolio_stack_front}, #{portfolio_stack_back}, #{portfolio_stack_db}, #{portfolio_url}, #{portfolio_file}, now()")
+    @Insert("insert into t_portfolio values(default, #{id}, #{portfolio_title}, #{portfolio_period}, #{portfolio_etc}, #{portfolio_img1}, #{portfolio_img2}, #{portfolio_img3}, #{portfolio_content}, #{portfolio_stack_front}, #{portfolio_stack_back}, #{portfolio_stack_db}, #{portfolio_url}, #{portfolio_file}, now())")
     void addPortfolio(Map<String, String> data);
     
     @Update("update into t_portfolio set }, portfolio_title= #{portfolio_title}, portfolio_period=#{portfolio_period}, portfolio_etc=#{portfolio_etc}, portfolio_img1=#{portfolio_img1}, portfolio_img2=#{portfolio_img2}, portfolio_img3=#{portfolio_img3}, portfolio_content= #{portfolio_content}, portfolio_stack_front=#{portfolio_stack_front}, portfolio_stack_back=#{portfolio_stack_back}, portfolio_stack_db=#{portfolio_stack_db}, portfolio_url=#{portfolio_url}, portfolio_file=#{portfolio_file}")
     void editPortfolio(Map<String, String> data);
 
     void deletePortfolio(Map<String, String> data);
+
+    @Select("select * from t_portfolio where portfolio_num=#{portfolio_num}")
+    Portfolio selectOnePortfolio(String string);
 
 }
