@@ -68,12 +68,12 @@ public class StudentRestController {
     }
     
     // 이미지 추가 삭제
-    @PostMapping("/student/photo/update")
+    @PostMapping("/photo/update")
     public void updatePhoto(@RequestBody Map<String, String> data){
         System.out.println(data);
         studentService.updatePhoto(data);
     }
-    @PostMapping("/student/photo/delete")
+    @PostMapping("/photo/delete")
     public void deletePhoto(@RequestBody Map<String, String> data){
         System.out.println(data);
         studentService.deletePhoto(data);

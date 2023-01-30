@@ -124,10 +124,10 @@ public interface StudentMapper {
     @Update("update t_cover_letter set growth=#{growth}, pros_cons=#{pros_cons},goal_and_crisis=#{goal_and_crisis},motivation=#{motivation} where mb_id=#{id}")
     void updateCoverLetter(Map<String, String> data);
 
-    @Update("update t_resume set photo=#{photo} where mb_id=#mb_id}")
+    @Update("update t_resume set photo=#{photo} where mb_id=#{id}")
     void updatePhoto(Map<String, String> data);
     
-    @Update("update t_resume set photo='' where mb_id=#mb_id}")
+    @Update("update t_resume set photo='' where mb_id=#{id}")
     void deletePhoto(Map<String, String> data);
 
 }
