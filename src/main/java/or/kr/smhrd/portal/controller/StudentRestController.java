@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import lombok.RequiredArgsConstructor;
+import or.kr.smhrd.portal.domain.Portfolio;
 import or.kr.smhrd.portal.domain.resume.CoverLetter;
 import or.kr.smhrd.portal.domain.resume.Resume;
 import or.kr.smhrd.portal.service.StudentService;
@@ -77,6 +78,30 @@ public class StudentRestController {
     public void deletePhoto(@RequestBody Map<String, String> data){
         System.out.println(data);
         studentService.deletePhoto(data);
+    }
+
+    // 프로젝트 포트폴리오
+    // 확인
+    @GetMapping("/portfolio")
+    public List<Portfolio> selectPortfolio(@RequestParam HashMap<String, String> params){
+        return studentService.selectPortfolio(params);
+    }
+
+    // 추가
+    @PostMapping("/portfolio/add")
+    public void addPortfolio(@RequestBody Map<String, String> data){
+        studentService.addPortfolio(data);   
+    }
+    // 수정
+    @PostMapping("/portfolio/edit")
+    public void editPortfolio(@RequestBody Map<String, String> data){
+        studentService.editPortfolio(data);
+    }
+
+    // 삭제
+    @PostMapping("portfolio/delete")
+    public void deletePortfolio(@RequestBody Map<String, String> data){
+        studentService.deletePortfolio(data);
     }
 
     // 추가
