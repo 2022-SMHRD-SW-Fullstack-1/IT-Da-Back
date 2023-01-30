@@ -26,5 +26,6 @@ public class Resume {
     String photo;
     String project;
     String project2;
+    String update_dt;
      
 }
