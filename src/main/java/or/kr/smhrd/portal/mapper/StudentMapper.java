@@ -92,7 +92,7 @@ public interface StudentMapper {
     public void deleteMilitary(Map<String, String> data);
 
     //업데이트 날짜 수정
-    @Update("update t_member set mb_update=now() where mb_id=#{id}")
+    @Update("update t_resume set update_dt=now() where mb_id=#{id}")
     public void updateUpdate(String id);
 
     /**학력추가 */
