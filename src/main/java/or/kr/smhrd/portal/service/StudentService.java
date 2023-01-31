@@ -1,6 +1,7 @@
 package or.kr.smhrd.portal.service;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -8,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import lombok.RequiredArgsConstructor;
 import or.kr.smhrd.portal.domain.Extend;
+import or.kr.smhrd.portal.domain.Portfolio;
 import or.kr.smhrd.portal.domain.resume.CoverLetter;
 import or.kr.smhrd.portal.domain.resume.Resume;
 import or.kr.smhrd.portal.mapper.StudentMapper;
@@ -139,7 +141,26 @@ public class StudentService {
     public void deletePhoto(Map<String, String> data) {
         studentMapper.deletePhoto(data);
     }
+    public List<Portfolio> selectPortfolio(HashMap<String, String> params) {
+        return studentMapper.selectPortfolio(params.get("id"));
+    }
 
+    public void addPortfolio(Map<String, String> data) {
+        studentMapper.addPortfolio(data);
+    }
+
+    public void editPortfolio(Map<String, String> data) {
+        studentMapper.editPortfolio(data);
+    }
+
+    public void deletePortfolio(Map<String, String> data) {
+        studentMapper.deletePortfolio(data);
+    }
+
+    public Portfolio selectOnePortfolio(HashMap<String, String> params) {
+        return studentMapper.selectOnePortfolio(params.get("portfolio_num"));
+    }
+    
     public void addExtend(Extend extend) {
         studentMapper.addExtend(extend);
     }
