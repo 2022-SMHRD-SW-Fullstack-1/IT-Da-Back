@@ -23,7 +23,7 @@ import or.kr.smhrd.portal.domain.resume.Resume;
 public interface StudentMapper {
 
     // 학생 전체 이력서 조회
-    @Select("select * from t_resume")
+    @Select("select * from t_resume order by update_dt desc")
     List<Resume> selectAllResume();
 
     @Select("select * from t_graduation")
@@ -92,8 +92,8 @@ public interface StudentMapper {
     public void deleteMilitary(Map<String, String> data);
 
     //업데이트 날짜 수정
-    @Update("update t_resume set update_dt=now() where mb_id=#{id}")
-    public void updateUpdate(String id);
+    @Update("update t_resume set update_dt=now() where mb_id=#{id}")   
+    public void updateUpdate(String id); 
 
     /**학력추가 */
     @Insert("insert into t_graduation values(default, #{id}, #{grad_school}, #{school_type}, #{grad_dt}, #{grad_type}, #{grad_score})")
