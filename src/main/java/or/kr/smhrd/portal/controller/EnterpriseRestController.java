@@ -50,12 +50,18 @@ public class EnterpriseRestController {
 
     @PostMapping("/edit_company")
     public void editCompany(@RequestBody Company company) {
+        System.out.println(company);
         enterpriseService.editCompany(company);
     }
 
     @PostMapping("/delete_company")
     public void delete(@RequestBody Company company) {
         enterpriseService.deleteCompany(company);
+    }
+
+    @GetMapping("/select_one_company")
+    public List<Company> selectOneCompany(@RequestParam String company_name) {
+        return enterpriseService.selectOneCompany(company_name);
     }
 
     // 기업 회원가입
@@ -78,7 +84,6 @@ public class EnterpriseRestController {
 
     @GetMapping("/approve")
     public void enterApprove(@RequestParam String enter_id) {
-        System.out.println("받아온값 : " + enter_id);
         enterpriseService.enterApprove(enter_id);
     }
 

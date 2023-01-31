@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import lombok.RequiredArgsConstructor;
+import or.kr.smhrd.portal.domain.Extend;
 import or.kr.smhrd.portal.domain.resume.CoverLetter;
 import or.kr.smhrd.portal.domain.resume.Resume;
 import or.kr.smhrd.portal.service.StudentService;
@@ -66,15 +67,16 @@ public class StudentRestController {
         System.out.println(data);
         studentService.updateResume(data);
     }
-    
+
     // 이미지 추가 삭제
     @PostMapping("/photo/update")
-    public void updatePhoto(@RequestBody Map<String, String> data){
+    public void updatePhoto(@RequestBody Map<String, String> data) {
         System.out.println(data);
         studentService.updatePhoto(data);
     }
+
     @PostMapping("/photo/delete")
-    public void deletePhoto(@RequestBody Map<String, String> data){
+    public void deletePhoto(@RequestBody Map<String, String> data) {
         System.out.println(data);
         studentService.deletePhoto(data);
     }
@@ -150,6 +152,26 @@ public class StudentRestController {
         System.out.println("제거");
         System.out.println("내용" + data);
         studentService.deleteMilitary(data);
+    }
+
+    @PostMapping("/register_extend")
+    public void addExtend(@RequestBody Extend extend) {
+        studentService.addExtend(extend);
+    }
+
+    @GetMapping("/select_extend")
+    public List<Extend> selectExtend(@RequestParam String b_num) {
+        return studentService.selectExtend(b_num);
+    }
+
+    @PostMapping("/edit_extend")
+    public void editExtend(@RequestBody Extend extend) {
+        studentService.editExtend(extend);
+    }
+
+    @PostMapping("/delete_extend")
+    public void deleteExtend(@RequestBody Extend extend) {
+        studentService.deleteExtend(extend);
     }
 
 }

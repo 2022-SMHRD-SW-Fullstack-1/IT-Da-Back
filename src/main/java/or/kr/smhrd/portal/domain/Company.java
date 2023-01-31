@@ -8,6 +8,7 @@ import lombok.AllArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Company {
+    int company_num;
     String company_register;
     String company_name;
     String company_deadline;

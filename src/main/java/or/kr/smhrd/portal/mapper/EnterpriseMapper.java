@@ -24,17 +24,20 @@ public interface EnterpriseMapper {
     public void deleteEnterprise(Enterprise enterprise);
 
     // 기업공고 생성
-    @Insert("insert into t_company value(default, #{company_name}, #{company_deadline}, #{company_area}, #{company_employ}, #{company_grade}, #{company_position}, #{company_qual}, #{company_essential}, #{company_advantage}, #{company_etc}, #{company_salary}, #{company_apply})")
+    @Insert("insert into t_company value(null, default, #{company_name}, #{company_deadline}, #{company_area}, #{company_employ}, #{company_grade}, #{company_position}, #{company_qual}, #{company_essential}, #{company_advantage}, #{company_etc}, #{company_salary}, #{company_apply})")
     public void makeCompany(Company company);
 
     @Select("select * from t_company order by company_deadline")
     public List<Company> selectCompany();
 
-    @Update("update t_company set company_deadline=#{company_deadline}, company_area=#{company_area}, company_employ=#{company_employ}, company_grade=#{company_grade}, company_position=#{company_position}, company_qual=#{company_qual}, company_essential=#{company_essential}, company_advantage=#{company_advantage}, company_etc=#{company_etc}, company_salary=#{company_salary}, company_apply=#{company_apply} where company_name=#{company_name}")
+    @Update("update t_company set company_deadline=#{company_deadline}, company_area=#{company_area}, company_employ=#{company_employ}, company_grade=#{company_grade}, company_position=#{company_position}, company_qual=#{company_qual}, company_essential=#{company_essential}, company_advantage=#{company_advantage}, company_etc=#{company_etc}, company_salary=#{company_salary}, company_apply=#{company_apply} where company_num=#{company_num}")
     public void editCompany(Company company);
 
-    @Delete("delete from t_company where company_name=#{company_name}")
+    @Delete("delete from t_company where company_num=#{company_num}") 
     public void deleteCompany(Company company);
+
+    @Select("select * from t_company where company_name=#{company_name} order by company_deadline")
+    public List<Company> selectOneCompany(String company_name);
 
     // 기업 회원가입
     @Insert("insert into t_enterprise value(#{enter_id}, #{enter_pw}, #{enter_name}, #{enter_manager}, #{enter_tel}, 'N', #{enter_address}, #{enter_num} )")
@@ -50,4 +53,5 @@ public interface EnterpriseMapper {
 
     @Update("update t_enterprise set enter_approve='Y' where enter_id=#{enter_id}")
     public void enterApprove(String enter_id);
+
 }
