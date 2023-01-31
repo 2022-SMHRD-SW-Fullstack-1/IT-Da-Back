@@ -1,7 +1,5 @@
 package or.kr.smhrd.portal.mapper;
 
-import java.util.HashMap;
-import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -11,6 +9,8 @@ import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
 
+import or.kr.smhrd.portal.domain.Extend;
+import or.kr.smhrd.portal.domain.Portfolio;
 import or.kr.smhrd.portal.domain.resume.Career;
 import or.kr.smhrd.portal.domain.resume.Certification;
 import or.kr.smhrd.portal.domain.resume.CoverLetter;
@@ -60,17 +60,18 @@ public interface StudentMapper {
     @Select("select * from t_military where mb_id = #{id}")
     List<Military> selectMilitary(String id);
 
-
     // 초기 이력서, 자소서 입력하기 */
     @Insert("insert into t_resume values(mb_id=#{id})")
     public void createResume(String id);
+
     @Insert("insert into t_cover_letter values(mb_id=#{id})")
     public void createCoverLetter(String id);
 
-    // 모든 이력서는 단방향으로 저장(초기 화면 select-> delete&insert) 
+    // 모든 이력서는 단방향으로 저장(초기 화면 select-> delete&insert)
     // 이력서 수정
     @Update("update t_resume set name=#{name}, gender=#{gender}, birthday=#{birthday}, major=#{major}, phone=#{phone}, email=#{email}, addr=#{addr}, skills=#{skills}, wish_field=#{wish_field}, wish_salary=#{wish_salary}, wish_area1=#{wish_area1}, wish_area2=#{wish_area2}, wish_area3=#{wish_area3} where mb_id=#{id}")
     void updateResume(Map<String, String> data);
+
     // 학력 제거
     @Delete("delete from t_graduation where grad_type=#{grad_type} and grad_school=#{grad_school} and grad_dt=#{grad_dt} and school_type=#{school_type} and mb_id=#{id}")
     public void deleteGraduation(Map<String, String> data);
@@ -93,25 +94,25 @@ public interface StudentMapper {
 
     //업데이트 날짜 수정
     @Update("update t_resume set update_dt=now() where mb_id=#{id}")   
-    public void updateUpdate(String id); 
+    public void updateUpdate(String id);
 
-    /**학력추가 */
+    /** 학력추가 */
     @Insert("insert into t_graduation values(default, #{id}, #{grad_school}, #{school_type}, #{grad_dt}, #{grad_type}, #{grad_score})")
     void addGraduation(Map<String, String> data);
-    
-    /**경력추가 */
+
+    /** 경력추가 */
     @Insert("insert into t_career values(default, #{id}, #{cr_organization}, #{cr_position}, #{cr_s_dt}, #{cr_e_dt}, #{cr_activity})")
     void addCareer(Map<String, String> data);
-    
-    /**자격증추가 */
+
+    /** 자격증추가 */
     @Insert("insert into t_certification values(default, #{id}, #{cert_org}, #{cert_name}, #{cert_dt})")
     void addCertification(Map<String, String> data);
 
-    /**수상추가 */
+    /** 수상추가 */
     @Insert("insert into t_prize values(default, #{id}, #{prize_org}, #{prize_name}, #{prize_dt})")
     void addPrize(Map<String, String> data);
 
-    /**병역추가 */
+    /** 병역추가 */
     @Insert("insert into t_military values(default, #{id}, #{mili_title}, #{mili_army}, #{mili_s_dt}, #{mili_e_dt}, #{veteran_yn})")
     void addMilitary(Map<String, String> data);
 
@@ -126,8 +127,34 @@ public interface StudentMapper {
 
     @Update("update t_resume set photo=#{photo} where mb_id=#{id}")
     void updatePhoto(Map<String, String> data);
-    
+
     @Update("update t_resume set photo='' where mb_id=#{id}")
     void deletePhoto(Map<String, String> data);
+
+    @Select("select * from t_portfolio where mb_id=#{id}")
+    List<Portfolio> selectPortfolio(String string);
+
+    @Insert("insert into t_portfolio values(default, #{id}, #{portfolio_title}, #{portfolio_period}, #{portfolio_etc}, #{portfolio_img1}, #{portfolio_img2}, #{portfolio_img3}, #{portfolio_content}, #{portfolio_stack_front}, #{portfolio_stack_back}, #{portfolio_stack_db}, #{portfolio_url}, #{portfolio_file}, now())")
+    void addPortfolio(Map<String, String> data);
+    
+    @Update("update into t_portfolio set }, portfolio_title= #{portfolio_title}, portfolio_period=#{portfolio_period}, portfolio_etc=#{portfolio_etc}, portfolio_img1=#{portfolio_img1}, portfolio_img2=#{portfolio_img2}, portfolio_img3=#{portfolio_img3}, portfolio_content= #{portfolio_content}, portfolio_stack_front=#{portfolio_stack_front}, portfolio_stack_back=#{portfolio_stack_back}, portfolio_stack_db=#{portfolio_stack_db}, portfolio_url=#{portfolio_url}, portfolio_file=#{portfolio_file}")
+    void editPortfolio(Map<String, String> data);
+
+    void deletePortfolio(Map<String, String> data);
+
+    @Select("select * from t_portfolio where portfolio_num=#{portfolio_num}")
+    Portfolio selectOnePortfolio(String string);
+
+    @Insert("insert into t_extend values(default, UNHEX(concat(#{b_num},'000000000000000000000000')), #{mb_id}, #{extend_name}, #{extend_time})")
+    void addExtend(Extend extend);
+
+    @Select("select * from t_extend where b_num = UNHEX(concat(#{b_num},'000000000000000000000000'))")
+    List<Extend> selectExtend(String b_num);
+
+    @Update("update t_extend set extend_time=#{extend_time} where extend_num = #{extend_num}")
+    void editExtend(Extend extend);
+
+    @Delete("delete from t_extend where extend_num=#{extend_num}")
+    void deleteExtend(Extend extend);
 
 }

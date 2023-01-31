@@ -8,6 +8,8 @@ import java.util.Map;
 import org.springframework.stereotype.Service;
 
 import lombok.RequiredArgsConstructor;
+import or.kr.smhrd.portal.domain.Extend;
+import or.kr.smhrd.portal.domain.Portfolio;
 import or.kr.smhrd.portal.domain.resume.CoverLetter;
 import or.kr.smhrd.portal.domain.resume.Resume;
 import or.kr.smhrd.portal.mapper.StudentMapper;
@@ -94,26 +96,26 @@ public class StudentService {
         studentMapper.deleteGraduation(data);
         studentMapper.updateUpdate(data.get("id"));
     }
-    
+
     /** 경력 제거 */
     public void deleteCareer(Map<String, String> data) {
         studentMapper.deleteCareer(data);
         studentMapper.updateUpdate(data.get("id"));
     }
-    
+
     /** 자격증 제거 */
     public void deleteCertification(Map<String, String> data) {
         studentMapper.deleteCertification(data);
         studentMapper.updateUpdate(data.get("id"));
     }
-    
+
     /** 수상 제거 */
     public void deletePrize(Map<String, String> data) {
         System.out.println(data);
         studentMapper.deletePrize(data);
         studentMapper.updateUpdate(data.get("id"));
     }
-    
+
     /** 병역 제거 */
     public void deleteMilitary(Map<String, String> data) {
         studentMapper.deleteMilitary(data);
@@ -131,12 +133,48 @@ public class StudentService {
     public void updateCoverLetter(Map<String, String> data) {
         studentMapper.updateCoverLetter(data);
     }
-    
+
     public void updatePhoto(Map<String, String> data) {
         studentMapper.updatePhoto(data);
     }
-    
+
     public void deletePhoto(Map<String, String> data) {
         studentMapper.deletePhoto(data);
     }
+    public List<Portfolio> selectPortfolio(HashMap<String, String> params) {
+        return studentMapper.selectPortfolio(params.get("id"));
+    }
+
+    public void addPortfolio(Map<String, String> data) {
+        studentMapper.addPortfolio(data);
+    }
+
+    public void editPortfolio(Map<String, String> data) {
+        studentMapper.editPortfolio(data);
+    }
+
+    public void deletePortfolio(Map<String, String> data) {
+        studentMapper.deletePortfolio(data);
+    }
+
+    public Portfolio selectOnePortfolio(HashMap<String, String> params) {
+        return studentMapper.selectOnePortfolio(params.get("portfolio_num"));
+    }
+    
+    public void addExtend(Extend extend) {
+        studentMapper.addExtend(extend);
+    }
+
+    public List<Extend> selectExtend(String b_num) {
+        return studentMapper.selectExtend(b_num);
+    }
+
+    public void editExtend(Extend extend) {
+        studentMapper.editExtend(extend);
+    }
+
+    public void deleteExtend(Extend extend) {
+        studentMapper.deleteExtend(extend);
+    }
+
 }

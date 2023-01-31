@@ -45,6 +45,10 @@ public class EnterpriseService {
         enterpriseMapper.deleteCompany(company);
     }
 
+    public List<Company> selectOneCompany(String company_name) {
+        return enterpriseMapper.selectOneCompany(company_name);
+    }
+
     // 기업 회원가입
     public void register(Enterprise enterprise) {
         enterpriseMapper.register(enterprise);

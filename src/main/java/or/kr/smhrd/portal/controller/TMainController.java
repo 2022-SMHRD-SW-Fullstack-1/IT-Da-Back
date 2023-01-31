@@ -90,4 +90,20 @@ public class TMainController {
       return tMainService.getManagerPost(key);
    }
 
+   // 연장사용
+   @PostMapping("/write_extend")
+   public void writeExtend(@RequestBody Board board) {
+      tMainService.writeExtend(board);
+   }
+
+   @GetMapping("/get_extend")
+   public List<Board> getExtend(@RequestParam String key) {
+      return tMainService.getExtend(key);
+   }
+
+   @GetMapping("/get_one_extend")
+   public Board getOneExtend(@RequestParam String key){
+      return tMainService.getOneExtend(key);
+   }
+
 }

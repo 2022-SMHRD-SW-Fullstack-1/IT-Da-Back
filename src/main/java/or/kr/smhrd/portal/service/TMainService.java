@@ -9,6 +9,7 @@ import lombok.RequiredArgsConstructor;
 import or.kr.smhrd.portal.mapper.TMainMapper;
 import or.kr.smhrd.portal.domain.Board;
 import or.kr.smhrd.portal.domain.Course;
+import or.kr.smhrd.portal.domain.Extend;
 
 @RequiredArgsConstructor
 @Service
@@ -73,4 +74,19 @@ public class TMainService {
    public List<Board> getManagerPost(String key) {
       return tMainMapper.getManagerPost(key);
    }
+
+   // 연장사용
+   public void writeExtend(Board board) {
+      tMainMapper.writeExtend(board);
+   }
+
+   public List<Board> getExtend(String key) {
+      return tMainMapper.getExtend(key);
+   }
+
+   public Board getOneExtend(String key) {
+      return tMainMapper.getOneExtend(key);
+   }
+
+   
 }
