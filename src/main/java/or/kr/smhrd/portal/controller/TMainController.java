@@ -13,6 +13,7 @@ import or.kr.smhrd.portal.service.TMainService;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import or.kr.smhrd.portal.domain.Board;
+import or.kr.smhrd.portal.domain.Schedule;
 
 @RequiredArgsConstructor
 @RequestMapping("/announcement")
@@ -106,4 +107,19 @@ public class TMainController {
       return tMainService.getOneExtend(key);
    }
 
+   // 일정 관련
+   @PostMapping("/addSchedule")
+   public void addSchedule(@RequestBody Map<String, String> data) {
+      tMainService.addSchedule(data);
+   }
+
+   @PostMapping("/getSchedule")
+   public List<Schedule> getSchedule(@RequestBody Map<String, String> data) {
+      return tMainService.getSchedule(data);
+   }
+
+   @GetMapping("/deleteSchedule")
+   public void deleteSchedule(@RequestParam String sche_num) {
+      tMainService.deleteSchedule(sche_num);
+   }
 }

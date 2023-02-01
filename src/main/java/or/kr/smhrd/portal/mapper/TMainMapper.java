@@ -1,6 +1,7 @@
 package or.kr.smhrd.portal.mapper;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
@@ -10,6 +11,7 @@ import org.apache.ibatis.annotations.Update;
 
 import or.kr.smhrd.portal.domain.Board;
 import or.kr.smhrd.portal.domain.Course;
+import or.kr.smhrd.portal.domain.Schedule;
 
 @Mapper
 public interface TMainMapper {
@@ -63,4 +65,14 @@ public interface TMainMapper {
 
    @Select("select * from t_board where b_num= UNHEX(concat(#{key},'000000000000000000000000'))")
    public Board getOneExtend(String key);
+
+   // 일정 관련
+   @Insert("insert into t_schedule values(default, UNHEX(concat(#{course_key},'000000000000000000000000')), #{sche_type}, #{sche_date}, #{sche_content})")
+   public void addSchedule(Map<String, String> data);
+
+   @Select("select * from t_schedule where course_key = UNHEX(concat(#{course_key},'000000000000000000000000'))")
+   public List<Schedule> getSchedule(String course_key);
+
+   @Delete("delete from t_schedule where sche_num = #{sche_num}")
+   public void deleteSchedule(String sche_num);
 }

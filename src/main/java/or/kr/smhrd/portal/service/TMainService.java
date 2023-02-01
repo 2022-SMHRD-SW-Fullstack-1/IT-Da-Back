@@ -10,6 +10,7 @@ import or.kr.smhrd.portal.mapper.TMainMapper;
 import or.kr.smhrd.portal.domain.Board;
 import or.kr.smhrd.portal.domain.Course;
 import or.kr.smhrd.portal.domain.Extend;
+import or.kr.smhrd.portal.domain.Schedule;
 
 @RequiredArgsConstructor
 @Service
@@ -88,5 +89,16 @@ public class TMainService {
       return tMainMapper.getOneExtend(key);
    }
 
-   
+   // 일정 관련
+   public void addSchedule(Map<String, String> data) {
+      tMainMapper.addSchedule(data);
+   }
+
+   public List<Schedule> getSchedule(Map<String, String> data) {
+      return tMainMapper.getSchedule(data.get("course_key"));
+   }
+
+   public void deleteSchedule(String sche_num) {
+      tMainMapper.deleteSchedule(sche_num);
+   }
 }
