@@ -29,7 +29,14 @@ public class MemberService {
          data.get("gender"), 
          data.get("expire"),
          data.get("key")));
-      studentMapper.createResume(data.get("id"));
+         studentMapper.createResume(
+            data.get("id"),
+            data.get("name"),
+            data.get("gender").replaceAll("m", "남성").replaceAll("f", "여성"),
+            data.get("tel"),
+            data.get("bd"),
+            data.get("address")
+            );
       studentMapper.createCoverLetter(data.get("id"));
       return i;
    }

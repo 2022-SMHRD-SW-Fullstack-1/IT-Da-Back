@@ -13,6 +13,5 @@ public class Military {
     String mili_title;
     String mili_army;
     String mili_s_dt;
-    String mili_e_dt;
     String veteran_yn;
 }

@@ -61,10 +61,10 @@ public interface StudentMapper {
     List<Military> selectMilitary(String id);
 
     // 초기 이력서, 자소서 입력하기 */
-    @Insert("insert into t_resume values(mb_id=#{id})")
-    public void createResume(String id);
+    @Insert("insert into t_resume(mb_id, name, gender, birthday, phone, addr) values(#{id}, #{name}, #{gender}, #{tel}, #{bd}, #{address})")
+    public void createResume(String id, String name, String gender, String tel, String bd, String address);
 
-    @Insert("insert into t_cover_letter values(mb_id=#{id})")
+    @Insert("insert into t_cover_letter(coverletter_num,mb_id) values(default,#{id})")
     public void createCoverLetter(String id);
 
     // 모든 이력서는 단방향으로 저장(초기 화면 select-> delete&insert)
@@ -113,7 +113,7 @@ public interface StudentMapper {
     void addPrize(Map<String, String> data);
 
     /** 병역추가 */
-    @Insert("insert into t_military values(default, #{id}, #{mili_title}, #{mili_army}, #{mili_s_dt}, #{mili_e_dt}, #{veteran_yn})")
+    @Insert("insert into t_military values(default, #{id}, #{mili_title}, #{mili_army}, #{mili_s_dt}, #{veteran_yn})")
     void addMilitary(Map<String, String> data);
 
     @Select("select * from t_cover_letter")
@@ -134,7 +134,7 @@ public interface StudentMapper {
     @Select("select * from t_portfolio where mb_id=#{id}")
     List<Portfolio> selectPortfolio(String string);
 
-    @Insert("insert into t_portfolio values(default, #{id}, #{portfolio_title}, #{portfolio_period}, #{portfolio_etc}, #{portfolio_img1}, #{portfolio_img2}, #{portfolio_img3}, #{portfolio_content}, #{portfolio_stack_front}, #{portfolio_stack_back}, #{portfolio_stack_db}, #{portfolio_url}, #{portfolio_file}, now())")
+    @Insert("insert into t_portfolio values(#{portfolio_num}, #{id}, #{portfolio_title}, #{portfolio_period}, #{portfolio_etc}, #{portfolio_img1}, #{portfolio_img2}, #{portfolio_img3}, #{portfolio_content}, #{portfolio_stack_front}, #{portfolio_stack_back}, #{portfolio_stack_db}, #{portfolio_url}, #{portfolio_file}, now())")
     void addPortfolio(Map<String, String> data);
     
     @Update("update t_portfolio set portfolio_title=#{portfolio_title}, portfolio_period=#{portfolio_period}, portfolio_etc=#{portfolio_etc}, portfolio_img1=#{portfolio_img1}, portfolio_img2=#{portfolio_img2}, portfolio_img3=#{portfolio_img3}, portfolio_content=#{portfolio_content}, portfolio_stack_front=#{portfolio_stack_front}, portfolio_stack_back=#{portfolio_stack_back}, portfolio_stack_db=#{portfolio_stack_db}, portfolio_url=#{portfolio_url}, portfolio_file=#{portfolio_file} where portfolio_num=#{portfolio_num}")
