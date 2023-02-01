@@ -61,7 +61,7 @@ public interface StudentMapper {
     List<Military> selectMilitary(String id);
 
     // 초기 이력서, 자소서 입력하기 */
-    @Insert("insert into t_resume(mb_id, name, gender, birthday, phone, addr) values(#{id}, #{name}, #{gender}, #{tel}, #{bd}, #{address})")
+    @Insert("insert into t_resume(mb_id, name, gender, phone, birthday, addr) values(#{id}, #{name}, #{gender}, #{tel}, #{bd}, #{address})")
     public void createResume(String id, String name, String gender, String tel, String bd, String address);
 
     @Insert("insert into t_cover_letter(coverletter_num,mb_id) values(default,#{id})")
