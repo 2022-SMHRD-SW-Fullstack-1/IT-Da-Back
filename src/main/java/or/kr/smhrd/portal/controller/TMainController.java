@@ -93,8 +93,8 @@ public class TMainController {
 
    // 연장사용
    @PostMapping("/write_extend")
-   public void writeExtend(@RequestBody Board board) {
-      tMainService.writeExtend(board);
+   public void writeExtend(@RequestBody Map<String, String> data) {
+      tMainService.writeExtend(data);
    }
 
    @GetMapping("/get_extend")

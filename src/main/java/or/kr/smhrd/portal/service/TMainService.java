@@ -77,8 +77,8 @@ public class TMainService {
    }
 
    // 연장사용
-   public void writeExtend(Board board) {
-      tMainMapper.writeExtend(board);
+   public void writeExtend(Map<String, String> data) {
+      tMainMapper.writeExtend(data.get("b_title"), data.get("b_content"), data.get("mb_id"), data.get("course_key"));
    }
 
    public List<Board> getExtend(String key) {

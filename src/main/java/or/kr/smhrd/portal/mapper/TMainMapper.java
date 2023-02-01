@@ -57,13 +57,13 @@ public interface TMainMapper {
    public List<Board> getManagerPost(String key);
 
    // 연장사용
-   @Insert("insert into t_board values(default, #{b_title}, #{b_content}, '', now(), #{mb_id}, '연장사용', UNHEX(concat(#{course_key},'000000000000000000000000')))")
-   public void writeExtend(Board board);
+   @Insert("insert into t_board values(default, #{title}, #{content}, '', now(), #{id}, '연장사용', UNHEX(concat(#{key},'000000000000000000000000')))")
+   public void writeExtend(String title, String content, String id, String key);
 
-   @Select("select LEFT(HEX(b_num),8) as b_num, b_title, b_content, b_file, DATE_FORMAT(b_dt,'%Y-%m-%d'), mb_id from t_board where course_key = UNHEX(concat(#{key},'000000000000000000000000')) and b_type = '연장사용'")
+   @Select("select LEFT(HEX(b_num),8) as b_num, b_title, b_content, b_file, DATE_FORMAT(b_dt,'%Y-%m-%d'), mb_id from t_board where course_key = UNHEX(concat(#{key},'000000000000000000000000')) and b_type = '연장사용' order by b_dt desc")
    public List<Board> getExtend(String key);
 
-   @Select("select * from t_board where b_num= UNHEX(concat(#{key},'000000000000000000000000'))")
+   @Select("select LEFT(HEX(b_num),8) as b_num, b_title, b_content, b_file, DATE_FORMAT(b_dt,'%Y-%m-%d'), mb_id from t_board where b_num = UNHEX(concat(#{key},'000000000000000000000000'))")
    public Board getOneExtend(String key);
 
    // 일정 관련
