@@ -38,6 +38,7 @@ public class StudentService {
         resume.add(studentMapper.selectCertification(id));
         resume.add(studentMapper.selectPrize(id));
         resume.add(studentMapper.selectMilitary(id));
+        resume.add(studentMapper.selectCoverLetter(id));
         // System.out.println("프론트에 보내줄 값"+resume);
         return resume;
     }
