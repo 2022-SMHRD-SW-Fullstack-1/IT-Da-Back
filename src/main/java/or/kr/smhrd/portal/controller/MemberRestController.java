@@ -19,8 +19,8 @@ public class MemberRestController {
    private final MemberService memberService;
     
    @PostMapping("/register")
-   public void register(@RequestBody Map<String, String> data) {
-      memberService.register(data);
+   public int register(@RequestBody Map<String, String> data) {
+      return memberService.register(data);
    }
 
    @PostMapping("/login")

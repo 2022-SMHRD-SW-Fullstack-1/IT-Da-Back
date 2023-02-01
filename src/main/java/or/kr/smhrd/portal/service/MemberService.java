@@ -17,8 +17,8 @@ public class MemberService {
    private final MemberMapper memberMapper;
    private final StudentMapper studentMapper;
 
-   public void register(Map<String, String> data) {
-      memberMapper.register(new Member(
+   public int register(Map<String, String> data) {
+      int i = memberMapper.register(new Member(
          data.get("id"), 
          data.get("pw"), 
          data.get("name"), 
@@ -31,7 +31,7 @@ public class MemberService {
          data.get("key")));
       studentMapper.createResume(data.get("id"));
       studentMapper.createCoverLetter(data.get("id"));
-         
+      return i;
    }
 
    public Member login(Map<String, String> data) {
