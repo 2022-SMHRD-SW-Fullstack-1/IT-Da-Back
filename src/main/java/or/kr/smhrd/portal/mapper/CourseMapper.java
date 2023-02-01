@@ -25,7 +25,7 @@ public interface CourseMapper {
     public String selectCourse(Course course);
 
     // 전체과정
-    @Select("select course_subject, course_name, course_campus, course_s_dt, course_e_dt, course_teacher, course_limit,  LEFT(HEX(course_key),8) as course_key from t_course")
+    @Select("select course_subject, course_name, course_campus, course_s_dt, course_e_dt, course_teacher, course_limit,  LEFT(HEX(course_key),8) as course_key from t_course where not course_campus in ('admin')")
     public List<Course> selectAllCourse();
 
     // 진행중인과정
