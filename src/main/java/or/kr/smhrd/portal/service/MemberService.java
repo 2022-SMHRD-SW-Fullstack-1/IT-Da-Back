@@ -1,9 +1,11 @@
 package or.kr.smhrd.portal.service;
 
 import or.kr.smhrd.portal.domain.Member;
+import or.kr.smhrd.portal.domain.StudentInfo;
 import or.kr.smhrd.portal.mapper.MemberMapper;
 import or.kr.smhrd.portal.mapper.StudentMapper;
 
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.stereotype.Service;
@@ -38,11 +40,23 @@ public class MemberService {
             data.get("address")
             );
       studentMapper.createCoverLetter(data.get("id"));
+      memberMapper.createStdInfo(data.get("id"));
       return i;
    }
 
    public Member login(Map<String, String> data) {
       return memberMapper.login(data.get("id"), data.get("pw"));
+   }
+
+   public List<StudentInfo> getStudentInfo(Map<String, String> data) {
+      List<StudentInfo> st_List = memberMapper.getStudentInfo(data.get("course_key"));
+      return st_List;
+   }
+
+   public void updateStdInfo(List<StudentInfo> data) {
+      for(StudentInfo s : data) {
+         memberMapper.updateStdInfo(s);
+      }
    }
 
 }
