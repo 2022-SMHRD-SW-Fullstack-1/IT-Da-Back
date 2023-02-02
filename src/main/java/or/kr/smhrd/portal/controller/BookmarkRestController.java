@@ -36,10 +36,14 @@ public class BookmarkRestController {
         System.out.println("프론트에서 보내는 값");
         System.out.println(enter_id);
         HashMap<String,Object> result = new HashMap<String, Object>();
+       
         result.put("resume", studentService.selectAllResume());
+        result.put("certification", studentService.selectAllCertification());
         result.put("bookmark", bookmarkService.selectBookmark(enter_id));
         return result;
     }
+
+    
 
     @PostMapping("/delete_bookmark")
     public void deleteBookmark(@RequestBody Bookmark bookmark){

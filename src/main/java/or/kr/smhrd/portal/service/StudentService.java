@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import lombok.RequiredArgsConstructor;
 import or.kr.smhrd.portal.domain.Extend;
 import or.kr.smhrd.portal.domain.Portfolio;
+import or.kr.smhrd.portal.domain.resume.Certification;
 import or.kr.smhrd.portal.domain.resume.CoverLetter;
 import or.kr.smhrd.portal.domain.resume.Resume;
 import or.kr.smhrd.portal.mapper.StudentMapper;
@@ -23,6 +24,11 @@ public class StudentService {
     /** 학생 전체 이력서 조회 */
     public List<Resume> selectAllResume() {
         return studentMapper.selectAllResume();
+    }
+
+    /** 자격증 가져오기 */
+    public List<Certification> selectAllCertification() {
+        return studentMapper.selectAllCertification();
     }
 
     /** 특정 학생 이력서 조회 */
