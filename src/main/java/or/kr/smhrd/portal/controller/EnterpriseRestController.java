@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import or.kr.smhrd.portal.domain.Alarm;
 import or.kr.smhrd.portal.domain.Company;
 import or.kr.smhrd.portal.domain.Enterprise;
 import or.kr.smhrd.portal.service.EnterpriseService;
@@ -76,7 +77,7 @@ public class EnterpriseRestController {
         return enterpriseService.login(data);
     }
 
-    // 기업승인
+    // 기업 승인
     @GetMapping("/approve_list")
     public List<Enterprise> enterApproveList(String enter_name, String enter_id) {
         return enterpriseService.enterApproveList(enter_name, enter_id);
@@ -85,6 +86,12 @@ public class EnterpriseRestController {
     @GetMapping("/approve")
     public void enterApprove(@RequestParam String enter_id) {
         enterpriseService.enterApprove(enter_id);
+    }
+
+    // 기업 알림
+    @PostMapping("/alarm")
+    public void enterAddAlarm(@RequestBody Alarm alarm) {
+        enterpriseService.enterAddAlarm(alarm);
     }
 
 }

@@ -7,12 +7,13 @@ import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
 
+import or.kr.smhrd.portal.domain.Alarm;
 import or.kr.smhrd.portal.domain.Member;
 import or.kr.smhrd.portal.domain.StudentInfo;
 
 @Mapper
 public interface MemberMapper {
-    
+
    @Insert("insert into t_member values(#{mb_id}, #{mb_pw}, #{mb_name}, 's', #{mb_birthdate}, #{mb_phone}, #{mb_addr}, #{mb_gender}, #{mb_expire_dt}, UNHEX(concat(#{course_key},'000000000000000000000000')), '1900-01-01')")
    public int register(Member member);
 
@@ -20,11 +21,16 @@ public interface MemberMapper {
    public Member login(String id, String pw);
 
    @Select("select tm.mb_id as id, tm.mb_name as name, tm.mb_phone as phone, tm.mb_gender  as gender, tm.mb_birthdate as birthdate, MAX(tg.grad_school) as school, MAX(tg.school_type) as major ,GROUP_CONCAT(tc.cert_name) as certification, tr.wish_field as hope_jop, GROUP_CONCAT(tr.wish_area1 , ' ', tr.wish_area2, ' ', tr.wish_area3) as hope_city, tsi.perfect_att as example, tsi.division as division, tsi.uniqueness as special from t_member tm left join t_graduation tg on tm.mb_id = tg.mb_id left join t_resume tr on tm.mb_id = tr.mb_id left join t_certification tc on tm.mb_id = tc.mb_id left join t_std_info tsi on tm.mb_id = tsi.mb_id where course_key = UNHEX(concat('00F2A8AB','000000000000000000000000')) and not tm.mb_job in ('t') group by tm.mb_id")
-   public List<StudentInfo> getStudentInfo (String course_key);
+   public List<StudentInfo> getStudentInfo(String course_key);
 
    @Insert("insert into t_std_info values(#{id}, '', '', '')")
-   public void createStdInfo (String id);
+   public void createStdInfo(String id);
 
    @Update("update t_std_info set perfect_att = #{example}, division = #{division}, uniqueness = #{special} where mb_id = #{id}")
    public void updateStdInfo(StudentInfo data);
+
+   // 학생회원가입 알림
+   @Insert("insert into t_alarm values(null, (select mb_id from t_member where course_key=UNHEX(concat(#{course_key},'000000000000000000000000')) and mb_job='t'), #{alarm_content}, 'N', now())")
+   public void stdAddAlarm(String course_key, String alarm_content);
+
 }

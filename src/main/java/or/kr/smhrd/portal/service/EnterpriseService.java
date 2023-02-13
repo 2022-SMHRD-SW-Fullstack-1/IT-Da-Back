@@ -6,6 +6,7 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import or.kr.smhrd.portal.domain.Alarm;
 import or.kr.smhrd.portal.domain.Company;
 import or.kr.smhrd.portal.domain.Enterprise;
 import or.kr.smhrd.portal.mapper.EnterpriseMapper;
@@ -66,6 +67,11 @@ public class EnterpriseService {
 
     public void enterApprove(String enter_id) {
         enterpriseMapper.enterApprove(enter_id);
+    }
+
+    // 기업 알림
+    public void enterAddAlarm(Alarm alarm){
+        enterpriseMapper.enterAddAlarm(alarm);
     }
 
 }

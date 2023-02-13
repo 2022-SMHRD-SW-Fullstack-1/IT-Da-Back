@@ -8,6 +8,7 @@ import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
 
+import or.kr.smhrd.portal.domain.Alarm;
 import or.kr.smhrd.portal.domain.Company;
 import or.kr.smhrd.portal.domain.Enterprise;
 
@@ -33,7 +34,7 @@ public interface EnterpriseMapper {
     @Update("update t_company set company_deadline=#{company_deadline}, company_area=#{company_area}, company_employ=#{company_employ}, company_grade=#{company_grade}, company_position=#{company_position}, company_qual=#{company_qual}, company_essential=#{company_essential}, company_advantage=#{company_advantage}, company_etc=#{company_etc}, company_salary=#{company_salary}, company_apply=#{company_apply} where company_num=#{company_num}")
     public void editCompany(Company company);
 
-    @Delete("delete from t_company where company_num=#{company_num}") 
+    @Delete("delete from t_company where company_num=#{company_num}")
     public void deleteCompany(Company company);
 
     @Select("select * from t_company where company_name=#{company_name} order by company_deadline")
@@ -54,4 +55,7 @@ public interface EnterpriseMapper {
     @Update("update t_enterprise set enter_approve='Y' where enter_id=#{enter_id}")
     public void enterApprove(String enter_id);
 
+    // 기업 알림 보내기
+    @Insert("insert into t_alarm value(null, #{mb_id_to}, #{alarm_content}, 'N', now())")
+    public void enterAddAlarm(Alarm alarm);
 }
