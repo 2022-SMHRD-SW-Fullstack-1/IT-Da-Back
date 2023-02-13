@@ -23,7 +23,7 @@ import or.kr.smhrd.portal.domain.resume.Resume;
 public interface StudentMapper {
 
     // 학생 전체 이력서 조회
-    @Select("select * from t_resume order by update_dt desc")
+    @Select("select m.mb_id, m.mb_name name, m.mb_gender gender, m.mb_birthdate birthday, r.major major, m.mb_phone phone, m.mb_id email, m.mb_addr addr, r.skills, r.wish_field, r.wish_area1, r.wish_area2, r.wish_area3, r.wish_salary, r.simple_comment, r.photo, r.project, r.project2, m.mb_update from t_member m left join t_resume r on m.mb_id = r.mb_id where m.mb_job ='s'")
     List<Resume> selectAllResume();
 
     @Select("select * from t_graduation")
@@ -42,7 +42,7 @@ public interface StudentMapper {
     List<Military> selectAllMilitary();
 
     // 특정 학생 이력서 조회
-    @Select("select * from t_resume where mb_id = #{id}")
+    @Select("select m.mb_id, m.mb_name name, m.mb_gender gender, m.mb_birthdate birthday, r.major major, m.mb_phone phone, m.mb_id email, m.mb_addr addr, r.skills, r.wish_field, r.wish_area1, r.wish_area2, r.wish_area3, r.wish_salary, r.simple_comment, r.photo, r.project, r.project2, m.mb_update from t_member m left join t_resume r on m.mb_id = r.mb_id where m.mb_job ='s' and m.mb_id =#{id}")
     Resume selectResume(String id);
 
     @Select("select * from t_graduation where mb_id = #{id}")
@@ -157,5 +157,8 @@ public interface StudentMapper {
 
     @Delete("delete from t_extend where extend_num=#{extend_num}")
     void deleteExtend(Extend extend);
+
+    @Select("select * from t_skill where mb_id=#{id}")
+    List<Map<String,String>> selectSkill(String id);
 
 }

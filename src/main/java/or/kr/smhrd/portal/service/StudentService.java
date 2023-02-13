@@ -36,7 +36,7 @@ public class StudentService {
         // System.out.println("서비스에 온 아이디"+id);
         List<Object> resume = new ArrayList<Object>();
         resume.add(studentMapper.selectResume(id));
-        // System.out.println("select resume 값"+studentMapper.selectResume(id));
+        System.out.println("select resume 값"+studentMapper.selectResume(id));
         // System.out.println("select실행 후 resume 값"+resume);
         resume.add(studentMapper.selectGraduation(id));
         // System.out.println(studentMapper.selectGraduation(id));
@@ -44,6 +44,7 @@ public class StudentService {
         resume.add(studentMapper.selectCertification(id));
         resume.add(studentMapper.selectPrize(id));
         resume.add(studentMapper.selectMilitary(id));
+        resume.add(studentMapper.selectSkill(id));
         resume.add(studentMapper.selectCoverLetter(id));
         // System.out.println("프론트에 보내줄 값"+resume);
         return resume;
