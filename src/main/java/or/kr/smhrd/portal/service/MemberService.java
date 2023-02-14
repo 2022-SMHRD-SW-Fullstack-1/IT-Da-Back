@@ -63,4 +63,19 @@ public class MemberService {
       memberMapper.stdAddAlarm(course_key, alarm_content);
    }
 
+    // 회원정보 수정 전 검사 페이지
+    public String memberEditCheck(String mb_id){
+      return memberMapper.memberEditCheck(mb_id);
+   }
+
+ // 회원 정보 수정
+   public Member memberEdit(String mb_id) {
+      return memberMapper.memberEdit(mb_id);
+   }
+
+   public void memberEditUpdate(Map<String, String> data) {
+      memberMapper.memberEditUpdate(data);
+   }
+
+
 }

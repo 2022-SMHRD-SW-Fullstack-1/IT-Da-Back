@@ -1,6 +1,7 @@
 package or.kr.smhrd.portal.mapper;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
@@ -32,5 +33,15 @@ public interface MemberMapper {
    // 학생회원가입 알림
    @Insert("insert into t_alarm values(null, (select mb_id from t_member where course_key=UNHEX(concat(#{course_key},'000000000000000000000000')) and mb_job='t'), #{alarm_content}, 'N', now())")
    public void stdAddAlarm(String course_key, String alarm_content);
+
+   // 회원 수정
+   @Select("select mb_pw from t_member where mb_id=#{mb_id}")
+   public String memberEditCheck(String mb_id);
+
+   @Select("select * from t_member where mb_id=#{mb_id}")
+   public Member memberEdit(String mb_id);
+
+   @Update("update t_member set mb_pw=#{mb_pw}, mb_name=#{mb_name}, mb_phone=#{mb_phone}, mb_addr=#{mb_addr} where mb_id=#{mb_id}")
+   public void memberEditUpdate(Map<String, String> data);
 
 }

@@ -4,9 +4,11 @@ import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import lombok.RequiredArgsConstructor;
@@ -51,5 +53,32 @@ public class MemberRestController {
       System.out.println("받아온값"+data.get("course_key") + data.get("alarm_content"));
       memberService.stdAddAlarm(data.get("course_key"), data.get("alarm_content"));
    }
+
+//마이페이지 보안체크
+@GetMapping("/memberEditCheck")
+public String memberEditCheck(@RequestParam Map<String,String> data) {
+ System.out.println(data);
+ String pw = data.get("mb_pw");
+ String db_pw = memberService.memberEditCheck(data.get("mb_id"));
+  
+ if(pw.equals(db_pw)){
+   return "success";
+ }else{
+   return"fail";
+ }
+}
+
+// 회원 정보 수정
+@GetMapping("/memberEdit")
+public Member memberEdit(@RequestParam Map<String,String> data) {
+   System.out.println(data);
+   return memberService.memberEdit(data.get("mb_id"));
+}
+@PostMapping("/memberEditUpdate")
+public void memberEditUpdate(@RequestBody Map<String,String> data) {
+   System.out.println(data);
+   memberService.memberEditUpdate(data);
+}
+
 
 }
