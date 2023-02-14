@@ -68,6 +68,27 @@ public class StudentRestController {
         System.out.println(data);
         studentService.updateResume(data);
     }
+    @PostMapping("/wish_field/add")
+    public void addWishField(@RequestBody Map<String, String> data) {
+        studentService.addWishField(data);
+    }
+
+    @PostMapping("/wish_field/delete")
+    public void deleteWishField(@RequestBody Map<String, String> data) {
+        studentService.deleteWishField(data);
+    }
+    @PostMapping("/skill/add")
+    public void addSkill(@RequestBody Map<String, String> data) {
+        studentService.addSkill(data);
+    }
+
+    @PostMapping("/skill/delete")
+    public void deleteSkill(@RequestBody Map<String, String> data) {
+        System.out.println("삭제");
+        System.out.println(data);
+        studentService.deleteSkill(data);
+    }
+
 
     // 이미지 추가 삭제
     @PostMapping("/photo/update")

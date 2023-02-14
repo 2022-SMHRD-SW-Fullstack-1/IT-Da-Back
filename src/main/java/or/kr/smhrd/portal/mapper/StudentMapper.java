@@ -42,7 +42,7 @@ public interface StudentMapper {
     List<Military> selectAllMilitary();
 
     // 특정 학생 이력서 조회
-    @Select("select m.mb_id, m.mb_name name, m.mb_gender gender, m.mb_birthdate birthday, r.major major, m.mb_phone phone, m.mb_id email, m.mb_addr addr, r.skills, r.wish_field, r.wish_area1, r.wish_area2, r.wish_area3, r.wish_salary, r.simple_comment, r.photo, r.project, r.project2, m.mb_update from t_member m left join t_resume r on m.mb_id = r.mb_id where m.mb_job ='s' and m.mb_id =#{id}")
+    @Select("select m.mb_id, m.mb_name name, m.mb_gender gender, m.mb_birthdate birthday, r.major major, m.mb_phone phone, m.mb_id email, m.mb_addr addr, r.skills, r.wish_field, r.wish_area1, r.wish_area2, r.wish_area3, r.wish_salary, r.simple_comment, r.photo, r.project, r.project2, m.mb_update update_dt from t_member m left join t_resume r on m.mb_id = r.mb_id where m.mb_job ='s' and m.mb_id =#{id}")
     Resume selectResume(String id);
 
     @Select("select * from t_graduation where mb_id = #{id}")
@@ -161,4 +161,18 @@ public interface StudentMapper {
     @Select("select * from t_skill where mb_id=#{id}")
     List<Map<String,String>> selectSkill(String id);
 
+    @Insert("insert into t_skill values(#{skill_num}, #{id},#{skill_name},#{skill_grade})")
+    void addSkill(Map<String, String> data);
+
+    @Delete("delete from t_skill where skill_num=#{skill_num}")
+    void deleteSkill(Map<String, String> data);
+
+    @Select("select * from t_wish_field where mb_id=#{id}")
+    List<Map<String,String>> selectWishField(String id);
+
+    @Insert("insert into t_wish_field values(#{field_num}, #{id},#{wish_field_name})")
+    void addWishField(Map<String, String> data);
+
+    @Delete("delete from t_wish_field where field_num=#{field_num}")
+    void deleteWishField(Map<String, String> data);
 }

@@ -46,6 +46,7 @@ public class StudentService {
         resume.add(studentMapper.selectMilitary(id));
         resume.add(studentMapper.selectSkill(id));
         resume.add(studentMapper.selectCoverLetter(id));
+        resume.add(studentMapper.selectWishField(id));
         // System.out.println("프론트에 보내줄 값"+resume);
         return resume;
     }
@@ -183,6 +184,23 @@ public class StudentService {
 
     public void deleteExtend(Extend extend) {
         studentMapper.deleteExtend(extend);
+    }
+
+    public void addWishField(Map<String, String> data) {
+        studentMapper.addWishField(data);
+    }
+
+    public void deleteWishField(Map<String, String> data) {
+        studentMapper.deleteWishField(data);
+    }
+
+    public void addSkill(Map<String, String> data) {
+        System.out.println(data);
+        studentMapper.addSkill(data);
+    }
+
+    public void deleteSkill(Map<String, String> data) {
+        studentMapper.deleteSkill(data);
     }
 
 }
