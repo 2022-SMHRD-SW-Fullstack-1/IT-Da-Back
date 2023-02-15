@@ -1,4 +1,4 @@
-package or.kr.smhrd.portal.domain.resume;
+package or.kr.smhrd.portal.domain;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -7,24 +7,16 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class Resume {
+public class Record {
     String mb_id;
     String name;
     String gender;
     String birthday;
-    String major;
     String phone;
-    String email;
     String addr;
     String skills;
-    String wish_field;
     String wish_area1;
     String wish_area2;
     String wish_area3;
-    String wish_salary;
-   
-    String photo;
-    
-    String update_dt;
-     
+    String is_bookmark;
 }
