@@ -32,10 +32,18 @@ public interface AlarmMapper {
     public void clearNewAlarm(String mb_id_to);
 
     // 기업 컨택 시 학생에게 알림 보내기
-    @Insert("insert into t_alarm value(null, (select mb_id from t_member where course_key=(select course_key from t_member where mb_id=#{mb_id_to}) and mb_job='t'), #{alarm_content}, 'N', now())")
+    @Insert("insert into t_alarm value(null, #{mb_id_from}, (select mb_id from t_member where course_key=(select course_key from t_member where mb_id=#{mb_id_to}) and mb_job='t'), #{alarm_content}, 'N', now())")
     public void addSAlarm(Alarm alarm);
 
     // 기업 컨택 시 연구원에게 알림 보내기
-    @Insert("insert into t_alarm value(null, #{mb_id_to}, #{alarm_content}, 'N', now())")
+    @Insert("insert into t_alarm value(null, #{mb_id_from}, #{mb_id_to}, #{alarm_content}, 'N', now())")
     public void addTAlarm(Alarm alarm);
+
+    // 학생회원가입 알림
+    @Insert("insert into t_alarm values(null, #{mb_id_from}, (select mb_id from t_member where course_key=UNHEX(concat(#{course_key},'000000000000000000000000')) and mb_job='t'), #{alarm_content}, 'N', now())")
+    public void stdAddAlarm(String mb_id_from, String course_key, String alarm_content);
+
+    // 기업가입알림 보내기
+    @Insert("insert into t_alarm value(null, #{mb_id_from}, #{mb_id_to}, #{alarm_content}, 'N', now())")
+    public void enterAddAlarm(Alarm alarm);
 }

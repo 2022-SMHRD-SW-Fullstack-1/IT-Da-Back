@@ -7,6 +7,7 @@ import lombok.Data;
 @AllArgsConstructor
 public class Alarm {
     int alarm_num;
+    String mb_id_from;
     String mb_id_to;
     String alarm_content;
     String alarm_check;

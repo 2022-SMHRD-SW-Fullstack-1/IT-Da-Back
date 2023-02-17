@@ -1,6 +1,7 @@
 package or.kr.smhrd.portal.controller;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -59,5 +60,16 @@ public class AlarmRestController {
     @PostMapping("/addTAlarm")
     public void addTAlarm(@RequestBody Alarm alarm) {
         alarmService.addTAlarm(alarm);
+    }
+
+    @PostMapping("/stdRegisterAlarm")
+    public void stdAddAlarm(@RequestBody Map<String, String> data) {
+        alarmService.stdAddAlarm(data.get("mb_id_from"), data.get("course_key"), data.get("alarm_content"));
+    }
+
+    // 기업 알림
+    @PostMapping("/enterRegisterAlarm")
+    public void enterAddAlarm(@RequestBody Alarm alarm) {
+        alarmService.enterAddAlarm(alarm);
     }
 }

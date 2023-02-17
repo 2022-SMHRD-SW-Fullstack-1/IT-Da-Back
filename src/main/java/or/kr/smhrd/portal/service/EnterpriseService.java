@@ -69,9 +69,6 @@ public class EnterpriseService {
         enterpriseMapper.enterApprove(enter_id);
     }
 
-    // 기업 알림
-    public void enterAddAlarm(Alarm alarm){
-        enterpriseMapper.enterAddAlarm(alarm);
-    }
+   
 
 }

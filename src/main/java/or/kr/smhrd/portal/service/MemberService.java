@@ -59,9 +59,7 @@ public class MemberService {
       }
    }
 
-   public void stdAddAlarm(String course_key, String alarm_content) {
-      memberMapper.stdAddAlarm(course_key, alarm_content);
-   }
+  
 
     // 회원정보 수정 전 검사 페이지
     public String memberEditCheck(String mb_id){

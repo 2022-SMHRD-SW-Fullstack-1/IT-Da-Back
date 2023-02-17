@@ -88,10 +88,6 @@ public class EnterpriseRestController {
         enterpriseService.enterApprove(enter_id);
     }
 
-    // 기업 알림
-    @PostMapping("/alarm")
-    public void enterAddAlarm(@RequestBody Alarm alarm) {
-        enterpriseService.enterAddAlarm(alarm);
-    }
+  
 
 }

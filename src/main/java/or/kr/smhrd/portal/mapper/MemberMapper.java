@@ -30,9 +30,7 @@ public interface MemberMapper {
    @Update("update t_std_info set perfect_att = #{example}, division = #{division}, uniqueness = #{special} where mb_id = #{id}")
    public void updateStdInfo(StudentInfo data);
 
-   // 학생회원가입 알림
-   @Insert("insert into t_alarm values(null, (select mb_id from t_member where course_key=UNHEX(concat(#{course_key},'000000000000000000000000')) and mb_job='t'), #{alarm_content}, 'N', now())")
-   public void stdAddAlarm(String course_key, String alarm_content);
+  
 
    // 회원 수정
    @Select("select mb_pw from t_member where mb_id=#{mb_id}")

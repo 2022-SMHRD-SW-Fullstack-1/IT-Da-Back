@@ -35,15 +35,24 @@ public class AlarmService {
         return alarmMapper.alarmCount(mb_id_to);
     }
 
-    public void clearNewAlarm(String mb_id_to){
+    public void clearNewAlarm(String mb_id_to) {
         alarmMapper.clearNewAlarm(mb_id_to);
     }
 
-    public void addSAlarm(Alarm alarm){
+    public void addSAlarm(Alarm alarm) {
         alarmMapper.addSAlarm(alarm);
     }
 
-    public void addTAlarm(Alarm alarm){
+    public void addTAlarm(Alarm alarm) {
         alarmMapper.addTAlarm(alarm);
+    }
+
+    public void stdAddAlarm(String mb_id_from, String course_key, String alarm_content) {
+        alarmMapper.stdAddAlarm(mb_id_from, course_key, alarm_content);
+    }
+
+    // 기업 알림
+    public void enterAddAlarm(Alarm alarm) {
+        alarmMapper.enterAddAlarm(alarm);
     }
 }
