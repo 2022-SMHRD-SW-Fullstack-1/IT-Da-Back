@@ -56,7 +56,5 @@ public interface EnterpriseMapper {
     @Update("update t_enterprise set enter_approve='Y' where enter_id=#{enter_id}")
     public void enterApprove(String enter_id);
 
-    // 기업 알림 보내기
-    @Insert("insert into t_alarm value(null, #{mb_id_to}, #{alarm_content}, 'N', now())")
-    public void enterAddAlarm(Alarm alarm);
+    
 }

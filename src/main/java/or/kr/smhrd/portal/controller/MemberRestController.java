@@ -48,11 +48,7 @@ public class MemberRestController {
       memberService.updateStdInfo(data.get("stdInfo"));
    }
 
-   @PostMapping("/alarm")
-   public void stdAddAlarm(@RequestBody Map<String, String> data) {
-      System.out.println("받아온값"+data.get("course_key") + data.get("alarm_content"));
-      memberService.stdAddAlarm(data.get("course_key"), data.get("alarm_content"));
-   }
+   
 
 //마이페이지 보안체크
 @GetMapping("/memberEditCheck")
