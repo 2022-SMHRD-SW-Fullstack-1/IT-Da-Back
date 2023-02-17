@@ -45,7 +45,7 @@ public class EnterpriseRestController {
     }
 
     @GetMapping("/select_company")
-    public List<Company> selectCompany() {
+    public List<Map<String,Object>> selectCompany() {
         return enterpriseService.selectCompany();
     }
 

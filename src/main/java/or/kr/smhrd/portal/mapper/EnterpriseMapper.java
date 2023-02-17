@@ -1,6 +1,7 @@
 package or.kr.smhrd.portal.mapper;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
@@ -28,8 +29,8 @@ public interface EnterpriseMapper {
     @Insert("insert into t_company value(null, default, #{company_name}, #{company_deadline}, #{company_area}, #{company_employ}, #{company_grade}, #{company_position}, #{company_qual}, #{company_essential}, #{company_advantage}, #{company_etc}, #{company_salary}, #{company_apply})")
     public void makeCompany(Company company);
 
-    @Select("select * from t_company order by company_deadline")
-    public List<Company> selectCompany();
+    @Select("SELECT  tc.company_num,tc.company_register, tc.company_name, tc.company_deadline,tc.company_area,tc.company_employ,tc.company_grade,tc.company_position ,tc.company_qual,tc.company_essential,tc.company_advantage,tc.company_etc,tc.company_salary,tc.company_apply,COUNT(tb.company_num) company_count FROM t_company tc left outer join t_bookmark_company tb on tb.company_num = tc.company_num group by tc.company_num , tb.company_num,tc.company_register, tc.company_deadline,tc.company_area,tc.company_employ,tc.company_grade,tc.company_position,tc.company_qual,tc.company_essential,tc.company_advantage,tc.company_etc,tc.company_salary,tc.company_apply order by tc.company_deadline")
+    public List<Map<String, Object>> selectCompany();
 
     @Update("update t_company set company_deadline=#{company_deadline}, company_area=#{company_area}, company_employ=#{company_employ}, company_grade=#{company_grade}, company_position=#{company_position}, company_qual=#{company_qual}, company_essential=#{company_essential}, company_advantage=#{company_advantage}, company_etc=#{company_etc}, company_salary=#{company_salary}, company_apply=#{company_apply} where company_num=#{company_num}")
     public void editCompany(Company company);

@@ -41,4 +41,10 @@ public class BookmarkService {
     public void deleteBookmarkCompany(Bookmark_company bookmark){
         bookmarkMapper.deleteBookmarkCompany(bookmark);
     }
+
+    //북마크 개수
+
+    public List<Bookmark_company> bookmarkCount(){
+        return bookmarkMapper.bookmarkCount();
+    }
 }

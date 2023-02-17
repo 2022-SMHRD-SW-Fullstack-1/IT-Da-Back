@@ -34,7 +34,7 @@ public class EnterpriseService {
         enterpriseMapper.makeCompany(company);
     }
 
-    public List<Company> selectCompany() {
+    public List<Map<String, Object>> selectCompany() {
         return enterpriseMapper.selectCompany();
     }
 

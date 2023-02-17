@@ -29,5 +29,8 @@ public interface BookmarkMapper {
     public List<String> selectBookmarkCompany(String mb_id);
 
     @Delete("delete from t_bookmark_company where company_num=#{company_num} and mb_id=#{mb_id}")
-    public void deleteBookmarkCompany(Bookmark_company bookmark);
+    public void deleteBookmarkCompany(Bookmark_company bookmark_company);
+    
+    @Select("select tc.company_name, COUNT(tb.company_num) from t_company tc left outer join t_bookmark_company tb on tb.company_num = tc.company_num group by tc.company_num , tb.company_num")
+    public List<Bookmark_company> bookmarkCount();
 }
