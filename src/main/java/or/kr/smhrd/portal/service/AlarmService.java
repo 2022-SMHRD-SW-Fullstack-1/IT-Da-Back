@@ -38,4 +38,12 @@ public class AlarmService {
     public void clearNewAlarm(String mb_id_to){
         alarmMapper.clearNewAlarm(mb_id_to);
     }
+
+    public void addSAlarm(Alarm alarm){
+        alarmMapper.addSAlarm(alarm);
+    }
+
+    public void addTAlarm(Alarm alarm){
+        alarmMapper.addTAlarm(alarm);
+    }
 }

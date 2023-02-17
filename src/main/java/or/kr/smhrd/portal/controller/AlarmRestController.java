@@ -47,7 +47,17 @@ public class AlarmRestController {
     }
 
     @PostMapping("/clearNewAlarm")
-    public void clearNewAlarm(@RequestBody String mb_id_to){
+    public void clearNewAlarm(@RequestBody String mb_id_to) {
         alarmService.clearNewAlarm(mb_id_to);
+    }
+
+    @PostMapping("/addSAlarm")
+    public void addSAlarm(@RequestBody Alarm alarm) {
+        alarmService.addSAlarm(alarm);
+    }
+
+    @PostMapping("/addTAlarm")
+    public void addTAlarm(@RequestBody Alarm alarm) {
+        alarmService.addTAlarm(alarm);
     }
 }
