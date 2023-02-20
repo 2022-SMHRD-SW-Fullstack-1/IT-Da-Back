@@ -38,12 +38,12 @@ public class TMainService {
       tMainMapper.deletePost(key);
    }
 
-   public void addArchive(Map<String, String> data) {
-      tMainMapper.addArchive(data.get("title"), data.get("content"), data.get("id"), data.get("key"));
+   public void addArchive(Map<String, Object> data) {
+      tMainMapper.addArchive(data);
    }
 
-   public void editArchive(Map<String, String> data) {
-      tMainMapper.editArchive(data.get("title"), data.get("content"), data.get("b_num"));
+   public void editArchive(Map<String, Object> data) {
+      tMainMapper.editArchive(data);
    }
 
    public List<Board> getArchive(String course_key) {

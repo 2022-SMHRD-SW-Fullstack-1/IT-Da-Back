@@ -31,11 +31,11 @@ public interface TMainMapper {
    @Delete("delete from t_board where b_num = UNHEX(concat(#{b_num},'000000000000000000000000'))")
    public void deletePost(String key);
 
-   @Insert("insert into t_board values(default, #{title}, #{content}, '', now(), #{id}, '자료실', UNHEX(concat(#{key},'000000000000000000000000')))")
-   public void addArchive(String title, String content, String id, String key);
+   @Insert("insert into t_board values(default, #{title}, #{content}, #{b_file}, now(), #{id}, '자료실', UNHEX(concat(#{key},'000000000000000000000000')))")
+   public void addArchive(Map<String,Object> data);
 
-   @Update("update t_board set b_title = #{title}, b_content = #{content} where b_num = UNHEX(concat(#{b_num},'000000000000000000000000'))")
-   public void editArchive(String title, String content, String b_num);
+   @Update("update t_board set b_title = #{title}, b_content = #{content}, b_file=#{b_file} where b_num = UNHEX(concat(#{b_num},'000000000000000000000000'))")
+   public void editArchive(Map<String, Object> data);
 
    @Select("select LEFT(HEX(b_num),8) as b_num, b_title, b_content, b_file, DATE_FORMAT(b_dt,'%Y-%m-%d'), mb_id from t_board where course_key = UNHEX(concat(#{key},'000000000000000000000000')) and b_type = '자료실' order by b_dt desc")
    public List<Board> getArchive(String key);
@@ -75,4 +75,5 @@ public interface TMainMapper {
 
    @Delete("delete from t_schedule where sche_num = #{sche_num}")
    public void deleteSchedule(String sche_num);
+
 }

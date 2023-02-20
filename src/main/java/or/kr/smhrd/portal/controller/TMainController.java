@@ -50,12 +50,12 @@ public class TMainController {
 
    // 공유자료실 관련
    @PostMapping("/addArchive")
-   public void addArchive(@RequestBody Map<String, String> data) {
+   public void addArchive(@RequestBody Map<String, Object> data) {
       tMainService.addArchive(data);
    }
 
    @PostMapping("/editArchive")
-   public void editArchive(@RequestBody Map<String, String> data) {
+   public void editArchive(@RequestBody Map<String, Object> data) {
       tMainService.editArchive(data);
    }
 
