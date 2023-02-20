@@ -92,6 +92,14 @@ public class StudentRestController {
         studentService.deleteSkill(data);
     }
 
+    @PostMapping("/skill/update")
+    public void updateSkill(@RequestBody Map<String,Object> data){
+        studentService.updateSkill(data);
+    }
+    @PostMapping("/wish_field/update")
+    public void updateWishField(@RequestBody Map<String,Object> data){
+        studentService.updateWishField(data);
+    }
 
     // 이미지 추가 삭제
     @PostMapping("/photo/update")

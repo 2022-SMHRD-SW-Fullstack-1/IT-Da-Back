@@ -58,7 +58,6 @@ public class StudentService {
      */
     public void updateResume(Map<String, String> data) {
         studentMapper.updateResume(data);
-
         // 날짜 업데이트
         studentMapper.updateUpdate(data.get("id"));
 
@@ -186,6 +185,7 @@ public class StudentService {
         studentMapper.deleteExtend(extend);
     }
 
+    /**희망 분야 */
     public void addWishField(Map<String, String> data) {
         studentMapper.addWishField(data);
     }
@@ -194,8 +194,8 @@ public class StudentService {
         studentMapper.deleteWishField(data);
     }
 
+    /**기술 스택 */
     public void addSkill(Map<String, String> data) {
-        System.out.println(data);
         studentMapper.addSkill(data);
     }
 
@@ -241,6 +241,33 @@ public class StudentService {
         for(Map<String,String> map : list){
             studentMapper.prizeIdx(map,idx++,(String)data.get("id"));
         }
+    }
+
+    public void updateSkill(Map<String, Object> data) {
+        ArrayList<Map<String, String>> list = (ArrayList<Map<String, String>>) data.get("skill");
+        System.out.println(list);
+        String id = (String) data.get("id");
+        String skill = "";
+        for(Map<String,String> map : list){
+            skill+=map.get("skill_name");
+            skill+=",";
+        }
+        studentMapper.updateSkill(id,skill);
+        studentMapper.updateUpdate(id);
+    }
+
+    public void updateWishField(Map<String, Object> data) {
+        ArrayList<Map<String, String>> list = (ArrayList<Map<String, String>>) data.get("wish_field");
+        System.out.println(list);
+        String id = (String) data.get("id");
+        String wish_field = "";
+        for(Map<String,String> map : list){
+            // studentMapper.prizeIdx(map,idx++,(String)data.get("id"));
+            wish_field+=map.get("wish_field_name");
+            wish_field+=",";
+        }
+        studentMapper.updateWishField(id,wish_field);
+        studentMapper.updateUpdate(id);
     }
 
 }

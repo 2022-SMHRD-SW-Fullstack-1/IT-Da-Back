@@ -191,5 +191,11 @@ public interface StudentMapper {
     @Update("update t_prize set prize_idx=#{idx} where prize_name=#{data.prize_name} and prize_org=#{data.prize_org} and prize_dt=#{data.prize_dt} and mb_id=#{id}")
     void prizeIdx(Map<String, String> data, int idx, String id);
 
+    @Update("update t_resume set skills=#{skill} where mb_id=#{id}")
+    void updateSkill(String id, String skill);
+
+    @Update("update t_resume set wish_field=#{wish_field} where mb_id=#{id}")
+    void updateWishField(String id, String wish_field);
+
 
 }
