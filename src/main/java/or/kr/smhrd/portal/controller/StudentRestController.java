@@ -1,6 +1,9 @@
 package or.kr.smhrd.portal.controller;
 
+import java.lang.reflect.Array;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -222,6 +225,27 @@ public class StudentRestController {
     @PostMapping("/delete_extend")
     public void deleteExtend(@RequestBody Extend extend) {
         studentService.deleteExtend(extend);
+    }
+
+    @PostMapping("/career/idx")
+    public void careerIdx(@RequestBody Map<String,Object> data){
+        studentService.careerIdx(data);
+    }
+    @PostMapping("/certification/idx")
+    public void certificationIdx(@RequestBody Map<String,Object> data){
+        studentService.certificationIdx(data);
+    }
+    @PostMapping("/graduation/idx")
+    public void graduationIdx(@RequestBody Map<String,Object> data){
+        studentService.graduationIdx(data);
+    }
+    @PostMapping("/military/idx")
+    public void militaryIdx(@RequestBody Map<String,Object> data){
+        studentService.militaryIdx(data);
+    }
+    @PostMapping("/prize/idx")
+    public void prizeIdx(@RequestBody Map<String,Object> data){
+        studentService.prizeIdx(data);
     }
 
 }

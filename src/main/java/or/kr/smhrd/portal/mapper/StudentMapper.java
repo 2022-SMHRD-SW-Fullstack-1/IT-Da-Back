@@ -45,19 +45,19 @@ public interface StudentMapper {
     @Select("select m.mb_id, m.mb_name name, m.mb_gender gender, m.mb_birthdate birthday, r.major major, m.mb_phone phone, m.mb_id email, m.mb_addr addr, r.skills, r.wish_field, r.wish_area1, r.wish_area2, r.wish_area3, r.wish_salary, r.simple_comment, r.photo, r.project, r.project2, m.mb_update update_dt from t_member m left join t_resume r on m.mb_id = r.mb_id where m.mb_job ='s' and m.mb_id =#{id}")
     Resume selectResume(String id);
 
-    @Select("select * from t_graduation where mb_id = #{id}")
+    @Select("select * from t_graduation where mb_id = #{id} order by grad_idx")
     List<Graduation> selectGraduation(String id);
 
-    @Select("select * from t_career where mb_id = #{id}")
+    @Select("select * from t_career where mb_id = #{id} order by cr_idx")
     List<Career> selectCareer(String id);
 
-    @Select("select * from t_certification where mb_id = #{id}")
+    @Select("select * from t_certification where mb_id = #{id} order by cert_idx")
     List<Certification> selectCertification(String id);
 
-    @Select("select * from t_prize where mb_id = #{id}")
+    @Select("select * from t_prize where mb_id = #{id} order by prize_idx")
     List<Prize> selectPrize(String id);
 
-    @Select("select * from t_military where mb_id = #{id}")
+    @Select("select * from t_military where mb_id = #{id} order by mili_idx")
     List<Military> selectMilitary(String id);
 
     // 초기 이력서, 자소서 입력하기 */
@@ -175,4 +175,21 @@ public interface StudentMapper {
 
     @Delete("delete from t_wish_field where field_num=#{field_num}")
     void deleteWishField(Map<String, String> data);
+
+    @Update("update t_career set cr_idx=#{idx} where mb_id = #{id} and cr_organization=#{data.cr_organization} and cr_position=#{data.cr_position} and cr_s_dt=#{data.cr_s_dt} and cr_e_dt=#{data.cr_e_dt}")
+    void careerIdx(Map<String, String> data, int idx, String id);
+
+    @Update("update t_certification set cert_idx=#{idx} where cert_org=#{data.cert_org} and cert_name=#{data.cert_name} and cert_dt=#{data.cert_dt} and mb_id=#{id}")
+    void certificationIdx(Map<String, String> data, int idx, String id);
+
+    @Update("update t_graduation set grad_idx=#{idx} where grad_type=#{data.grad_type} and grad_school=#{data.grad_school} and grad_dt=#{data.grad_dt} and school_type=#{data.school_type} and mb_id=#{id}")
+    void graduationIdx(Map<String, String> data, int idx, String id);
+
+    @Update("update t_military set mili_idx=#{idx} where mili_title=#{data.mili_title} and mili_army=#{data.mili_army} and mb_id=#{id}")
+    void militaryIdx(Map<String, String> data, int idx, String id);
+
+    @Update("update t_prize set prize_idx=#{idx} where prize_name=#{data.prize_name} and prize_org=#{data.prize_org} and prize_dt=#{data.prize_dt} and mb_id=#{id}")
+    void prizeIdx(Map<String, String> data, int idx, String id);
+
+
 }

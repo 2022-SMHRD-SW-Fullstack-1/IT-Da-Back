@@ -203,4 +203,44 @@ public class StudentService {
         studentMapper.deleteSkill(data);
     }
 
+    public void careerIdx(Map<String, Object> data) {
+        ArrayList<Map<String, String>> list = (ArrayList<Map<String, String>>) data.get("career");
+        int idx =0;
+        for(Map<String,String> map : list){
+            studentMapper.careerIdx(map,idx++,(String)data.get("id"));
+        }
+    }
+
+    public void certificationIdx(Map<String, Object> data) {
+        ArrayList<Map<String, String>> list = (ArrayList<Map<String, String>>) data.get("certification");
+        int idx =0;
+        for(Map<String,String> map : list){
+            studentMapper.certificationIdx(map,idx++,(String)data.get("id"));
+        }
+    }
+
+    public void graduationIdx(Map<String, Object> data) {
+        ArrayList<Map<String, String>> list = (ArrayList<Map<String, String>>) data.get("graduation");
+        int idx =0;
+        for(Map<String,String> map : list){
+            studentMapper.graduationIdx(map,idx++,(String)data.get("id"));
+        }
+    }
+
+    public void militaryIdx(Map<String, Object> data) {
+        ArrayList<Map<String, String>> list = (ArrayList<Map<String, String>>) data.get("military");
+        int idx =0;
+        for(Map<String,String> map : list){
+            studentMapper.militaryIdx(map,idx++,(String)data.get("id"));
+        }
+    }
+
+    public void prizeIdx(Map<String, Object> data) {
+        ArrayList<Map<String, String>> list = (ArrayList<Map<String, String>>) data.get("prize");
+        int idx =0;
+        for(Map<String,String> map : list){
+            studentMapper.prizeIdx(map,idx++,(String)data.get("id"));
+        }
+    }
+
 }
