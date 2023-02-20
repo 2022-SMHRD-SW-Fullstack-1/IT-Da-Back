@@ -55,4 +55,9 @@ public class AlarmService {
     public void enterAddAlarm(Alarm alarm) {
         alarmMapper.enterAddAlarm(alarm);
     }
+
+    // 연구원 찾기
+    public String selectTeacher(String mb_id_to){
+        return alarmMapper.selectTeacher(mb_id_to);
+    }
 }

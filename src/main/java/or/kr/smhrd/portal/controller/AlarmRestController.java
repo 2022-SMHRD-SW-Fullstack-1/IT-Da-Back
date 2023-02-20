@@ -72,4 +72,11 @@ public class AlarmRestController {
     public void enterAddAlarm(@RequestBody Alarm alarm) {
         alarmService.enterAddAlarm(alarm);
     }
+
+    // 연구원 찹기
+    @GetMapping("/selectTeacher")
+    public String selectTeacher(@RequestParam String mb_id_to) {
+        return alarmService.selectTeacher(mb_id_to);
+    }
+
 }
