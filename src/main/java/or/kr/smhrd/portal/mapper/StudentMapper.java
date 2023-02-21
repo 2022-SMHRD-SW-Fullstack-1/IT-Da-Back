@@ -102,23 +102,23 @@ public interface StudentMapper {
     public void updateUpdateR(String id);
 
     /** 학력추가 */
-    @Insert("insert into t_graduation values(default, #{id}, #{grad_school}, #{school_type}, #{grad_dt}, #{grad_type}, #{grad_score})")
+    @Insert("insert into t_graduation values(default, #{id}, #{grad_school}, #{school_type}, #{grad_dt}, #{grad_type}, #{grad_score}, default)")
     void addGraduation(Map<String, String> data);
 
     /** 경력추가 */
-    @Insert("insert into t_career values(default, #{id}, #{cr_organization}, #{cr_position}, #{cr_s_dt}, #{cr_e_dt}, #{cr_activity})")
+    @Insert("insert into t_career values(default, #{id}, #{cr_organization}, #{cr_position}, #{cr_s_dt}, #{cr_e_dt}, #{cr_activity}, default)")
     void addCareer(Map<String, String> data);
 
     /** 자격증추가 */
-    @Insert("insert into t_certification values(default, #{id}, #{cert_org}, #{cert_name}, #{cert_dt})")
+    @Insert("insert into t_certification values(default, #{id}, #{cert_org}, #{cert_name}, #{cert_dt}, default)")
     void addCertification(Map<String, String> data);
 
     /** 수상추가 */
-    @Insert("insert into t_prize values(default, #{id}, #{prize_org}, #{prize_name}, #{prize_dt})")
+    @Insert("insert into t_prize values(default, #{id}, #{prize_org}, #{prize_name}, #{prize_dt}, default)")
     void addPrize(Map<String, String> data);
 
     /** 병역추가 */
-    @Insert("insert into t_military values(default, #{id}, #{mili_title}, #{mili_army}, #{mili_s_dt}, #{veteran_yn})")
+    @Insert("insert into t_military values(default, #{id}, #{mili_title}, #{mili_army}, #{mili_s_dt}, #{veteran_yn}, default)")
     void addMilitary(Map<String, String> data);
 
     @Select("select * from t_cover_letter")
