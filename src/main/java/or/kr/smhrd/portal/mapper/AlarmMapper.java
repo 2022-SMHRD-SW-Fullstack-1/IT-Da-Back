@@ -50,4 +50,8 @@ public interface AlarmMapper {
     // 선생님불러오기
     @Select("select mb_id from t_member where course_key = (select course_key from t_member where mb_id=#{mb_id_to}) and mb_job='t'")
     public String selectTeacher(String mb_id_to);
+
+    // 회원가입 연구원불러오기
+    @Select("select mb_id from t_member where course_key=UNHEX(concat(#{course_key},'000000000000000000000000')) and mb_job='t'")
+    public String selectTeacher2(String course_key);
 }

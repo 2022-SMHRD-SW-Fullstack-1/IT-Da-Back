@@ -79,4 +79,9 @@ public class AlarmRestController {
         return alarmService.selectTeacher(mb_id_to);
     }
 
+    @GetMapping("/selectTeacher2")
+    public String selectTeacher2(@RequestParam String course_key) {
+        return alarmService.selectTeacher2(course_key);
+    }
+
 }

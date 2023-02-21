@@ -57,7 +57,11 @@ public class AlarmService {
     }
 
     // 연구원 찾기
-    public String selectTeacher(String mb_id_to){
+    public String selectTeacher(String mb_id_to) {
         return alarmMapper.selectTeacher(mb_id_to);
+    }
+
+    public String selectTeacher2(String course_key) {
+        return alarmMapper.selectTeacher2(course_key);
     }
 }
