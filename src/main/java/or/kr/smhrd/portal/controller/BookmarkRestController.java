@@ -1,7 +1,8 @@
 package or.kr.smhrd.portal.controller;
 
 import java.util.HashMap;
-import java.util.List;
+
+
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -26,6 +27,7 @@ public class BookmarkRestController {
     BookmarkService bookmarkService;
 
     private final StudentService studentService;
+    
 
     //기업이 인재 북마크
     @PostMapping("/add_bookmark")
@@ -34,13 +36,15 @@ public class BookmarkRestController {
     }
 
     @GetMapping("/select_bookmark")
-    public HashMap<String, Object> selectBookmark(@RequestParam String enter_id){
+    public HashMap<String, Object> selectBookmark(@RequestParam HashMap<String,String> data){
         
         HashMap<String,Object> result = new HashMap<String, Object>();
        
         result.put("resume", studentService.selectAllResume());
         result.put("certification", studentService.selectAllCertification());
-        result.put("bookmark", bookmarkService.selectBookmark(enter_id));
+        result.put("bookmark", bookmarkService.selectBookmark(data.get("enter_id")));
+        // result.put("portfolio",studentService.selectPortfolio(data));
+        
         return result;
     }
 

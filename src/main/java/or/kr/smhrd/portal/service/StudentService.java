@@ -60,6 +60,7 @@ public class StudentService {
         studentMapper.updateResume(data);
         // 날짜 업데이트
         studentMapper.updateUpdate(data.get("id"));
+        studentMapper.updateUpdateR(data.get("id"));
 
     }
 
@@ -68,6 +69,7 @@ public class StudentService {
         studentMapper.addGraduation(data);
         // 날짜 업데이트
         studentMapper.updateUpdate(data.get("id"));
+        studentMapper.updateUpdateR(data.get("id"));
     }
 
     /** 경력추가 */
@@ -75,6 +77,7 @@ public class StudentService {
         studentMapper.addCareer(data);
         // 날짜 업데이트
         studentMapper.updateUpdate(data.get("id"));
+        studentMapper.updateUpdateR(data.get("id"));
     }
 
     /** 자격증 추가 */
@@ -82,6 +85,7 @@ public class StudentService {
         studentMapper.addCertification(data);
         // 날짜 업데이트
         studentMapper.updateUpdate(data.get("id"));
+        studentMapper.updateUpdateR(data.get("id"));
     }
 
     /** 수상 추가 */
@@ -90,6 +94,7 @@ public class StudentService {
         System.out.println(data);
         // 날짜 업데이트
         studentMapper.updateUpdate(data.get("id"));
+        studentMapper.updateUpdateR(data.get("id"));
     }
 
     /** 병역 추가 */
@@ -97,24 +102,28 @@ public class StudentService {
         studentMapper.addMilitary(data);
         // 날짜 업데이트
         studentMapper.updateUpdate(data.get("id"));
+        studentMapper.updateUpdateR(data.get("id"));
     }
 
     /** 학력 제거 */
     public void deleteGraduation(Map<String, String> data) {
         studentMapper.deleteGraduation(data);
         studentMapper.updateUpdate(data.get("id"));
+        studentMapper.updateUpdateR(data.get("id"));
     }
 
     /** 경력 제거 */
     public void deleteCareer(Map<String, String> data) {
         studentMapper.deleteCareer(data);
         studentMapper.updateUpdate(data.get("id"));
+        studentMapper.updateUpdateR(data.get("id"));
     }
 
     /** 자격증 제거 */
     public void deleteCertification(Map<String, String> data) {
         studentMapper.deleteCertification(data);
         studentMapper.updateUpdate(data.get("id"));
+        studentMapper.updateUpdateR(data.get("id"));
     }
 
     /** 수상 제거 */
@@ -122,12 +131,14 @@ public class StudentService {
         System.out.println(data);
         studentMapper.deletePrize(data);
         studentMapper.updateUpdate(data.get("id"));
+        studentMapper.updateUpdateR(data.get("id"));
     }
 
     /** 병역 제거 */
     public void deleteMilitary(Map<String, String> data) {
         studentMapper.deleteMilitary(data);
         studentMapper.updateUpdate(data.get("id"));
+        studentMapper.updateUpdateR(data.get("id"));
     }
 
     public List<CoverLetter> selectAllCoverLetter() {
@@ -140,14 +151,20 @@ public class StudentService {
 
     public void updateCoverLetter(Map<String, String> data) {
         studentMapper.updateCoverLetter(data);
+        studentMapper.updateUpdate(data.get("id"));
+        studentMapper.updateUpdateR(data.get("id"));
     }
 
     public void updatePhoto(Map<String, String> data) {
         studentMapper.updatePhoto(data);
+        studentMapper.updateUpdate(data.get("id"));
+        studentMapper.updateUpdateR(data.get("id"));
     }
 
     public void deletePhoto(Map<String, String> data) {
         studentMapper.deletePhoto(data);
+        studentMapper.updateUpdate(data.get("id"));
+        studentMapper.updateUpdateR(data.get("id"));
     }
     public List<Portfolio> selectPortfolio(HashMap<String, String> params) {
         return studentMapper.selectPortfolio(params.get("id"));
@@ -155,14 +172,20 @@ public class StudentService {
 
     public void addPortfolio(Map<String, String> data) {
         studentMapper.addPortfolio(data);
+        studentMapper.updateUpdate(data.get("id"));
+        studentMapper.updateUpdateR(data.get("id"));
     }
 
     public void editPortfolio(Map<String, String> data) {
         studentMapper.editPortfolio(data);
+        studentMapper.updateUpdate(data.get("id"));
+        studentMapper.updateUpdateR(data.get("id"));
     }
 
     public void deletePortfolio(Map<String, String> data) {
         studentMapper.deletePortfolio(data);
+        studentMapper.updateUpdate(data.get("id"));
+        studentMapper.updateUpdateR(data.get("id"));
     }
 
     public Portfolio selectOnePortfolio(HashMap<String, String> params) {
@@ -188,19 +211,27 @@ public class StudentService {
     /**희망 분야 */
     public void addWishField(Map<String, String> data) {
         studentMapper.addWishField(data);
+        studentMapper.updateUpdate(data.get("id"));
+        studentMapper.updateUpdateR(data.get("id"));
     }
 
     public void deleteWishField(Map<String, String> data) {
         studentMapper.deleteWishField(data);
+        studentMapper.updateUpdate(data.get("id"));
+        studentMapper.updateUpdateR(data.get("id"));
     }
 
     /**기술 스택 */
     public void addSkill(Map<String, String> data) {
         studentMapper.addSkill(data);
+        studentMapper.updateUpdate(data.get("id"));
+        studentMapper.updateUpdateR(data.get("id"));
     }
 
     public void deleteSkill(Map<String, String> data) {
         studentMapper.deleteSkill(data);
+        studentMapper.updateUpdate(data.get("id"));
+        studentMapper.updateUpdateR(data.get("id"));
     }
 
     public void careerIdx(Map<String, Object> data) {
@@ -254,6 +285,7 @@ public class StudentService {
         }
         studentMapper.updateSkill(id,skill);
         studentMapper.updateUpdate(id);
+        studentMapper.updateUpdateR(id);
     }
 
     public void updateWishField(Map<String, Object> data) {
@@ -268,6 +300,7 @@ public class StudentService {
         }
         studentMapper.updateWishField(id,wish_field);
         studentMapper.updateUpdate(id);
+        studentMapper.updateUpdateR(id);
     }
 
 }

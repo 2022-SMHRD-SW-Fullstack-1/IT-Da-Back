@@ -23,7 +23,7 @@ import or.kr.smhrd.portal.domain.resume.Resume;
 public interface StudentMapper {
 
     // 학생 전체 이력서 조회
-    @Select("select m.mb_id, m.mb_name name, m.mb_gender gender, m.mb_birthdate birthday, r.major major, m.mb_phone phone, m.mb_id email, m.mb_addr addr, r.skills, r.wish_field, r.wish_area1, r.wish_area2, r.wish_area3, r.wish_salary, r.simple_comment, r.photo, r.project, r.project2, m.mb_update update_dt from t_member m left join t_resume r on m.mb_id = r.mb_id where m.mb_job ='s'")
+    @Select("select m.mb_id, m.mb_name name, m.mb_gender gender, m.mb_birthdate birthday, r.major major, m.mb_phone phone, m.mb_id email, m.mb_addr addr, r.skills, r.wish_field, r.wish_area1, r.wish_area2, r.wish_area3, r.wish_salary, r.simple_comment, r.photo, r.project, r.project2, m.mb_update update_dt from t_member m left join t_resume r on m.mb_id = r.mb_id where m.mb_job ='s'and m.mb_update>'1900-01-01' order by  m.mb_update desc")
     List<Resume> selectAllResume();
 
     @Select("select * from t_graduation")
@@ -60,6 +60,8 @@ public interface StudentMapper {
     @Select("select * from t_military where mb_id = #{id} order by mili_idx")
     List<Military> selectMilitary(String id);
 
+    // @Select("select mb_ from t_member where mb_update")
+
     // 초기 이력서, 자소서 입력하기 */
     @Insert("insert into t_resume(mb_id, name, gender, phone, birthday, addr) values(#{id}, #{name}, #{gender}, #{tel}, #{bd}, #{address})")
     public void createResume(String id, String name, String gender, String tel, String bd, String address);
@@ -93,8 +95,11 @@ public interface StudentMapper {
     public void deleteMilitary(Map<String, String> data);
 
     //업데이트 날짜 수정
-    @Update("update t_resume set update_dt=now() where mb_id=#{id}")   
+    @Update("update t_member set mb_update=now() where mb_id=#{id}")   
     public void updateUpdate(String id);
+    //업데이트 날짜 수정
+    @Update("update t_resume set update_dt=now() where mb_id=#{id}")   
+    public void updateUpdateR(String id);
 
     /** 학력추가 */
     @Insert("insert into t_graduation values(default, #{id}, #{grad_school}, #{school_type}, #{grad_dt}, #{grad_type}, #{grad_score})")
