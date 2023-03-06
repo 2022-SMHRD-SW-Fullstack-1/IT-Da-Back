@@ -8,7 +8,7 @@ public interface FileMapper {
 
     @Update("update t_resume set photo=#{path} where mb_id=#{id}")
     public void uploadResume(String id, String path);
-    @Update("update t_resume set photo=#{''} where photo=#{photo}")
+    @Update("update t_resume set photo=null where photo=#{photo}")
     public void deleteResume(String id, String path);
 
     @Update("update t_portfolio set portfolio_img#{idx}=#{path} where portfolio_img#{idx}=#{path}")

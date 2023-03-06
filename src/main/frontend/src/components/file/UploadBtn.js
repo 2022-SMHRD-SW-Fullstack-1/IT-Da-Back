@@ -28,6 +28,9 @@ const UploadBtn = ({ btn_text, selectedFile, resume, setResume }) => {
     // 파일 삭제
     const deleteFile = () => {
       console.log("delete")
+      const formData = new FormData();
+      formData.append('id', sessionStorage.getItem("loginId"))
+      formData.append('path', resume.photo)
       axios
       .post("/student/photo/delete",{
           photo:resume.photo,
@@ -35,9 +38,7 @@ const UploadBtn = ({ btn_text, selectedFile, resume, setResume }) => {
                 })
       .then(res=>{
         console.log(res)        
-        axios.post("/file/delete",{
-          id: sessionStorage.getItem("loginId")
-        })
+        axios.post("/file/delete",formData)
       })
       .then(res => {
         console.log(res)

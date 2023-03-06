@@ -16,5 +16,4 @@ public class PortalApplication extends SpringBootServletInitializer{
 	public static void main(String[] args) {
 		SpringApplication.run(PortalApplication.class, args);
 	}
-
 }

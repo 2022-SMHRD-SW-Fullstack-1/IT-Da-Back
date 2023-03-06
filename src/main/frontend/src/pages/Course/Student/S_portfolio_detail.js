@@ -1,31 +1,13 @@
 import axios from 'axios'
 import React, { useEffect, useRef, useState } from 'react'
 import { useLocation, useNavigate } from 'react-router'
-import aws from '../../../asset/json/aws.json'
-import AWS from 'aws-sdk';
 import '../../../css/Portfolio.css'
 import GalleryList from './Portfolio/GalleryList';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 const S_portfolio_detail = ({portfolio_info}) => {
-    //S3 정보 설정
-    //aws iam 엑세스 키,패스워드
-    const ACCESS_KEY = aws.ACCESS_KEY;
-    const SECRET_ACCESS_KEY = aws.SECRET_ACCESS_KEY;
-    //aws S3 지역, 버킷명
-    const REGION = aws.REGION;
-    const S3_BUCKET = aws.S3_BUCKET;
-    
-    AWS.config.update({ 
-      accessKeyId: ACCESS_KEY,
-      secretAccessKey: SECRET_ACCESS_KEY
-    });
-    
-    const myBucket = new AWS.S3({
-      params: { Bucket: S3_BUCKET},
-      region: REGION,
-    });
+
     const {state} = useLocation()
 
     const navigate = useNavigate()
@@ -82,16 +64,14 @@ const S_portfolio_detail = ({portfolio_info}) => {
         .catch((e)=>{console.log(e)})
     }
 
-    
-    
     const img = [
-        (state.portfolio_img1!==undefined)?{id:1, image:`https://smhrd-portal.s3.ap-northeast-2.amazonaws.com/upload/portfolio/${sessionStorage.getItem("loginId")}/${state.portfolio_num}/${1}`}:{id:1, image:`https://smhrd-portal.s3.ap-northeast-2.amazonaws.com/upload/portfolio/${portfolio_info.mb_id}/${portfolio_info.portfolio_num}/${1}`},
-        (state.portfolio_img2!==undefined)?{id:2, image:`https://smhrd-portal.s3.ap-northeast-2.amazonaws.com/upload/portfolio/${sessionStorage.getItem("loginId")}/${state.portfolio_num}/${2}`}:{id:2, image:`https://smhrd-portal.s3.ap-northeast-2.amazonaws.com/upload/portfolio/${portfolio_info.mb_id}/${portfolio_info.portfolio_num}/${2}`},
-        (state.portfolio_img3!==undefined)?{id:3, image:`https://smhrd-portal.s3.ap-northeast-2.amazonaws.com/upload/portfolio/${sessionStorage.getItem("loginId")}/${state.portfolio_num}/${3}`}:{id:3, image:`https://smhrd-portal.s3.ap-northeast-2.amazonaws.com/upload/portfolio/${portfolio_info.mb_id}/${portfolio_info.portfolio_num}/${3}`},
+        (state.portfolio_img1!==undefined)?{id:1, image:process.env.PUBLIC_URL+`/file/portfolio/${sessionStorage.getItem("loginId")}/${state.portfolio_img1}`}:{id:1, image:process.env.PUBLIC_URL+`/file/portfolio/${portfolio_info.mb_id}/${portfolio_info.portfolio_img1}`},
+        (state.portfolio_img2!==undefined)?{id:2, image:process.env.PUBLIC_URL+`/file/portfolio/${sessionStorage.getItem("loginId")}/${state.portfolio_img2}`}:{id:2, image:process.env.PUBLIC_URL+`/file/portfolio/${portfolio_info.mb_id}/${portfolio_info.portfolio_img2}`},
+        (state.portfolio_img3!==undefined)?{id:3, image:process.env.PUBLIC_URL+`/file/portfolio/${sessionStorage.getItem("loginId")}/${state.portfolio_img3}`}:{id:3, image:process.env.PUBLIC_URL+`/file/portfolio/${portfolio_info.mb_id}/${portfolio_info.portfolio_img3}`},
     ]
-    const [datas, setDatas] = useState(img) //고양이 데이터
+    const [datas, setDatas] = useState(img) //사진 데이터
     const [currItem, setCurrItem] = useState(datas[0]) //선택한 사진 상태설정
-    const onView = (id)=>{ //고유번호인 id를 받아서 해당 고양이 사진을 찾아라
+    const onView = (id)=>{ //고유번호인 id를 받아서 해당 사진을 찾아라
         setCurrItem(datas.find(item => item.id === id)) //배열함수중 해당값만 찾아주는 find함수를 쓴다
         console.log(img)
     }

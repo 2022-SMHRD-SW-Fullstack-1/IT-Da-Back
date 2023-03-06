@@ -24,10 +24,16 @@ const C_archive_detail = () => {
       navigate('/archive/write', { state: { title: '글 수정', b_title: post.b_title, b_content: post.b_content, b_num: post.b_num, b_file: post.b_file } })
    }
    const deletePost = () => {
+      const formData = new FormData();
+      formData.append('id', sessionStorage.getItem("loginId"))
       axios
-      .get("/announcement/deleteArchive", { params: {key: state.num } })
-         .then(res => navigate('/archive'))
-         .catch(e => console.log(e));
+      .post('file/delete/board',formData)
+         .then(axios
+            .get("/announcement/deleteArchive", { params: {key: state.num } })
+            .then(res => navigate('/archive'))
+            .catch(e => console.log(e))
+         )
+         .catch(e => console.log(e))
    }
    const url = `https://smhrd-portal.s3.ap-northeast-2.amazonaws.com/upload/board/${sessionStorage.getItem("loginId")}/${post.b_num}/${post.b_file}`
    return (

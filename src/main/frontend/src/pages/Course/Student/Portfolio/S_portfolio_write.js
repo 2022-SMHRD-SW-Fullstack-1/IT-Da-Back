@@ -2,8 +2,7 @@ import axios from 'axios'
 import React, { useEffect, useRef, useState } from 'react'
 import { useLocation, useNavigate } from 'react-router'
 import uuid from 'react-uuid'
-import aws from '../../../../asset/json/aws.json'
-import AWS from 'aws-sdk';
+
 const S_portfolio_write = () => {
     const [selectedFile1, setSelectedFile1] = useState(null)
     const [selectedFile2, setSelectedFile2] = useState(null)
@@ -269,13 +268,13 @@ const S_portfolio_write = () => {
 
        <input name='portfolio_img1' style={{ display: "none" }} type='file' onChange={handleFileInput1} ref={fileInput1} />
        <button onClick={onClickFileInput1}>{'사진첨부'}</button>
-       <input name='portfolio_img1' value={selectedFile1?(selectedFile1.name):(inputs.portfolio_img1)||''} type='text' readOnly/>
+       <input name='portfolio_img1' value={selectedFile1?("사진1"):("사진1")||''} type='text' readOnly/>
        <input name='portfolio_img2' style={{ display: "none" }} type='file' onChange={handleFileInput2} ref={fileInput2} />
        <button onClick={onClickFileInput2}>{'사진첨부'}</button>
-       <input name='portfolio_img2' value={selectedFile2?(selectedFile2.name):(inputs.portfolio_img2)||''} type='text' readOnly/>
+       <input name='portfolio_img2' value={selectedFile2?("사진2"):("사진2")||''} type='text' readOnly/>
        <input name='portfolio_img3' style={{ display: "none" }} type='file' onChange={handleFileInput3} ref={fileInput3} />
        <button onClick={onClickFileInput3}>{'사진첨부'}</button>
-       <input name='portfolio_img3' value={selectedFile3?(selectedFile3.name):(inputs.portfolio_img3)||''} type='text' readOnly/>
+       <input name='portfolio_img3' value={selectedFile3?("사진3"):("사진3")||''} type='text' readOnly/>
        <p>내용</p>
        <input name='portfolio_content' value={inputs.portfolio_content} type='text' onChange={onChange} />
        <p>기술스택 - 프론트</p>
