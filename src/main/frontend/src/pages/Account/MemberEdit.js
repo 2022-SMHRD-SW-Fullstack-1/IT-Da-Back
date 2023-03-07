@@ -222,7 +222,7 @@ const btnMemberEdit = () => {
           <span>성별</span>
             <input
               name="mb_gender"
-              value={memberInfo.mb_gender}
+              value={memberInfo.mb_gender=='m'?'남성':'여성'}
               readOnly
             ></input>
         </div>

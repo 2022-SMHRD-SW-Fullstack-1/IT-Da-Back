@@ -128,7 +128,7 @@ const StdInfoList = () => {
                      <td mb_id={item.id} onClick={go_to_userdetail}>{item.school}</td>
                      <td mb_id={item.id} onClick={go_to_userdetail}>{item.major}</td>
                      <td mb_id={item.id} onClick={go_to_userdetail}>{item.certification}</td>
-                     <td mb_id={item.id} onClick={go_to_userdetail}>{item.hope_jop}</td>
+                     <td mb_id={item.id} onClick={go_to_userdetail}>{item.hope_jop==='전체'?'전체':item.hope_jop.slice(0,-1)}</td>
                      <td mb_id={item.id} onClick={go_to_userdetail}>{item.hope_city.includes('전체')?'무관':item.hope_city}</td>
                      {modify?<td>{item.example}</td>:<td><select onChange={onExampleChange} mb_id={item.id} value={item.example}><option>모범</option><option>  </option></select></td>}
                      {modify?<td>{item.division}</td>:<td><select onChange={onDivisionChange} mb_id={item.id} value={item.division}><option>희망</option><option>재직</option><option>취업</option><option>자력</option><option>제외</option><option>기타</option><option>중탈</option></select></td>}

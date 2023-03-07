@@ -33,10 +33,10 @@ const ResumeWrite = ({ resume, setResume }) => {
                 wish_area1: resume.wish_area1,
                 wish_area2: resume.wish_area2,
                 wish_area3: resume.wish_area3,
-                simple_comment: resume.simple_comment,
-                photo: resume.photo,
-                project1: resume.project1,
-                project2: resume.project2,
+                // simple_comment: resume.simple_comment,
+                // photo: resume.photo,
+                // project1: resume.project1,
+                // project2: resume.project2,
                 id: sessionStorage.getItem("loginId")
             })
             .then(res => console.log(res))

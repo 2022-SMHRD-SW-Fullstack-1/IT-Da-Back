@@ -542,7 +542,7 @@ const E_main_detail = ({ socket }) => {
           </table>
         </div><div>
           <p>기술스택</p>
-          <div>{resume.skills.slice(0,-1)}</div>
+          <div>{resume.skills&&resume.skills.slice(0,-1)}</div>
         </div><button className='headerBtn' onClick={goToResumeFrame}>이력서 출력하기</button>
       </div>
     )
