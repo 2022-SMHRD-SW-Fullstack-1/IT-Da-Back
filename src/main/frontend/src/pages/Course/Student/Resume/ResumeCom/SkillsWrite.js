@@ -38,10 +38,9 @@ const SkillsWrite = ({ skills, setSkill }) => {
                 })
                 .catch((e) => console.log(e));
             setSkill(skills.concat(newSkill))
-            setSkillInput({
+            setSkillInput(...inputSkill,{
                 skill_num: uuid().replace(/-/g, '/').toUpperCase(),
-                skill_name: '',
-                skill_grade: ''
+                skill_name: ''
             })
         }
     }
