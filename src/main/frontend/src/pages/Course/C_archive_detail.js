@@ -35,7 +35,7 @@ const C_archive_detail = () => {
          )
          .catch(e => console.log(e))
    }
-   const url = `https://smhrd-portal.s3.ap-northeast-2.amazonaws.com/upload/board/${sessionStorage.getItem("loginId")}/${post.b_num}/${post.b_file}`
+   const url = process.env.PUBLIC_URL+`/file/board/${post.b_file}`
    return (
       <div className='container'>
          <p>공유 자료실</p>
@@ -47,7 +47,7 @@ const C_archive_detail = () => {
             <div className='annViewContent'>
                <p dangerouslySetInnerHTML={ {__html: post.b_content} }></p>
             </div>
-            <p>첨부파일 <span className='fileColor' onClick={()=> window.open(url)}>{post.b_file}</span></p>
+            <p>첨부파일 <span className='fileColor' onClick={()=> window.open(url)}>{post.b_file.slice(10,-1)}</span></p>
          </div>
          {window.sessionStorage.getItem("role") === 't' &&
             <div className='content annViewButton'>

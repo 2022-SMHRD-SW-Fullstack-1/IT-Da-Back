@@ -20,18 +20,18 @@ const S_portfolio_write = () => {
     
     const [title, setTitle] = useState('');
     const [inputs, setInputs] = useState({
-        portfolio_num: uuid(),
-        portfolio_title: state.portfolio_title,
-        portfolio_period: state.portfolio_period,
-        portfolio_etc: state.portfolio_etc,
+        portfolio_num: uuid().replace(/-/g, '').toUpperCase(),
+        portfolio_title: state.portfolio_title||'',
+        portfolio_period: state.portfolio_period||'',
+        portfolio_etc: state.portfolio_etc||'',
         portfolio_img1: state.portfolio_img1,
         portfolio_img2: state.portfolio_img2,
         portfolio_img3: state.portfolio_img3,
-        portfolio_content: state.portfolio_content,
-        portfolio_stack_front: state.portfolio_stack_front,
-        portfolio_stack_back: state.portfolio_stack_back,
-        portfolio_stack_db: state.portfolio_stack_db,
-        portfolio_url: state.portfolio_url,
+        portfolio_content: state.portfolio_content||'',
+        portfolio_stack_front: state.portfolio_stack_front||'',
+        portfolio_stack_back: state.portfolio_stack_back||'',
+        portfolio_stack_db: state.portfolio_stack_db||'',
+        portfolio_url: state.portfolio_url||'',
         portfolio_file: state.portfolio_file
     })
 
@@ -57,7 +57,7 @@ const S_portfolio_write = () => {
       }
       file
       &&axios
-      .post('file/upload/portfolio',formData,config)
+      .post('/file/upload/portfolio',formData,config)
       .then((res)=>{
         console.log(res)
       })
@@ -111,16 +111,19 @@ const S_portfolio_write = () => {
                 portfolio_stack_front: inputs.portfolio_stack_front,
                 portfolio_stack_back: inputs.portfolio_stack_back,
                 portfolio_stack_db: inputs.portfolio_stack_db,
-                portfolio_url: inputs.portfolio_url,
+                portfolio_url: inputs.portfolio_url||'',
                 portfolio_file: inputs.portfolio_file
             })
+            .then(() => {
+              selectedFile&&(uploadFile(selectedFile,state.portfolio_num,0))
+              selectedFile1&&(uploadFile(selectedFile1,state.portfolio_num,1))
+              selectedFile2&&(uploadFile(selectedFile2,state.portfolio_num,2))
+              selectedFile3&&(uploadFile(selectedFile3,state.portfolio_num,3))}
+            )
             .then((res)=>{
                 console.log(res)
-                navigate('/portfolio', {state: {state: title}})
-                selectedFile&&(uploadFile(selectedFile,state.portfolio_num,0))
-                selectedFile1&&(uploadFile(selectedFile1,state.portfolio_num,1))
-                selectedFile2&&(uploadFile(selectedFile2,state.portfolio_num,2))
-                selectedFile3&&(uploadFile(selectedFile3,state.portfolio_num,3))
+                navigate('/portfolio', {state: {state: title
+                }})
             })
             .catch((e) => console.error(e));
         } else {
@@ -137,22 +140,23 @@ const S_portfolio_write = () => {
                 portfolio_stack_front: inputs.portfolio_stack_front,
                 portfolio_stack_back: inputs.portfolio_stack_back,
                 portfolio_stack_db: inputs.portfolio_stack_db,
-                portfolio_url: inputs.portfolio_url,
+                portfolio_url: inputs.portfolio_url||' ',
                 portfolio_file: inputs.portfolio_file,
                 id: window.sessionStorage.getItem("loginId")
             })
             .then((res) => {
                console.log(res)
-               navigate('/portfolio', { state: { state: title } })
                selectedFile&&(uploadFile(selectedFile,inputs.portfolio_num,0))
                selectedFile1&&(uploadFile(selectedFile1,inputs.portfolio_num,1))
                selectedFile2&&(uploadFile(selectedFile2,inputs.portfolio_num,2))
                selectedFile3&&(uploadFile(selectedFile3,inputs.portfolio_num,3))
             })
+            .then(()=>
+              {navigate('/portfolio', { state: { state: title } })
+              })
             .catch((e) => console.log(e));
         }
     }
-
 
     // 문제
     // selectedFile 이 변경됨과 동시에 input의 text가 바뀌지만, onChange가 발동하지 않음
@@ -168,7 +172,7 @@ const S_portfolio_write = () => {
           setSelectedFile1(e.target.files[0]);
           setInputs({
               ...inputs,
-              [name]: file.name
+              [name]: "/"+inputs.portfolio_num+"/"+1+"."+fileExt
           })
         }
         else {
@@ -188,7 +192,7 @@ const S_portfolio_write = () => {
           setSelectedFile2(e.target.files[0]);
           setInputs({
               ...inputs,
-              [name]: file.name
+              [name]: "/"+inputs.portfolio_num+"/"+2+"."+fileExt
           })
         }
         else {
@@ -208,7 +212,7 @@ const S_portfolio_write = () => {
           setSelectedFile3(e.target.files[0]);
           setInputs({
               ...inputs,
-              [name]: file.name
+              [name]: "/"+inputs.portfolio_num+"/"+3+"."+fileExt
           })
         }
         else {
@@ -268,13 +272,13 @@ const S_portfolio_write = () => {
 
        <input name='portfolio_img1' style={{ display: "none" }} type='file' onChange={handleFileInput1} ref={fileInput1} />
        <button onClick={onClickFileInput1}>{'사진첨부'}</button>
-       <input name='portfolio_img1' value={selectedFile1?("사진1"):("사진1")||''} type='text' readOnly/>
+       <input name='portfolio_img1' value={selectedFile1?("사진1"):''} type='text' readOnly/>
        <input name='portfolio_img2' style={{ display: "none" }} type='file' onChange={handleFileInput2} ref={fileInput2} />
        <button onClick={onClickFileInput2}>{'사진첨부'}</button>
-       <input name='portfolio_img2' value={selectedFile2?("사진2"):("사진2")||''} type='text' readOnly/>
+       <input name='portfolio_img2' value={selectedFile2?("사진2"):''} type='text' readOnly/>
        <input name='portfolio_img3' style={{ display: "none" }} type='file' onChange={handleFileInput3} ref={fileInput3} />
        <button onClick={onClickFileInput3}>{'사진첨부'}</button>
-       <input name='portfolio_img3' value={selectedFile3?("사진3"):("사진3")||''} type='text' readOnly/>
+       <input name='portfolio_img3' value={selectedFile3?("사진3"):''} type='text' readOnly/>
        <p>내용</p>
        <input name='portfolio_content' value={inputs.portfolio_content} type='text' onChange={onChange} />
        <p>기술스택 - 프론트</p>

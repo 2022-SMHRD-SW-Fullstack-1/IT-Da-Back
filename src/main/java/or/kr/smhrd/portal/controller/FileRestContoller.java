@@ -64,7 +64,7 @@ public class FileRestContoller {
         @RequestParam("file") MultipartFile file,
         @RequestParam("id") String id,
         @RequestParam("num") String num,
-        @RequestParam("idx") String idx
+        @RequestParam("idx") int idx
     ){
         String ext = FilenameUtils.getExtension(file.getOriginalFilename()).toLowerCase();
         String path = "/"+num+"/"+idx+"."+ext;
@@ -73,7 +73,7 @@ public class FileRestContoller {
         try {
             InputStream fileStream = file.getInputStream();
             FileUtils.copyInputStreamToFile(fileStream, targetFile);
-            fileService.uploadPortfolio(id, path, idx);
+            fileService.uploadPortfolio(id, path, idx, num);
         } catch (IOException e) {
             FileUtils.deleteQuietly(targetFile);
             e.printStackTrace();
@@ -85,12 +85,15 @@ public class FileRestContoller {
         @RequestParam("id") String id,
         @RequestParam("path") String path
     ){
+        System.out.println("파일 삭제");
+        System.out.println(id);
+        System.out.println(path);
         String pre = "src/main/frontend/public/file/portfolio/"+id;
         File targetFile = new File(pre+path);
-        if(targetFile.exists()){
+        // if(targetFile.exists()){
             targetFile.delete();
-            fileService.deletePortfolio(id, path);
-        }
+            // fileService.deletePortfolio(id, path);
+        // }
     }
 
     /**게시판 파일 업로드 */
@@ -100,9 +103,8 @@ public class FileRestContoller {
         @RequestParam("id") String id,
         @RequestParam("num") String num
     ){
-        String ext = FilenameUtils.getExtension(file.getOriginalFilename()).toLowerCase();
-        String path = "/"+num+"."+ext;
-        String pre = "src/main/frontend/public/file/board/"+id;
+        String path = "/"+num+"/"+file.getOriginalFilename();
+        String pre = "src/main/frontend/public/file/board";
         File targetFile = new File(pre+path);
         try {
             InputStream fileStream = file.getInputStream();
@@ -123,7 +125,7 @@ public class FileRestContoller {
         File targetFile = new File(pre+path);
         if(targetFile.exists()){
             targetFile.delete();
-            fileService.deleteBoard(id, path);
+            // fileService.deleteBoard(id, path);
         }
     }
 }

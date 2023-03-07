@@ -10,7 +10,7 @@ const GalleryList = ({datas, currItem, onView}) => {
             <ul>
                 {
                     datas.map(item => 
-                    <GalleryItem key={item.id} item={item} onView={onView}/>)
+                    item&&<GalleryItem key={item.id} item={item} onView={onView}/>)
                 }
             </ul>
         </article>
