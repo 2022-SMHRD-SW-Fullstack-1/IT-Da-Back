@@ -119,16 +119,11 @@ const E_main_detail = ({ socket }) => {
       .then((res) => {
         setResume(res.data[0]);
         setGraduation(res.data[1]);
-        // console.log("뭐에요".res.data[1]);
         setCareer(res.data[2]);
-        // console.log(res.data[2]);
         setCertification(res.data[3]);
-        // console.log(res.data[3]);
         setPrize(res.data[4]);
-        // console.log(res.data[4]);
         setMilitary(res.data[5]);
         setSkill(res.data[6])
-        // console.log(res.data[5]);
         setCoverLetter(res.data[7]);
       })
       .then(() => {

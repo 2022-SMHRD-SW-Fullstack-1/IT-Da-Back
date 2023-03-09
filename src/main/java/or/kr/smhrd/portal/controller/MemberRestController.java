@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import lombok.RequiredArgsConstructor;
-import or.kr.smhrd.portal.domain.Alarm;
 import or.kr.smhrd.portal.domain.Member;
 import or.kr.smhrd.portal.domain.StudentInfo;
 import or.kr.smhrd.portal.service.EnterpriseService;

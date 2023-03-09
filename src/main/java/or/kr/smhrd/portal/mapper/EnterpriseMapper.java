@@ -9,7 +9,6 @@ import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
 
-import or.kr.smhrd.portal.domain.Alarm;
 import or.kr.smhrd.portal.domain.Company;
 import or.kr.smhrd.portal.domain.Enterprise;
 

@@ -5,7 +5,7 @@ import axios from "axios"
 import M_course_list from "./M_course_list"
 import uuid from "react-uuid"
 
-const M_edit_course = (props) => {
+const M_edit_course = () => {
 
     const [course, setCourse] = useState([])
 

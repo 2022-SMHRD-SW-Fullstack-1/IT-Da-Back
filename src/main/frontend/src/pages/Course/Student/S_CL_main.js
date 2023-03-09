@@ -7,30 +7,15 @@ import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
 const S_CL_main = () => {
-  const [coverLetter, SetCoverLetter] = useState({
-    growth: "",
-    pros_cons: "",
-    goal_and_crisis: "",
-    motivation: "",
-  });
+  
   const [growth, setGrowth] = useState('')
   const [pros_cons, setPros_cons] = useState('')
   const [goal_and_crisis, setGoal_and_crisis] = useState('')
   const [motivation, setMotivation] = useState('')
 
-  const onChange = (e) => {
-    const { name, value } = e.target;
-    SetCoverLetter({
-      ...coverLetter,
-      [name]: value,
-    });
-    console.log(coverLetter);
-  };
-
   const btnResume = () => {
     console.log("click");
 
-    console.log(coverLetter);
     axios
       .post("/student/cover_letter/update", {
         growth: growth,

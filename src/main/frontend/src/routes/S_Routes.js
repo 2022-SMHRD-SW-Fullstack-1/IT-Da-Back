@@ -28,7 +28,6 @@ const S_Routes = () => {
          <Route path='/resume_css' element={<Resume />}></Route>
          <Route path='/resume/frame' element={<ResumeFrame />}></Route>
          <Route path='/cover_letter/frame' element={<CoverLetterFrame />}></Route>
-         {/* <Route path='/resume/update' element={<S_R_main />}></Route> */}
          <Route path='/company/search' element={<S_C_main />}></Route>
          <Route path='/resume' element={<S_R_write />}></Route>
          <Route path='/cover_letter' element={<S_CL_main />}></Route>

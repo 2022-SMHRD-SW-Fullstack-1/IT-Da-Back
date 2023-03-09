@@ -5,7 +5,7 @@ import Alarm_list from './Alarm_list';
 
 import '../../css/alarm.css'
 
-function Alarm({ socket, connect }) {
+function Alarm({ socket }) {
 
   const [newAlarm, setNewAlarm] = useState([])
 

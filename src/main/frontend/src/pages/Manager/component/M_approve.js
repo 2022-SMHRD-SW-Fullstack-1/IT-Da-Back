@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import axios from "axios"
 
-const M_approve = (props) => {
+const M_approve = () => {
 
    const [enter, setEnter] = useState([])
 

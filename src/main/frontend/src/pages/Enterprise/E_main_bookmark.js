@@ -1,17 +1,13 @@
-import React, { useEffect, useRef, useState } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
-import Accordion from "react-bootstrap/Accordion";
-import dateCompare from "../../utils/filter";
+import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.css";
 import "../../css/E_main.css";
 import axios from "axios";
 import uuid from "react-uuid";
 import { RiStarLine } from "react-icons/ri";
 import { RiStarFill } from "react-icons/ri";
-import E_main_detail from "./E_main_detail";
 
 const E_main_bookmark = () => {
-  const { state } = useLocation();
 
   const navigate = useNavigate();
 

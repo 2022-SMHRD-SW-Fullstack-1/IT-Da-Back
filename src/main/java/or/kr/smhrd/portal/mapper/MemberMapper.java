@@ -8,7 +8,6 @@ import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
 
-import or.kr.smhrd.portal.domain.Alarm;
 import or.kr.smhrd.portal.domain.Member;
 import or.kr.smhrd.portal.domain.StudentInfo;
 

@@ -1,7 +1,6 @@
 import "../../css/M_full.css";
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import M_course_list from "./M_course_list";
 
 const M_edit_course = () => {
   const [course_list, setCourse_list] = useState([]);

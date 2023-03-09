@@ -80,7 +80,6 @@ const E_main = () => {
     },
   ]);
 
-  const [member_info, setMember_info] = useState([{}]);
   //기업이 누구를 북마크했는지 정보
   const [bookmark_info, setBookmark_info] = useState([]);
   const [certification_info, setCertification_info] = useState([]);
@@ -217,7 +216,6 @@ console.log("1212",simple_info.wish_field);
         setSimple_info(res.data.resume);
         setFilterData(res.data.resume);
         setBookmark_info(res.data.bookmark);
-        setMember_info(res.data.member);
         setSimple_info({
           ...simple_info,
           update_dt:res.data.member.mb_update

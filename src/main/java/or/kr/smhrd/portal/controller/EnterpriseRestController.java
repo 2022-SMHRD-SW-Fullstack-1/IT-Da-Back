@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import or.kr.smhrd.portal.domain.Alarm;
 import or.kr.smhrd.portal.domain.Company;
 import or.kr.smhrd.portal.domain.Enterprise;
 import or.kr.smhrd.portal.service.EnterpriseService;

@@ -1,7 +1,6 @@
 import React, { useEffect, useRef } from 'react'
 import { useLocation } from 'react-router-dom';
 import ReactToPrint from 'react-to-print'
-import uuid from 'react-uuid';
 import '../../../../css/ResumePrint.css'
 import logo from '../../../../asset/img/logo_resume.png'
 const ResumeFrame = () => {

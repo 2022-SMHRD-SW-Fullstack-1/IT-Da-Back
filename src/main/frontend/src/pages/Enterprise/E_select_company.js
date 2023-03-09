@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom'
 import axios from "axios"
 import M_company_list from '../Manager/company/M_company_list'
 
-const E_select_company = (props) => {
+const E_select_company = () => {
 
   const [company, setCompany] = useState([])
 
