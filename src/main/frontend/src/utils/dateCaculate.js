@@ -1,4 +1,4 @@
-const intoKorean = (string: String) => {
+const intoKorean = (string) => {
    let newString = '';
    const month = string.substring(0, 3)
    if (month === 'Jan')

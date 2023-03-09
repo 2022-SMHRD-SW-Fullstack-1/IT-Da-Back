@@ -35,17 +35,19 @@ const Footer = () => {
                   <br />
                   사업자번호 : 178-82-00065
                   <br />
-                  <span className='emphasize'>광주본점 : </span>광주 동구 예술길 31-15 3~5, 7층
+                  <span className='emphasize'>서울 서초점 : </span>서울시 서초구 동작대로 132 9층
                   <br />
-                  <span className='emphasize'>광주남구점 : </span>광주 남구 송암로 60 2층
+                  <span className='emphasize'>서울 가산점 : </span>서울시 금천구 벚꽃로 254
                   <br />
-                  <span className='emphasize'>서울점 : </span>서울시 성동구 성수일로 99 1201호
+                  <span className='emphasize'>광주 동구본점 : </span>광주 동구 예술길 31-15 3~4, 7층
+                  <br />
+                  <span className='emphasize'>광주 남구점 : </span>광주 남구 송암로 60 2층
                   <br />
                   <span className='emphasize'>순천점 : </span>전라남도 순천시 중앙로 260
                   <br />
-                  <span className='emphasize'>FAX : </span>062-655-3510
+                  <span className='emphasize'>대표 FAX : </span>062-655-3510
                   <br />
-                  <span className='emphasize'>E-Mail : </span>smhrd@smhrd.or.kr
+                  <span className='emphasize'>대표 E-Mail : </span>smhrd@smhrd.or.kr
                   <br />
                 </Col>
               </Row>
@@ -71,9 +73,9 @@ const Footer = () => {
                   <br />
                   <span className='emphasize'>카카오톡 : </span>09시~22시(연중무휴)
                   <br />
-                  *홈페이지 내 취업/수료율은 2021년도 수치로
+                  <span className='emphasize'>*표기된 취업/수료율은 HRD-Net 훈련기관</span>
                   <br />
-                  2022 직업능력개발훈련 역량평가 결과에 따름.
+                  <span className='emphasize'>정보의 2022년도 14개 과정 평균 취업률입니다.</span>
 
                 </Col>
               </Row>
