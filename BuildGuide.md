@@ -49,3 +49,11 @@ commandLine 'npm', 'install'
 6. gradle이 있는 위치에서(거의 최상위) ./gradlew clean build 실행
 7. cd build/libs 로 접근, java -jar 생성된jar파일(혹은 war 파일 이름) 명령어 실행
 8. 3000번 대가 아닌 8000번 대 포트를 통해 react 가 실행됨
+
+#### war
+1. builde.gradle 에 구문 추가   
+apply plugin: 'war'   
+bootWar {   
+    archiveFileName = 'smhrdPortal.war'   
+}   
+2. 수정된 파일을 빌드 (./gradlew clean build)
