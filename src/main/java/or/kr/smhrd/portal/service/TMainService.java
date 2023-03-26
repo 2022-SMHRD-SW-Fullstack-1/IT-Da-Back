@@ -9,7 +9,6 @@ import lombok.RequiredArgsConstructor;
 import or.kr.smhrd.portal.mapper.TMainMapper;
 import or.kr.smhrd.portal.domain.Board;
 import or.kr.smhrd.portal.domain.Course;
-import or.kr.smhrd.portal.domain.Extend;
 import or.kr.smhrd.portal.domain.Schedule;
 
 @RequiredArgsConstructor

@@ -1,9 +1,6 @@
 package or.kr.smhrd.portal.controller;
 
-import java.lang.reflect.Array;
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -137,7 +134,7 @@ public class StudentRestController {
     }
 
     // 삭제
-    @PostMapping("portfolio/delete")
+    @PostMapping("/portfolio/delete")
     public void deletePortfolio(@RequestBody Map<String, String> data){
         studentService.deletePortfolio(data);
     }

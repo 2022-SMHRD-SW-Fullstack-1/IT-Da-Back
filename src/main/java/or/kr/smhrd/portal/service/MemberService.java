@@ -1,6 +1,5 @@
 package or.kr.smhrd.portal.service;
 
-import or.kr.smhrd.portal.domain.Alarm;
 import or.kr.smhrd.portal.domain.Member;
 import or.kr.smhrd.portal.domain.StudentInfo;
 import or.kr.smhrd.portal.mapper.MemberMapper;

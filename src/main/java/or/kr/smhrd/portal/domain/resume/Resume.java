@@ -22,9 +22,7 @@ public class Resume {
     String wish_area2;
     String wish_area3;
     String wish_salary;
-   
     String photo;
-    
     String update_dt;
      
 }
