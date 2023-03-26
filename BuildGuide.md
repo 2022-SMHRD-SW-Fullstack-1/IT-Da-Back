@@ -4,9 +4,10 @@
 1. gradle 설치
 2. pom.xml 경로에서 gradle init
 3. 의존성 수정(예시. gradle compile 을 implementation으로)
-4. ./gradlew build 명령어 입력 후 성공 여부 확인
+4. ./gradlew build (mac)명령어 입력 후 성공 여부 확인   
+    gradlew (windows)
 #### build
-1. react 에 해당하는 디렉토리(frontent)로 접근, npm start 가 정상 작동한다면, npm install
+1. react 에 해당하는 디렉토리(frontent)로 접근, npm install 후 npm start
 2. npm run-script build, npm run eject 순차 실행(오류가 난다면 git 에 push 하지 않은 항목이 있는지 확인 후 진행)
 3. frontend/config/path.js appBuild: resolveApp('build/static') 으로 수정
 4. frontend/build 삭제

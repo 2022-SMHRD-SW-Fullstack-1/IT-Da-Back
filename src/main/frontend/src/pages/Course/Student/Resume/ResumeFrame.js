@@ -95,7 +95,7 @@ const ResumeFrame = () => {
                     <tbody>
                         <tr>
                             <td id='resumePrintPhoto' rowSpan={4}>
-                                {state.resume.photo ? (<img id='resumePrintPhoto' src={`https://smhrd-portal.s3.ap-northeast-2.amazonaws.com/upload/photo/${state.resume.mb_id}/photo`} />)
+                                {state.resume.photo ? (<img id='resumePrintPhoto' src={process.env.PUBLIC_URL+state.resume.photo} />)
                                     : <img id='resumePrintPhoto' />}
                             </td>
                             <td className='resumePrintTitle resumePrintTitle1'>지원분야</td>
