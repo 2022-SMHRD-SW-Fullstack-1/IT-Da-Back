@@ -95,7 +95,7 @@ const ResumeFrame = () => {
                     <tbody>
                         <tr>
                             <td id='resumePrintPhoto' rowSpan={4}>
-                                {state.resume.photo ? (<img id='resumePrintPhoto' src={process.env.PUBLIC_URL+state.resume.photo} />)
+                                {state.resume.photo ? (<img id='resumePrintPhoto' src={state.resume.photo} />)
                                     : <img id='resumePrintPhoto' />}
                             </td>
                             <td className='resumePrintTitle resumePrintTitle1'>지원분야</td>

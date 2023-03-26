@@ -17,7 +17,7 @@ function App() {
   const [socket, setSocket] = useState();
 
   function connect(id) {
-    let ws = new WebSocket(encodeURI("ws://127.0.0.1:8083/replyEcho/" + id))
+    let ws = new WebSocket(encodeURI("ws://localhost:8083/replyEcho/" + id))
     console.log(ws)
     setSocket(ws)
     ws.onopen = () => {

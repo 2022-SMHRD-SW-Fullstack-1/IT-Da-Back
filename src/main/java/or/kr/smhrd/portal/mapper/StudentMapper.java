@@ -133,7 +133,7 @@ public interface StudentMapper {
     @Update("update t_resume set photo=#{photo} where mb_id=#{id}")
     void updatePhoto(Map<String, String> data);
 
-    @Update("update t_resume set photo='' where mb_id=#{id}")
+    @Update("update t_resume set photo=null where mb_id=#{id}")
     void deletePhoto(Map<String, String> data);
 
     @Select("select * from t_portfolio where mb_id=#{id}")

@@ -64,7 +64,7 @@ const ResumeWrite = ({ resume, setResume }) => {
                                 src={fileImage}
                             />
                         )
-                        :(<img className='r_photo' src={process.env.PUBLIC_URL+resume.photo} />)
+                        :(<img className='r_photo' src={resume.photo} />)
                     }
                     <SelectFileBtn btnText={"사진선택"} setFileImage={setFileImage} setSelectedFile={setSelectedFile} fileTypes={fileTypes} fileExts={fileExts} />
                 <UploadBtn btn_text={"저장"} selectedFile={selectedFile} resume={resume} setResume={setResume} />
