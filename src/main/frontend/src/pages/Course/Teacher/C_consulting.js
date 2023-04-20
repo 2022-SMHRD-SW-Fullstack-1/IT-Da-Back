@@ -101,7 +101,11 @@ const C_consulting = () => {
   return (
     <div className='consultingBox'>
       <div className='consultingBox_Head'>
-        <span>{selectStd} / {selectDt} </span>
+        <span>{selectStd} / {selectDt}
+          <div>
+            <span>{selectStd} / {selectDt} </span>
+          </div>
+        </span>
       </div>
       <div className='consultingBox_Body'>
         <div>

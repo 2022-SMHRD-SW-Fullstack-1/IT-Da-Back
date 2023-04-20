@@ -50,6 +50,10 @@ public class MemberService {
    public List<StudentInfo> getStudentInfo(Map<String, String> data) {
       return memberMapper.getStudentInfo(data.get("course_key"));
    }
+   
+   public StudentInfo getOneStudentInfo(Map<String, String> data) {
+      return memberMapper.getOneStudentInfo(data.get("id"), data.get("course_key"));
+   }
 
    public void updateStdInfo(List<StudentInfo> data) {
       for (StudentInfo s : data) {

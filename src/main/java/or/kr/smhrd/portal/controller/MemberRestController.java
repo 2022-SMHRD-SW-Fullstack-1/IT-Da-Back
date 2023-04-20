@@ -42,6 +42,11 @@ public class MemberRestController {
       return memberService.getStudentInfo(data);
    }
 
+   @PostMapping("/getOneStudentInfo")
+   public StudentInfo getOneStudentInfo(@RequestBody Map<String, String> data) {
+      return memberService.getOneStudentInfo(data);
+   }
+
    @PostMapping("/updateStdInfo")
    public void updateStdInfo(@RequestBody Map<String, List<StudentInfo>> data) {
       memberService.updateStdInfo(data.get("stdInfo"));

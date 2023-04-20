@@ -21,4 +21,5 @@ public class StudentInfo {
    private String example;
    private String division;
    private String special;
+   private String address;
 }
