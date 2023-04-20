@@ -52,6 +52,8 @@ public class MemberService {
    }
    
    public StudentInfo getOneStudentInfo(Map<String, String> data) {
+      System.out.println(data);
+      System.out.println(memberMapper.getOneStudentInfo(data.get("id"), data.get("course_key")));
       return memberMapper.getOneStudentInfo(data.get("id"), data.get("course_key"));
    }
 

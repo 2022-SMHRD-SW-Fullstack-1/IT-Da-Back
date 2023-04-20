@@ -10,6 +10,8 @@ const C_consulting = () => {
   const [stdList, setStdList] = useState([])
   // 상담 리스트
   const [consultingList, setConsultingList] = useState([])
+  // 학생 상세 정보
+  const [stdInfo, setStdInfo] = useState({})
 
   const [selectStd, setSelectStd] = useState("학생을 선택해주세요")
   const [selectDt, setSelectDt] = useState("새 상담 내역 작성")
@@ -34,6 +36,13 @@ const C_consulting = () => {
         res.data[0] === undefined
         && setBtnText('상담 작성')
         setConsultingList(res.data.sort((a, b) => a.date < b.date ? -1 : 1))
+      })
+      .catch((e) => console.log(e))
+    axios
+      .post('/member/getOneStudentInfo', {id: e.currentTarget.getAttribute('mb_id'), course_key: window.sessionStorage.getItem("course_key")})
+      .then((res) => {
+        console.log('학생 상세 정보 : ', res.data)
+        setStdInfo(res.data)
       })
       .catch((e) => console.log(e))
   }
@@ -101,8 +110,7 @@ const C_consulting = () => {
   return (
     <div className='consultingBox'>
       <div className='consultingBox_Head'>
-        <span>{selectStd} / {selectDt}
-        </span>
+        <span>{selectStd} / {selectDt} </span>
       </div>
       <div className='consultingBox_Body'>
         <div>
