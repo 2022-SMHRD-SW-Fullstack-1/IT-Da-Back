@@ -107,6 +107,7 @@ const StdInfoList = () => {
                      <th>휴대전화</th>
                      <th>성별</th>
                      <th>나이</th>
+                     <th>주소</th>
                      <th>학교</th>
                      <th>전공</th>
                      <th>자격증</th>
@@ -125,6 +126,7 @@ const StdInfoList = () => {
                      <td mb_id={item.id} onClick={go_to_userdetail}>{item.phone}</td>
                      <td mb_id={item.id} onClick={go_to_userdetail}>{item.gender==='m'?'남':'여'}</td>
                      <td mb_id={item.id} onClick={go_to_userdetail}>{ageCaculate(item.birthdate.substring(0,4))}</td>
+                     <td mb_id={item.id} onClick={go_to_userdetail}>{item.address}</td>
                      <td mb_id={item.id} onClick={go_to_userdetail}>{item.school}</td>
                      <td mb_id={item.id} onClick={go_to_userdetail}>{item.major}</td>
                      <td mb_id={item.id} onClick={go_to_userdetail}>{item.certification}</td>
