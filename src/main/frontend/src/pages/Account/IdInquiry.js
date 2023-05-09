@@ -1,22 +1,25 @@
 import React, { useState, useRef } from 'react';
-import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import '../../css/Login.css';
 import logo from '../../asset/img/logo_sbl.png'
 import { LoginFooter } from './LoginFooter';
 import { Personal_Info } from './Login/Personal_Info';
 
-const IdInquiry = ({socket}) => {
-
-//   const navigate = useNavigate();
-//   const onClickRegister = () => {
-//     navigate('/register');
-//   };
-//   const onClickE_Register = () => {
-//     navigate('/e_register');
-//   }
+const IdInquiry = () => {
 
   const [tab, setTab] = useState(true);
+
+  const inputName = useRef('');
+  const [name, setName] = useState('');
+  const onNameChange = (e) => {
+    setName(e.target.value);
+  };
+
+  const inputPhone = useRef('');
+  const [phone, setPhone] = useState('');
+  const onPhoneChange = (e) => {
+    setPhone(e.target.value);
+  };
 
   const inputId = useRef('');
   const [id, setId] = useState('');
@@ -24,82 +27,74 @@ const IdInquiry = ({socket}) => {
     setId(e.target.value);
   };
 
-  const inputPw = useRef('');
-  const [pw, setPw] = useState('');
-  const onPwChange = (e) => {
-    setPw(e.target.value);
-  };
-
-  const onMLoginClick = () => {
+  const onIdInquiryClick = () => {
+    console.log(name);
+    console.log(phone);
     // console.log(id);
     // console.log(pw);
+//     axios
+//       .post('/member/login', { id: id, pw: pw })
+//       .then((res) => {
+//         console.log(res.data);
+//         if (res.data.mb_job == 's') {
+//           window.sessionStorage.setItem('loginId', res.data.mb_id);
+//           window.sessionStorage.setItem('role', 's');
+//           window.sessionStorage.setItem('userName', res.data.mb_name);
+//           window.sessionStorage.setItem('course_key', res.data.course_key);
+//           window.location.replace('/');
+//         } else if (res.data.mb_job == 't') {
+//           window.sessionStorage.setItem('loginId', res.data.mb_id);
+//           window.sessionStorage.setItem('role', 't');
+//           window.sessionStorage.setItem('userName', res.data.mb_name);
+//           window.sessionStorage.setItem('course_key', res.data.course_key);
+//           window.location.replace('/');
+//         } else if (res.data.mb_job == 'a') {
+//           window.sessionStorage.setItem('loginId', res.data.mb_id);
+//           window.sessionStorage.setItem('role', 'a');
+//           window.sessionStorage.setItem('userName', res.data.mb_name);
+//           window.sessionStorage.setItem('course_key', '52D8EECC');
+//           window.location.replace('/');
 
-    axios
-      .post('/member/login', { id: id, pw: pw })
-      .then((res) => {
-        console.log(res.data);
-        if (res.data.mb_job == 's') {
-          window.sessionStorage.setItem('loginId', res.data.mb_id);
-          window.sessionStorage.setItem('role', 's');
-          window.sessionStorage.setItem('userName', res.data.mb_name);
-          window.sessionStorage.setItem('course_key', res.data.course_key);
-          window.location.replace('/');
-        } else if (res.data.mb_job == 't') {
-          window.sessionStorage.setItem('loginId', res.data.mb_id);
-          window.sessionStorage.setItem('role', 't');
-          window.sessionStorage.setItem('userName', res.data.mb_name);
-          window.sessionStorage.setItem('course_key', res.data.course_key);
-          window.location.replace('/');
-
-        } else if (res.data.mb_job == 'a') {
-          window.sessionStorage.setItem('loginId', res.data.mb_id);
-          window.sessionStorage.setItem('role', 'a');
-          window.sessionStorage.setItem('userName', res.data.mb_name);
-          window.sessionStorage.setItem('course_key', '52D8EECC');
-          window.location.replace('/');
-
-        } else alert('일치하는 회원정보가 없습니다');
-      })
-      .catch((e) => console.log(e));
+//         } else alert('일치하는 회원정보가 없습니다');
+//       })
+//       .catch((e) => console.log(e));
   };
 
-  const onELoginClick = () => {
+  const onPwInquiryClick = () => {
+
+    console.log(id);
+    console.log(name);
+    console.log(phone);
     //window.sessionStorage.setItem('role', 'e');
     //window.sessionStorage.setItem('userName', '유티소프트');
     //window.location.replace('/e_main');
-
-    axios
-      .post('/enterprise/login', { id: id, pw: pw })
-      .then((res) => {
-        console.log(res.data);
-
-        if (res.data.enter_approve == 'N') {
-          alert('승인되지 않은 아이디입니다.')
-        } else {
-          window.sessionStorage.setItem('loginId', res.data.enter_id);
-          window.sessionStorage.setItem('role', 'e');
-          window.sessionStorage.setItem('userName', res.data.enter_name);
-          window.location.replace('/');
-        }
-      })
-      .catch((e) => console.log(e));
+    // axios
+    //   .post('/enterprise/login', { id: id, pw: pw })
+    //   .then((res) => {
+    //     console.log(res.data);
+    //     if (res.data.enter_approve == 'N') {
+    //       alert('승인되지 않은 아이디입니다.')
+    //     } else {
+    //       window.sessionStorage.setItem('loginId', res.data.enter_id);
+    //       window.sessionStorage.setItem('role', 'e');
+    //       window.sessionStorage.setItem('userName', res.data.enter_name);
+    //       window.location.replace('/');
+    //     }
+    //   })
+    //   .catch((e) => console.log(e));
   };
 
   const handleOnKeyPress = (e) => {
     if (e.key === 'Enter') {
-      onMLoginClick(); // Enter 입력이 되면 클릭 이벤트 실행
+      onIdInquiryClick(); // Enter 입력이 되면 클릭 이벤트 실행
     }
   };
   const handleOnKeyPress2 = (e) => {
     if (e.key === 'Enter') {
-      onELoginClick(); // Enter 입력이 되면 클릭 이벤트 실행
+      onPwInquiryClick(); // Enter 입력이 되면 클릭 이벤트 실행
     }
   };
-  const handleOnKeyPress3 = (e) => {
-    if (e.key === 'Enter') {
-      onELoginClick(); // Enter 입력이 되면 클릭 이벤트 실행
-    }
-  };
+
   return (
     <div>
         <div><img  className='loginLogo' src={logo} /></div>
@@ -112,8 +107,8 @@ const IdInquiry = ({socket}) => {
           <button className={tab?'loginBtnStyle':''}
             onClick={() => {
               setTab(true);
-              setId('');
-              setPw('');
+              setName('');
+              setPhone('');
             }}
           >
             아이디 찾기
@@ -122,7 +117,8 @@ const IdInquiry = ({socket}) => {
             onClick={() => {
               setTab(false);
               setId('');
-              setPw('');
+              setName('');
+              setPhone('');
             }}
           >
             비밀번호 찾기
@@ -131,18 +127,18 @@ const IdInquiry = ({socket}) => {
         {tab ? (
             <div className="memberLogin">
             <input
-              ref={inputId}
-              onChange={onIdChange}
-              value={id}
-              id="IdInput"
+              ref={inputName}
+              onChange={onNameChange}
+              value={name}
+              id="NameInput"
               type="text"
               placeholder="이름 입력해주세요"
             ></input>
             <input
-              ref={inputPw}
-              onChange={onPwChange}
-              value={pw}
-              id="PwInput"
+              ref={inputPhone}
+              onChange={onPhoneChange}
+              value={phone}
+              id="PhoneInput"
               type="text"
               placeholder="전화번호를 입력해주세요"
               onKeyPress={handleOnKeyPress}
@@ -153,7 +149,7 @@ const IdInquiry = ({socket}) => {
               <input type="checkbox"></input>
               <span>아이디 저장</span>
             </div> */}
-            <button onClick={onMLoginClick}>본인인증 및 아이디 확인</button>
+            <button onClick={onIdInquiryClick}>본인인증 및 아이디 확인</button>
             {/* <div>
               <span className='hoverHand' onClick={onIdInquiryClick}>
                 아이디 찾기
@@ -179,22 +175,21 @@ const IdInquiry = ({socket}) => {
               placeholder="아이디를 입력해주세요"
             ></input>
             <input
-              ref={inputPw}
-              id='PwInput'
-              onChange={onPwChange}
-              value={pw}
+              ref={inputName}
+              id='NameInput'
+              onChange={onNameChange}
+              value={name}
               type="text"
               placeholder="이름을 입력해주세요"
-              onKeyPress={handleOnKeyPress2}
             ></input>
             <input
-              ref={inputPw}
-              id='PwInput'
-              onChange={onPwChange}
-              value={pw}
+              ref={inputPhone}
+              id='PhoneInput'
+              onChange={onPhoneChange}
+              value={phone}
               type="text"
               placeholder="전화번호를 입력해주세요"
-              onKeyPress={handleOnKeyPress3}
+              onKeyPress={handleOnKeyPress2}
             ></input>
             {/* <div>
               <input type="checkbox"></input>
@@ -202,7 +197,7 @@ const IdInquiry = ({socket}) => {
               <input type="checkbox"></input>
               <span>아이디 저장</span>
             </div> */}
-            <button onClick={onELoginClick}>본인인증 및 비밀번호 변경</button>
+            <button onClick={onPwInquiryClick}>본인인증 및 비밀번호 변경</button>
             {/* <div>
               <span>아이디 찾기</span>
               <span className='loginLine_1'>&nbsp;&nbsp;|&nbsp;&nbsp;</span>
