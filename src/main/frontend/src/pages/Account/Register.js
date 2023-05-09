@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import '../../css/Register.css';
 import Agreement from './Agreement';
 
-const Register = ({ socket }) => {
+const Register = ({ socket, props }) => {
   //오류 메시지 상태
   const [idMessage, setIdMessage] = useState('');
   const [pwMessage, setPwMessage] = useState('');
@@ -33,6 +33,8 @@ const Register = ({ socket }) => {
   //const [isExpire, setIsExpire] = useState(false);
 
   const navigate = useNavigate();
+
+  // state 된 데이터 받기
 
   const [id, setId] = useState('');
   const onIdChange = (e) => {
