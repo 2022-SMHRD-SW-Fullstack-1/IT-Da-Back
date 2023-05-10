@@ -1,12 +1,14 @@
 import React, { useState, useRef } from 'react';
+import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import '../../css/Login.css';
 import logo from '../../asset/img/logo_sbl.png'
 import { LoginFooter } from './LoginFooter';
 import { Personal_Info } from './Login/Personal_Info';
 
-const IdInquiry = () => {
+const Inquiry = () => {
 
+  const navigate = useNavigate();
   const [tab, setTab] = useState(true);
 
   const inputName = useRef('');
@@ -27,61 +29,66 @@ const IdInquiry = () => {
     setId(e.target.value);
   };
 
+  /**아이디 찾기 */
   const onIdInquiryClick = () => {
     console.log(name);
     console.log(phone);
-    // console.log(id);
-    // console.log(pw);
-//     axios
-//       .post('/member/login', { id: id, pw: pw })
-//       .then((res) => {
-//         console.log(res.data);
-//         if (res.data.mb_job == 's') {
-//           window.sessionStorage.setItem('loginId', res.data.mb_id);
-//           window.sessionStorage.setItem('role', 's');
-//           window.sessionStorage.setItem('userName', res.data.mb_name);
-//           window.sessionStorage.setItem('course_key', res.data.course_key);
-//           window.location.replace('/');
-//         } else if (res.data.mb_job == 't') {
-//           window.sessionStorage.setItem('loginId', res.data.mb_id);
-//           window.sessionStorage.setItem('role', 't');
-//           window.sessionStorage.setItem('userName', res.data.mb_name);
-//           window.sessionStorage.setItem('course_key', res.data.course_key);
-//           window.location.replace('/');
-//         } else if (res.data.mb_job == 'a') {
-//           window.sessionStorage.setItem('loginId', res.data.mb_id);
-//           window.sessionStorage.setItem('role', 'a');
-//           window.sessionStorage.setItem('userName', res.data.mb_name);
-//           window.sessionStorage.setItem('course_key', '52D8EECC');
-//           window.location.replace('/');
-
-//         } else alert('일치하는 회원정보가 없습니다');
-//       })
-//       .catch((e) => console.log(e));
+    axios
+    .get('/member/idInquiry', { params: {
+          name: name,
+          phone: phone
+        }
+    }).then((res) => {
+        console.log(res.data)
+        if (res.data){
+          alert(`아이디: ${res.data}`)
+        } else {
+          alert('해당 아이디가 존재하지 않습니다')
+        }
+    }).catch((err) => {
+        alert("서버 연결 실패")
+    })
   };
+  const onLoginPageClick = () => {
+    alert('로그인 페이지로 이동합니다')
+    navigate('/')
+  }
 
+  /**본인인증 및 비밀번호 변경 */
   const onPwInquiryClick = () => {
-
     console.log(id);
     console.log(name);
     console.log(phone);
-    //window.sessionStorage.setItem('role', 'e');
-    //window.sessionStorage.setItem('userName', '유티소프트');
-    //window.location.replace('/e_main');
-    // axios
-    //   .post('/enterprise/login', { id: id, pw: pw })
-    //   .then((res) => {
-    //     console.log(res.data);
-    //     if (res.data.enter_approve == 'N') {
-    //       alert('승인되지 않은 아이디입니다.')
-    //     } else {
-    //       window.sessionStorage.setItem('loginId', res.data.enter_id);
-    //       window.sessionStorage.setItem('role', 'e');
-    //       window.sessionStorage.setItem('userName', res.data.enter_name);
-    //       window.location.replace('/');
-    //     }
-    //   })
-    //   .catch((e) => console.log(e));
+    axios
+    .post('/member/pwInquiry', {
+          id: id,
+          name: name,
+          phone: phone
+    }).then((res) => {
+      console.log(res.data)
+      if (res.data.mb_job!==null){
+        alert(`본인인증 성공\n비밀번호 변경 페이지로 이동합니다`)
+        if (res.data.mb_job == 's') {
+          window.sessionStorage.setItem('loginId', res.data.mb_id);
+          window.sessionStorage.setItem('role', 's');
+          window.sessionStorage.setItem('userName', res.data.mb_name);
+          window.sessionStorage.setItem('course_key', res.data.course_key);
+          window.location.replace('/memberEdit'); // 변경 페이지로 이동
+        }
+        // else if (res.data.mb_job == 't') {
+        //   window.sessionStorage.setItem('loginId', res.data.mb_id);
+        //   window.sessionStorage.setItem('role', 't');
+        //   window.sessionStorage.setItem('userName', res.data.mb_name);
+        //   window.sessionStorage.setItem('course_key', res.data.course_key);
+        //   window.location.replace('/');
+        // }
+      } else {
+        alert('일치하는 회원정보가 없습니다')
+      }
+
+    }).catch((err) => {
+        alert("서버 연결 실패")
+    })
   };
 
   const handleOnKeyPress = (e) => {
@@ -150,6 +157,7 @@ const IdInquiry = () => {
               <span>아이디 저장</span>
             </div> */}
             <button onClick={onIdInquiryClick}>본인인증 및 아이디 확인</button>
+            <button onClick={onLoginPageClick}>로그인 페이지로 이동</button>
             {/* <div>
               <span className='hoverHand' onClick={onIdInquiryClick}>
                 아이디 찾기
@@ -219,4 +227,4 @@ const IdInquiry = () => {
 };
 
 
-export default IdInquiry;
+export default Inquiry;
