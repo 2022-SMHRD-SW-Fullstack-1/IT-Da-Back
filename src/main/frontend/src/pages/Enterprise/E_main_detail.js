@@ -352,10 +352,10 @@ const E_main_detail = ({ socket }) => {
               </div>
             </div>
             <div>
-              <div>
+              {/* <div>
                 <p>연락처</p>
                 <p>{resume.phone}</p>
-              </div>
+              </div> */}
               <div>
                 <p>이메일</p>
                 <p>{resume.email}</p>

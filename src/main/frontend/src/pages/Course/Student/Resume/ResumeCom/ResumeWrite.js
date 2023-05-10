@@ -82,11 +82,11 @@ const ResumeWrite = ({ resume, setResume }) => {
                             <p><span>{resume.email}</span>
                             </p>
                         </div>
-                        <div>
+                        {/* <div>
                             <p>연 락 처</p>
                             <p><span>{phone}</span>
                             </p>
-                        </div>
+                        </div> */}
 
                         <div>
                             <p>주&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;소</p>
