@@ -107,10 +107,6 @@
   background-repeat: no-repeat;
 }
 
-.register_select_container_change button{
-  background-color: #008acc;
-}
-
 #register_student_button{
   background-image: url('https://cdn-icons-png.flaticon.com/512/257/257787.png');
 }

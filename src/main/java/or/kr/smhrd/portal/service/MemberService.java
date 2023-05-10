@@ -24,7 +24,9 @@ public class MemberService {
             data.get("id"),
             data.get("pw"),
             data.get("name"),
-            "s",
+            // 수정
+            data.get("job"),
+            //
             data.get("bd").replaceAll("-", ""),
             data.get("tel"),
             data.get("address"),

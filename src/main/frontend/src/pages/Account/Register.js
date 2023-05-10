@@ -1,11 +1,17 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 
 import '../../css/Register.css';
 import Agreement from './Agreement';
 
 const Register = ({ socket, props }) => {
+
+  // state 받기
+  const { state } = useLocation();
+  console.log(state)
+  console.log(state.role)
+
   //오류 메시지 상태
   const [idMessage, setIdMessage] = useState('');
   const [pwMessage, setPwMessage] = useState('');
@@ -33,8 +39,6 @@ const Register = ({ socket, props }) => {
   //const [isExpire, setIsExpire] = useState(false);
 
   const navigate = useNavigate();
-
-  // state 된 데이터 받기
 
   const [id, setId] = useState('');
   const onIdChange = (e) => {
@@ -183,6 +187,9 @@ const Register = ({ socket, props }) => {
         id: id,
         pw: pw,
         name: name,
+        // 수정
+        job: state.role,
+        //
         bd: bd,
         gender: gender,
         tel: tel,
