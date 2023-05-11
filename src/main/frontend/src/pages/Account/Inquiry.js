@@ -66,9 +66,8 @@ const Inquiry = () => {
           phone: phone
     }).then((res) => {
       console.log(res.data)
-      if (res.data.mb_job!==null){
-        alert(`본인인증 성공\n비밀번호 변경 페이지로 이동합니다`)
-        if (res.data.mb_job == 's') {
+      if (res.data.mb_job == 's') {
+          alert(`본인인증 성공\n비밀번호 변경 페이지로 이동합니다`)
           window.sessionStorage.setItem('loginId', res.data.mb_id);
           window.sessionStorage.setItem('role', 's');
           window.sessionStorage.setItem('userName', res.data.mb_name);
@@ -82,7 +81,7 @@ const Inquiry = () => {
         //   window.sessionStorage.setItem('course_key', res.data.course_key);
         //   window.location.replace('/');
         // }
-      } else {
+      else {
         alert('일치하는 회원정보가 없습니다')
       }
 
