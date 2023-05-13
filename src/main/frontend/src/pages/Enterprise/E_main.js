@@ -53,8 +53,28 @@ const E_main = () => {
     setskill_info(e.target.value);
   }
 
-  //필터링 한 후 데이터 list
-  const [filterDate, setFilterData] = useState([]);
+  /**필터링 한 후 데이터 list*/
+  const [filterData, setFilterData] = useState([{
+          mb_id: "",
+      name: "",
+      gender: "",
+      birthday: "",
+      major: "",
+      phone: "",
+      email: "",
+      addr: "",
+      skills: "",
+      wish_field: "",
+      wish_salary: "",
+      wish_area1: "",
+      wish_area2: "",
+      wish_area3: "",
+      simple_comment: "",
+      photo: "",
+      project: "",
+      project2: "",
+      update_dt: "",
+  }]);
   //수강생 데이터(MAP으로 뿌릴) 초기화용
   const [simple_info, setSimple_info] = useState([
     {
@@ -100,7 +120,7 @@ const E_main = () => {
     });
   };
 
-  //찜하기 버튼
+  /**찜하기 버튼 */
   const onHandleBookmark = (e) => {
     //북마크 여부 확인용
     console.log(e.currentTarget.getAttribute("mb_id"));
@@ -162,14 +182,13 @@ const E_main = () => {
   const certificate_filter = (e) => {
     const { value } = e.target;
   };
-  
-console.log("1212",simple_info.wish_field);
   //상세보기 필터 적용 버튼
   const button_filterclick = () => {
 
     console.log("데이터",simple_info)
-    
+
     setFilterData(
+      // console.log("simple_info 출력: "+simple_info),
       simple_info.filter(
         (item) =>
           (hope_location == "전체" ||
@@ -211,26 +230,29 @@ console.log("1212",simple_info.wish_field);
         params: { enter_id: window.sessionStorage.getItem("loginId"),},
       })
       .then((res) => {
-        // console.log("데이터",res.data)
+        console.log("데이터: ",res.data)
         setCertification_info(res.data.certification);
         setSimple_info(res.data.resume);
         setFilterData(res.data.resume);
         setBookmark_info(res.data.bookmark);
-        setSimple_info({
-          ...simple_info,
-          update_dt:res.data.member.mb_update
-      })
+      //   setSimple_info({
+      //     ...simple_info,
+      //     update_dt:res.data.resume.mb_update
+      // })
         
       })
       .catch(function (error) {
         console.log(error);
+      })
+      .then(()=>{
+        console.log("filterData -> "+filterData)
       });
   }, []);
 
   let id = "";
 
   /**MAP으로 보여줄 필터 데이터 */
-  let listMap = filterDate.map(
+  let listMap = filterData.map(
     (item) => (
       (id = item.mb_id),
       (

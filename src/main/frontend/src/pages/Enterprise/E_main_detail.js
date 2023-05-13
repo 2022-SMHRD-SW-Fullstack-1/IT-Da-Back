@@ -338,7 +338,7 @@ const E_main_detail = ({ socket }) => {
           <div>
             <img
               className="id_photo"
-              src={`https://smhrd-portal.s3.ap-northeast-2.amazonaws.com/upload/photo/${state.mb_id}/${resume.photo}`}
+              src={process.env.PUBLIC_URL+resume.photo}
             ></img>
           </div>
           <div className="e_detail_info">
