@@ -55,7 +55,7 @@ const E_main = () => {
 
   /**필터링 한 후 데이터 list*/
   const [filterData, setFilterData] = useState([{
-          mb_id: "",
+      mb_id: "",
       name: "",
       gender: "",
       birthday: "",
@@ -188,7 +188,6 @@ const E_main = () => {
     console.log("데이터",simple_info)
 
     setFilterData(
-      // console.log("simple_info 출력: "+simple_info),
       simple_info.filter(
         (item) =>
           (hope_location == "전체" ||
@@ -210,9 +209,7 @@ const E_main = () => {
             (simple_info)
             .filter((i)=>i.skills!=null && i.skills.toLowerCase().includes(skill_info))
             .findIndex((e) => e.mb_id === item.mb_id) !== -1)
-      )
-      
-    ;
+    );
     console.log(skill);
     console.log(typeof (new Date() - new Date("2022-01-20")));
     console.log("인포",certificate_info);
