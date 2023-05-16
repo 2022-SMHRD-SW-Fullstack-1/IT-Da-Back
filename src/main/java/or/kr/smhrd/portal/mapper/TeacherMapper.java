@@ -14,7 +14,7 @@ import or.kr.smhrd.portal.domain.Member;
 
 @Mapper
 public interface TeacherMapper {
-    
+
     @Select("select * from t_member where course_key = UNHEX(concat(#{key},'000000000000000000000000')) and mb_job = 's'")
     public List<Member> getStdList(String course_key);
 
@@ -32,4 +32,8 @@ public interface TeacherMapper {
 
     @Delete("delete from t_consulting where seq = #{seq}")
     public void deleteConsulting(String seq);
+
+    //
+    @Select("select mb_name from t_member where mb_job = #{job}")
+    public List<String> getTeacherList(String job);
 }

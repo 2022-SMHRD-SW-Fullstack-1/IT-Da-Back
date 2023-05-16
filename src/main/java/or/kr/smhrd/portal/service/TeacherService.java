@@ -15,7 +15,7 @@ import or.kr.smhrd.portal.mapper.TeacherMapper;
 public class TeacherService {
 
     private final TeacherMapper teacherMapper;
-    
+
     public List<Member> getStdList(String course_key) {
         return teacherMapper.getStdList(course_key);
     }
@@ -27,7 +27,7 @@ public class TeacherService {
     public void updateConsulting(Consulting data) {
         teacherMapper.updateConsulting(data);
     }
-    
+
     public String addConsulting(Map<String, String> data) {
         teacherMapper.addConsulting(data);
         return teacherMapper.getSeq(data);
@@ -35,5 +35,9 @@ public class TeacherService {
 
     public void deleteConsulting(String seq) {
         teacherMapper.deleteConsulting(seq);
+    }
+
+    public List<String> getTeacherList(String job) {
+        return teacherMapper.getTeacherList(job);
     }
 }
