@@ -1,20 +1,26 @@
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
+import React, { useState, useEffect } from "react";
+import axios from "axios";
+import { useNavigate, useLocation } from "react-router-dom";
 
-import '../../css/Register.css';
-import Agreement from './Agreement';
+import "../../css/Register.css";
+import Agreement from "./Agreement";
+import Terms from "../../asset/list/Terms";
 
-const Register = ({ socket }) => {
+const Register = ({ socket, props }) => {
+  // state 받기
+  const { state } = useLocation();
+
+  console.log(state.role);
+
   //오류 메시지 상태
-  const [idMessage, setIdMessage] = useState('');
-  const [pwMessage, setPwMessage] = useState('');
-  const [pwCheckMessage, setPwCheckMessage] = useState('');
-  const [nameMessage, setNameMessage] = useState('');
-  const [bdMessage, setBdMessage] = useState('');
-  const [telMessage, setTelMessage] = useState('');
-  const [addrMessage, setAddrMessage] = useState('');
-  const [keyMessage, setKeyMessage] = useState('');
+  const [idMessage, setIdMessage] = useState("");
+  const [pwMessage, setPwMessage] = useState("");
+  const [pwCheckMessage, setPwCheckMessage] = useState("");
+  const [nameMessage, setNameMessage] = useState("");
+  const [bdMessage, setBdMessage] = useState("");
+  const [telMessage, setTelMessage] = useState("");
+  const [addrMessage, setAddrMessage] = useState("");
+  const [keyMessage, setKeyMessage] = useState("");
 
   //const [genderMessage, setGenderMessage] = useState('');
   // const [expireMessage, setExpireMessage] = useState('');
@@ -34,124 +40,138 @@ const Register = ({ socket }) => {
 
   const navigate = useNavigate();
 
-  const [id, setId] = useState('');
+  const [id, setId] = useState("");
   const onIdChange = (e) => {
     const emailRegex =
       /^(([^<>()\[\].,;:\s@"]+(\.[^<>()\[\].,;:\s@"]+)*)|(".+"))@(([^<>()[\].,;:\s@"]+\.)+[^<>()[\].,;:\s@"]{2,})$/i;
     setId(e.target.value);
     if (emailRegex.test(e.target.value)) {
-      setIdMessage('');
+      setIdMessage("");
       setIsId(true);
     } else {
-      setIdMessage('올바른 이메일을 입력해주세요.');
+      setIdMessage("올바른 이메일을 입력해주세요.");
       setIsId(false);
     }
   };
 
-  const [pw, setPw] = useState('');
+  const [pw, setPw] = useState("");
   const onPwChange = (e) => {
     const pwRegex =
       /(?=.*\d{1,20})(?=.*[~`!@#$%\^&*()-+=]{1,20})(?=.*[a-zA-Z]{2,20}).{8,20}$/;
     setPw(e.target.value);
     if (pwRegex.test(e.target.value)) {
-      setPwMessage('');
+      setPwMessage("");
       setIsPw(true);
     } else {
-      setPwMessage('비밀번호는 8-15자의 영문/숫자 또는 특수문자 조합입니다.');
+      setPwMessage("비밀번호는 8-15자의 영문/숫자 또는 특수문자 조합입니다.");
       setIsPw(false);
     }
   };
 
-  const [pwCheck, setPwCheck] = useState('');
+  const [pwCheck, setPwCheck] = useState("");
   const onPwCheckChange = (e) => {
     setPwCheck(e.target.value);
     if (pw === e.target.value) {
-      setPwCheckMessage('');
+      setPwCheckMessage("");
       setIsPwCheck(true);
     } else {
-      setPwCheckMessage('비밀번호를 다시 확인해주세요');
+      setPwCheckMessage("비밀번호를 다시 확인해주세요");
       setIsPwCheck(false);
     }
   };
 
-  const [name, setName] = useState('');
+  const [name, setName] = useState("");
   const onNameChange = (e) => {
     setName(e.target.value);
     if (e.target.value.length <= 1) {
-      setNameMessage('2글자 이상 입력해주세요.');
+      setNameMessage("2글자 이상 입력해주세요.");
       setIsName(false);
     } else {
-      setNameMessage('');
+      setNameMessage("");
       setIsName(true);
     }
   };
 
-  const [bd, setBD] = useState('');
+  const [bd, setBD] = useState("");
   const onBDChange = (e) => {
     const dbRegex =
       /^(19[0-9][0-9]|20\d{2})-(0[0-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[0-1])$/;
     setBD(e.target.value);
     if (!dbRegex.test(e.target.value)) {
-      setBdMessage('생년월일을 입력해주세요.');
+      setBdMessage("생년월일을 입력해주세요.");
       setIsBd(false);
     } else {
-      setBdMessage('');
+      setBdMessage("");
       setIsBd(true);
     }
   };
 
-  const [gender, setGender] = useState('m');
+  const [gender, setGender] = useState("m");
   const handleGender = (e) => {
     setGender(e.target.value);
   };
 
-  const [tel, setTel] = useState('');
+  const [tel, setTel] = useState("");
   const onTelChange = (e) => {
     const telRegex = /^01([0|1|6|7|8|9])?([0-9]{3,4})?([0-9]{4})$/;
     setTel(e.target.value);
     if (!telRegex.test(e.target.value)) {
-      setTelMessage('올바른 번호를 입력해주세요.');
+      setTelMessage("올바른 번호를 입력해주세요.");
       setIsTel(false);
     } else {
-      setTelMessage('');
+      setTelMessage("");
       setIsTel(true);
     }
   };
 
-  const [address, setAddress] = useState('');
+  const [address, setAddress] = useState("");
   const onAddressChange = (e) => {
     setAddress(e.target.value);
     if (e.target.value.length <= 11) {
-      setAddrMessage('올바른 주소를 입력해주세요.');
+      setAddrMessage("올바른 주소를 입력해주세요.");
       setIsAddr(false);
     } else {
-      setAddrMessage('');
+      setAddrMessage("");
       setIsAddr(true);
     }
   };
 
-  const [course_key, setCourse_key] = useState('');
-  const onCourse_keyChange = (e) => {
-    setCourse_key(e.target.value)
-    if (e.target.value.length != 8) {
-      setKeyMessage('올바른 키를 입력해주세요.')
-      setIsKey(false)
-    } else {
-      setKeyMessage('')
-      setIsKey(true)
-    }
-  }
+  const [course_key, setCourse_key] = useState("");
 
-  const [expire, setExpire] = useState('leave');
-  const onExpireChange = (e) => {
-    setExpire(e.target.value);
+  const onCourse_keyChange = (e) => {
+    setCourse_key(e.target.value);
+    if (state.role === "u") {
+      setCourse_key("52D8EECC");
+      setKeyMessage("");
+      setIsKey(true);
+    } else if (state.role != "u" && e.target.value.length != 8) {
+      setKeyMessage("올바른 키를 입력해주세요.");
+      setIsKey(false);
+    } else {
+      setKeyMessage("");
+      setIsKey(true);
+    }
   };
+
+  // const [expire, setExpire] = useState('leave');
+  // const onExpireChange = (e) => {
+  //   setExpire(e.target.value);
+  // };
 
   //버튼 활성화
   const [notAllow, setNotAllow] = useState(true);
 
   useEffect(() => {
-    if (isId && isPw && isPwCheck && isName && isBd && isTel && isAddr && isKey) {
+    if (
+      isId &&
+      isPw &&
+      isPwCheck &&
+      isName &&
+      isBd &&
+      isTel &&
+      isAddr &&
+      isKey
+    ) {
       setNotAllow(false);
       return;
     }
@@ -161,8 +181,7 @@ const Register = ({ socket }) => {
   // const [teacher, setTeacher] = useState('')
 
   const onClickRegister = () => {
-
-    let teacher = ""
+    let teacher = "";
 
     // console.log(id)
     // console.log(pw)
@@ -174,79 +193,95 @@ const Register = ({ socket }) => {
     // console.log(address)
     // console.log(expire)
 
-
     //back으로 회원가입 데이터 전송
+
     axios
-      .post('/member/register', {
+      .post("/member/register", {
         id: id,
         pw: pw,
         name: name,
+        // 수정
+        job: state.role,
+        //
         bd: bd,
-        gender: gender,
         tel: tel,
         address: address,
-        expire: expire,
-        key: course_key
+        gender: gender,
+        // expire: expire,
+        key: course_key,
       })
       .then((res) => {
-        console.log(res)
-        alert('회원가입에 성공했습니다.')
+        console.log(res);
+        alert("회원가입에 성공했습니다.");
       })
       .catch((e) => {
-        console.log(e)
-        alert('회원가입에 실패했습니다.')
+        console.log(e);
+        alert("회원가입에 실패했습니다.");
       });
-    navigate('/');
-
+    navigate("/");
 
     // 학생 회원가입 알림
 
     axios
-      .get('/alarm/selectTeacher2', {
+      .get("/alarm/selectTeacher2", {
         params: {
-          course_key: course_key
-        }
+          course_key: course_key,
+        },
       })
       .then((res) => {
-        console.log(res.data)
+        console.log(res.data);
         // 실시간 알림
         if (socket) {
-          console.log(res.data)
-          socket.send(JSON.stringify({
-            alarm_num: 0,
-            mb_id_from: '',
-            mb_id_to: res.data,
-            alarm_content: `${name}님이 회원가입을 하셨습니다`,
-            alarm_check: 'N',
-            alarm_dt: '방금 전'
-          }))
+          console.log(res.data);
+          socket.send(
+            JSON.stringify({
+              alarm_num: 0,
+              mb_id_from: "",
+              mb_id_to: res.data,
+              alarm_content: `${name}님이 회원가입을 하셨습니다`,
+              alarm_check: "N",
+              alarm_dt: "방금 전",
+            })
+          );
         }
       })
       .catch((e) => {
-        console.log('선생님가져오기 실패')
-        alert('회원가입에 실패했습니다.')
+        console.log("선생님가져오기 실패");
+        alert("회원가입에 실패했습니다.");
       });
-
-
 
     axios
-      .post('/alarm/stdRegisterAlarm', {
+      .post("/alarm/stdRegisterAlarm", {
         mb_id_from: id,
         course_key: course_key,
-        alarm_content: `${name}님이 회원가입을 하셨습니다`
+        alarm_content: `${name}님이 회원가입을 하셨습니다`,
       })
       .then((res) => {
-        console.log(res)
+        console.log(res);
       })
       .catch((e) => {
-        console.log(e)
+        console.log(e);
       });
   };
+
+  useEffect(() => {
+    if (state.role === "u") {
+      setCourse_key("52D8EECC");
+      setIsKey(true);
+    }
+  }, []);
 
   return (
     <div className="registerContainer">
       <div>
-        <p>개인회원가입</p>
+        <p>{state.type}</p>
+        {/* <Terms/> */}
+        {Terms.map((agree) => (
+          <div className="agree_scroll" key={agree.title}>
+            <h5>{agree.title}</h5>
+            <p>{agree.contents}</p>
+          </div>
+        ))}
         <Agreement />
 
         <div>
@@ -287,16 +322,16 @@ const Register = ({ socket }) => {
               name="gender"
               value="m"
               onChange={handleGender}
-              checked={gender === 'm'}
-            ></input>{' '}
+              checked={gender === "m"}
+            ></input>{" "}
             남
             <input
               type="radio"
               name="gender"
               value="f"
               onChange={handleGender}
-              checked={gender === 'f'}
-            ></input>{' '}
+              checked={gender === "f"}
+            ></input>{" "}
             여
           </div>
         </div>
@@ -314,12 +349,20 @@ const Register = ({ socket }) => {
         </div>
         <span>{addrMessage}</span>
 
-        <div>
+        <div
+          className="course_input"
+          style={{ display: state.role != "s" ? "none" : "" }}
+        >
           <span>과정 키 (8자)</span>
-          <input onChange={onCourse_keyChange} value={course_key} type="text"></input>
+          <input
+            onChange={onCourse_keyChange}
+            value={course_key}
+            type="text"
+          ></input>
+          <span>{keyMessage}</span>
         </div>
-        <span>{keyMessage}</span>
-        <br />
+
+        {/* <br />
         <br />
         <h6>개인정보 유효기간 선택</h6>
         <div id="expire">
@@ -356,10 +399,10 @@ const Register = ({ socket }) => {
             ></input>
             <label htmlFor="leave">회원탈퇴시</label>
           </div>
-        </div>
+        </div> */}
 
         <button
-          className='registerBtn'
+          className="registerBtn"
           disabled={notAllow}
           onClick={(e) => {
             onClickRegister(e);

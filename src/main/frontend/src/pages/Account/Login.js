@@ -10,11 +10,11 @@ const Login = ({socket}) => {
 
   const navigate = useNavigate();
   const onClickRegister = () => {
-    navigate('/register');
+    navigate('/register_select');
   };
-  const onClickE_Register = () => {
-    navigate('/e_register');
-  }
+  // const onClickE_Register = () => {
+  //   navigate('/e_register');
+  // }
 
   const [tab, setTab] = useState(true);
 
@@ -31,8 +31,6 @@ const Login = ({socket}) => {
   };
 
   const onMLoginClick = () => {
-    // console.log(id);
-    // console.log(pw);
 
     axios
       .post('/member/login', { id: id, pw: pw })
@@ -207,9 +205,8 @@ const Login = ({socket}) => {
                 비밀번호 찾기
               </span>
               <span className='loginLine_1'>&nbsp;&nbsp;|&nbsp;&nbsp;</span>
-              <span className='hoverHand' onClick={onClickE_Register}>
-                회원가입
-              </span>
+              <span className='hoverHand' onClick={onClickRegister}>회원가입</span>
+
             </div>
           </div>
         )}
