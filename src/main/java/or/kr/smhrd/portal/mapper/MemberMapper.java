@@ -7,6 +7,7 @@ import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
+import org.apache.ibatis.annotations.Delete;
 
 import or.kr.smhrd.portal.domain.Member;
 import or.kr.smhrd.portal.domain.StudentInfo;
@@ -20,15 +21,18 @@ public interface MemberMapper {
    // public int register(Member member);
 
    // 회원가입 수정
-   @Insert("insert into t_member values(#{mb_id}, #{mb_pw}, #{mb_name}, #{mb_job}, #{mb_birthdate}, #{mb_phone}, #{mb_addr}, #{mb_gender}, UNHEX(concat(#{course_key},'000000000000000000000000')), '1900-01-01')")
+   @Insert("insert into t_member values(#{mb_id}, #{mb_pw}, #{mb_name}, #{mb_job}, #{mb_birthdate},  #{mb_phone}, #{mb_addr}, #{mb_gender},  '19000101', UNHEX(concat(#{course_key},'000000000000000000000000')), '1900-01-01')")
    public int register(Member member);
 
    // 선생님 승인
    @Select("select mb_id, mb_name from t_member where mb_job='u'")
    public List<Map<String, String>> t_approve_list();
 
-   @Update("update mb_job set 't' where mb_id=#{mb_id}")
-   public void t_approve(String mb_id);
+   @Update("update t_member set mb_job = 't' where mb_id = #{mb_id}")
+   public int t_approve(String mb_id);
+
+   @Delete("delete from t_member where mb_id=#{mb_id}")
+   public void t_approve_cancel(String mb_id);
 
    @Select("select mb_id, mb_pw, mb_name, mb_job, mb_birthdate, mb_phone, mb_addr, mb_gender, mb_expire_dt, LEFT(HEX(course_key),8) as course_key from t_member where mb_id = #{id} and mb_pw = #{pw}")
    public Member login(String id, String pw);

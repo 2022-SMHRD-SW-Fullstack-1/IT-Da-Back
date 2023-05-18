@@ -33,15 +33,17 @@ public class MemberService {
             data.get("gender"),
             // data.get("expire"),
             data.get("key")));
-      studentMapper.createResume(
+      if(data.get("job").equals("s")){ // 학생이면 이력서, 자기소개서, 학생 통계 테이블 생성
+         studentMapper.createResume(
             data.get("id"),
             data.get("name"),
             data.get("gender").replaceAll("m", "남성").replaceAll("f", "여성"),
             data.get("tel"),
             data.get("bd"),
             data.get("address"));
-      studentMapper.createCoverLetter(data.get("id"));
-      memberMapper.createStdInfo(data.get("id"));
+         studentMapper.createCoverLetter(data.get("id"));
+         memberMapper.createStdInfo(data.get("id"));
+      }
       return i;
    }
 
@@ -53,6 +55,10 @@ public class MemberService {
 
    public void t_approve(String mb_id) {
       memberMapper.t_approve(mb_id);
+   }
+
+   public void t_approve_cancel(String mb_id){
+      memberMapper.t_approve_cancel(mb_id);
    }
 
    public Member login(Map<String, String> data) {

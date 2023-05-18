@@ -23,9 +23,7 @@ const M_t_approve = () => {
     console.log(e.currentTarget.getAttribute("mb_id"));
     axios
       .post("/member/t_approve", {
-        params: {
           mb_id: e.currentTarget.getAttribute("mb_id"),
-        },
       })
       .then(function (res) {
         window.location.reload();
@@ -39,13 +37,11 @@ const M_t_approve = () => {
     e.preventDefault();
     console.log(e.currentTarget.getAttribute("mb_id"));
     axios
-      .post("/member/t_approve", {
-        params: {
+      .post("/member/t_approve_cancel", {
           mb_id: e.currentTarget.getAttribute("mb_id"),
-        },
       })
       .then(function (res) {
-        window.location.reload();
+        // window.location.reload();
       })
       .catch(function (error) {
         console.log("error");
@@ -69,7 +65,7 @@ const M_t_approve = () => {
           onClick={teacher_approve_cancel}
           className="btbtbtbt"
         >
-          승인
+          반려
         </button>
       </td>
     </tr>
