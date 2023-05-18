@@ -197,14 +197,6 @@ const Login = ({socket}) => {
             </div>
             <button onClick={onELoginClick}>로그인</button>
             <div>
-              <span className='hoverHand' onClick={onInquiryClick}>
-                아이디 찾기
-              </span>
-              <span className='loginLine_1'>&nbsp;&nbsp;|&nbsp;&nbsp;</span>
-              <span className='hoverHand' onClick={onPwInquiryClick}>
-                비밀번호 찾기
-              </span>
-              <span className='loginLine_1'>&nbsp;&nbsp;|&nbsp;&nbsp;</span>
               <span className='hoverHand' onClick={onClickRegister}>회원가입</span>
             </div>
           </div>
