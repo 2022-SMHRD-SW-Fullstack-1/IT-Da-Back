@@ -57,7 +57,7 @@ const T_pre = () => {
 
     const goToCourse = (props) => {
         console.log(props.item.course_key)
-        window.sessionStorage.setItem('course_key', props.course_key);
+        window.sessionStorage.setItem('course_key', props.item.course_key);
         window.location.replace("/")
     }
 
