@@ -1,0 +1,10 @@
+{
+  // 절대경로를 위한 json 파일, 경로를 ../../../ 로 시작하는 것이 아니라 frontend의 src 부터 시작하게 설정
+  // 예시
+  // 상대경로: import Announcement from '../../../components/main/Announcement';
+  // 절대경로: import Announcement from 'components/main/Announcement';
+  "compilerOptions": {
+    "baseUrl": "src"
+  },
+  "include": ["src"]
+}
