@@ -127,3 +127,9 @@
   display: flex;
 }
 
+.agree_scroll{
+  height: 10rem;
+  overflow-y: scroll;
+  overflow-x: hidden
+  
+}
