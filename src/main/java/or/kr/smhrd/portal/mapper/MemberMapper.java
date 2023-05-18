@@ -42,6 +42,10 @@ public interface MemberMapper {
    @Update("update t_member set mb_pw=#{mb_pw}, mb_name=#{mb_name}, mb_phone=#{mb_phone}, mb_addr=#{mb_addr} where mb_id=#{mb_id}")
    public void memberEditUpdate(Map<String, String> data);
 
+   // 회원 탈퇴
+   @Update("update t_member set mb_job='d', mb_update='1900-01-01' where mb_id=#{mb_id}")
+   public void memberWithdrawal(String mb_id);
+
    // 아이디 찾기, 비밀번호 찾기
    @Select("select mb_id from t_member where mb_name=#{name} and mb_phone=#{phone}")
    public String idInquiry(Map<String, String> data);

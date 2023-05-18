@@ -16,11 +16,14 @@ import C_extend_detail from '../pages/Course/Teacher/extend/C_extend_detail';
 import C_schedule from '../pages/Course/C_schedule';
 import E_main_detail from '../pages/Enterprise/E_main_detail';
 import C_consulting from '../pages/Course/Teacher/C_consulting';
+import T_pre from '../pages/Course/Teacher/T_pre';
+import C_attendance from '../pages/Course/Teacher/C_attendance';
 
 const T_Routes = () => {
    return (
       <Routes>
          <Route path='/' element={<T_main />}/>
+         <Route path='/select' element={<T_pre/>}/>
          <Route path='/announcement' element={<C_announcement />}/>
          <Route path='/announcement/detail' element={<C_announcement_detail />}/>
          <Route path='/announcement/write' element={<C_announcement_write />}/>
@@ -35,6 +38,7 @@ const T_Routes = () => {
          <Route path='/schedule' element={<C_schedule/>}/>
          <Route path='/detail_user' element={<E_main_detail/>}/>
          <Route path='/consulting' element={<C_consulting/>}/>
+         <Route path='/attendance' element={<C_attendance/>}/>
       </Routes>
    )
 }

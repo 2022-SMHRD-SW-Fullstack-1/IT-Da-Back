@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 import lombok.RequiredArgsConstructor;
 import or.kr.smhrd.portal.domain.Member;
 import or.kr.smhrd.portal.domain.Consulting;
+import or.kr.smhrd.portal.domain.Course;
 import or.kr.smhrd.portal.service.TeacherService;
 
 @RequiredArgsConstructor
@@ -45,6 +46,11 @@ public class TeacherRestController {
     @GetMapping("/deleteConsulting")
     public void deleteConsulting(@RequestParam String seq) {
         teacherService.deleteConsulting(seq);
+    }
+
+    @PostMapping("/getCourse")
+    public List<Course> getCourse(@RequestBody Map<String, String> data) {
+        return teacherService.getCourse(data.get("mb_id"));
     }
 
     /** 선생님 리스트 반환 */

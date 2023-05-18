@@ -23,7 +23,7 @@ const ITDaRoutes = ({ connect, socket }) => {
    return (
 
       <div className='T_mainInner'>
-         {location.pathname !== "/consulting"
+         {location.pathname !== "/consulting" && location.pathname !== "/select"
             && <div className='T_mainInnerL'>
                {(window.sessionStorage.getItem("role") === 's') && (<Navbar menuList={menuList_s} />)}
                {(window.sessionStorage.getItem("role") === 't') && (<Navbar menuList={menuList_t} />)}

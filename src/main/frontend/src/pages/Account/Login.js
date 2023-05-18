@@ -48,8 +48,8 @@ const Login = ({socket}) => {
           window.sessionStorage.setItem('loginId', res.data.mb_id);
           window.sessionStorage.setItem('role', 't');
           window.sessionStorage.setItem('userName', res.data.mb_name);
-          window.sessionStorage.setItem('course_key', res.data.course_key);
-          window.location.replace('/');
+          window.sessionStorage.setItem('course_key', '52D8EECC');
+          window.location.replace('/select');
 
         } else if (res.data.mb_job == 'a') {
           window.sessionStorage.setItem('loginId', res.data.mb_id);

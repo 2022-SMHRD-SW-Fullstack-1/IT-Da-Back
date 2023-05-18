@@ -77,6 +77,11 @@ public class MemberService {
       memberMapper.memberEditUpdate(data);
    }
 
+   // 회원 탈퇴
+   public void memberWithdrawal(String mb_id) {
+      memberMapper.memberWithdrawal(mb_id);
+   }
+
    // 아이디 찾기, 비밀번호 찾기
    public String idInquiry(Map<String, String> data) {
       return memberMapper.idInquiry(data);

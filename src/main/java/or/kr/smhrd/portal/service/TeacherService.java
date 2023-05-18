@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import lombok.RequiredArgsConstructor;
 import or.kr.smhrd.portal.domain.Consulting;
+import or.kr.smhrd.portal.domain.Course;
 import or.kr.smhrd.portal.domain.Member;
 import or.kr.smhrd.portal.mapper.TeacherMapper;
 
@@ -35,6 +36,10 @@ public class TeacherService {
 
     public void deleteConsulting(String seq) {
         teacherMapper.deleteConsulting(seq);
+    }
+
+    public List<Course> getCourse(String mb_id) {
+        return teacherMapper.getCourse(mb_id);
     }
 
     public List<String> getTeacherList(String job) {

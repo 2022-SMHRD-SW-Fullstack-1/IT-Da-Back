@@ -10,6 +10,7 @@ import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
 
 import or.kr.smhrd.portal.domain.Consulting;
+import or.kr.smhrd.portal.domain.Course;
 import or.kr.smhrd.portal.domain.Member;
 
 @Mapper
@@ -33,7 +34,11 @@ public interface TeacherMapper {
     @Delete("delete from t_consulting where seq = #{seq}")
     public void deleteConsulting(String seq);
 
+    @Select("select tc.course_subject as course_subject, tc.course_name as course_name, tc.course_campus as course_campus, tc.course_s_dt as course_s_dt, tc.course_e_dt as course_e_dt, tc.course_limit as course_limit,  LEFT(HEX(tc.course_key),8) as course_key from t_teacher_course ttc left join t_course tc on ttc.course_key = tc.course_key where mb_id = #{mb_id}")
+    public List<Course> getCourse(String mb_id);
+
     //
     @Select("select mb_name from t_member where mb_job = #{job}")
     public List<String> getTeacherList(String job);
+
 }

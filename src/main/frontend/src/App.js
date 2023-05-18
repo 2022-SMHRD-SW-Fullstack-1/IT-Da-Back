@@ -40,7 +40,7 @@ function App() {
       && setHeader(<Header socket={socket} />)
   }, [url])
 
-  return window.sessionStorage.getItem("loginId") == null ? (
+  return window.sessionStorage.getItem("loginId") == null  ? (
     <div className='T_mainTopDiv'>
       <LoginRoutes socket={socket} connect={connect} />
     </div>
@@ -48,10 +48,10 @@ function App() {
     <div className='T_mainTopDiv'>
       {location.pathname !== "/consulting"
         && <Header connect={connect} socket={socket} setHeader={setHeader} />}
-      {location.pathname !== "/consulting"
+      {location.pathname !== "/consulting" && location.pathname !== "/select"
         && <Alarm connect={connect} socket={socket} />}
       <ITDaRoutes connect={connect} socket={socket} />
-      {location.pathname !== "/consulting"
+      {location.pathname !== "/consulting" && location.pathname !== "/select"
         && <Footer />}
     </div>
   );
