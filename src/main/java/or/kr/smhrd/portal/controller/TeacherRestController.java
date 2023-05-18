@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 import lombok.RequiredArgsConstructor;
 import or.kr.smhrd.portal.domain.Member;
 import or.kr.smhrd.portal.domain.Consulting;
+import or.kr.smhrd.portal.domain.Course;
 import or.kr.smhrd.portal.service.TeacherService;
 
 @RequiredArgsConstructor
@@ -28,11 +29,11 @@ public class TeacherRestController {
     }
 
     @GetMapping("/getConsultingList")
-   public List<Consulting> getConsultingList(@RequestParam String student) {
-      return teacherService.getConsultingList(student);
-   }
+    public List<Consulting> getConsultingList(@RequestParam String student) {
+        return teacherService.getConsultingList(student);
+    }
 
-   @PostMapping("/updateConsulting")
+    @PostMapping("/updateConsulting")
     public void updateConsulting(@RequestBody Consulting data) {
         teacherService.updateConsulting(data);
     }
@@ -41,9 +42,14 @@ public class TeacherRestController {
     public String addConsulting(@RequestBody Map<String, String> data) {
         return teacherService.addConsulting(data);
     }
-    
+
     @GetMapping("/deleteConsulting")
-   public void deleteConsulting(@RequestParam String seq) {
-      teacherService.deleteConsulting(seq);
-   }
+    public void deleteConsulting(@RequestParam String seq) {
+        teacherService.deleteConsulting(seq);
+    }
+
+    @PostMapping("/getCourse")
+    public List<Course> getCourse(@RequestBody Map<String, String> data) {
+        return teacherService.getCourse(data.get("mb_id"));
+    }
 }

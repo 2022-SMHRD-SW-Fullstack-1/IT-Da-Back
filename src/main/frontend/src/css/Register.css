@@ -75,3 +75,12 @@
 .registerBtn:disabled{
   background-color: gray;
 }
+
+.memberEditContainer {
+  flex-direction: column;
+}
+
+#memberWithdrawal>button {
+  margin-top: 0;
+  background-color: tomato;
+}

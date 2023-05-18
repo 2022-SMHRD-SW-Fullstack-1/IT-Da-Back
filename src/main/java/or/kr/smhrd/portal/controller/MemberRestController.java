@@ -52,33 +52,37 @@ public class MemberRestController {
       memberService.updateStdInfo(data.get("stdInfo"));
    }
 
-   
+   // 마이페이지 보안체크
+   @GetMapping("/memberEditCheck")
+   public String memberEditCheck(@RequestParam Map<String, String> data) {
+      System.out.println(data);
+      String pw = data.get("mb_pw");
+      String db_pw = memberService.memberEditCheck(data.get("mb_id"));
 
-//마이페이지 보안체크
-@GetMapping("/memberEditCheck")
-public String memberEditCheck(@RequestParam Map<String,String> data) {
- System.out.println(data);
- String pw = data.get("mb_pw");
- String db_pw = memberService.memberEditCheck(data.get("mb_id"));
-  
- if(pw.equals(db_pw)){
-   return "success";
- }else{
-   return"fail";
- }
-}
+      if (pw.equals(db_pw)) {
+         return "success";
+      } else {
+         return "fail";
+      }
+   }
 
-// 회원 정보 수정
-@GetMapping("/memberEdit")
-public Member memberEdit(@RequestParam Map<String,String> data) {
-   System.out.println(data);
-   return memberService.memberEdit(data.get("mb_id"));
-}
-@PostMapping("/memberEditUpdate")
-public void memberEditUpdate(@RequestBody Map<String,String> data) {
-   System.out.println(data);
-   memberService.memberEditUpdate(data);
-}
+   // 회원 정보 수정
+   @GetMapping("/memberEdit")
+   public Member memberEdit(@RequestParam Map<String, String> data) {
+      System.out.println(data);
+      return memberService.memberEdit(data.get("mb_id"));
+   }
 
+   @PostMapping("/memberEditUpdate")
+   public void memberEditUpdate(@RequestBody Map<String, String> data) {
+      System.out.println(data);
+      memberService.memberEditUpdate(data);
+   }
+
+   // 회원 탈퇴
+   @GetMapping("/memberWithdrawal")
+   public void memberWithdrawal(@RequestParam Map<String, String> data) {
+      memberService.memberWithdrawal(data.get("mb_id"));
+   }
 
 }

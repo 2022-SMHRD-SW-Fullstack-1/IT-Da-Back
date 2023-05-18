@@ -16,11 +16,13 @@ import C_extend_detail from '../pages/Course/Teacher/extend/C_extend_detail';
 import C_schedule from '../pages/Course/C_schedule';
 import E_main_detail from '../pages/Enterprise/E_main_detail';
 import C_consulting from '../pages/Course/Teacher/C_consulting';
+import T_pre from '../pages/Course/Teacher/T_pre';
 
 const T_Routes = () => {
    return (
       <Routes>
          <Route path='/' element={<T_main />}/>
+         <Route path='/select' element={<T_pre/>}/>
          <Route path='/announcement' element={<C_announcement />}/>
          <Route path='/announcement/detail' element={<C_announcement_detail />}/>
          <Route path='/announcement/write' element={<C_announcement_write />}/>
