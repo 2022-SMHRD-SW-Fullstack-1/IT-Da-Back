@@ -4,6 +4,7 @@ import { useNavigate, useLocation } from "react-router-dom";
 
 import "../../css/Register.css";
 import Agreement from "./Agreement";
+import Terms from "../../asset/list/Terms";
 
 const Register = ({ socket, props }) => {
   // state 받기
@@ -135,15 +136,17 @@ const Register = ({ socket, props }) => {
     }
   };
 
-  const [course_key, setCourse_key] = useState("52D8EECC");
+  const [course_key, setCourse_key] = useState("");
+
   const onCourse_keyChange = (e) => {
     setCourse_key(e.target.value);
-    if (state.role == "u") {
+    if (state.role === "u") {
+      setCourse_key("52D8EECC");
       setKeyMessage("");
       setIsKey(true);
     } else if (state.role != "u" && e.target.value.length != 8) {
       setKeyMessage("올바른 키를 입력해주세요.");
-      setIsKey(true);
+      setIsKey(false);
     } else {
       setKeyMessage("");
       setIsKey(true);
@@ -191,6 +194,7 @@ const Register = ({ socket, props }) => {
     // console.log(expire)
 
     //back으로 회원가입 데이터 전송
+
     axios
       .post("/member/register", {
         id: id,
@@ -200,9 +204,9 @@ const Register = ({ socket, props }) => {
         job: state.role,
         //
         bd: bd,
-        gender: gender,
         tel: tel,
         address: address,
+        gender: gender,
         // expire: expire,
         key: course_key,
       })
@@ -215,7 +219,6 @@ const Register = ({ socket, props }) => {
         alert("회원가입에 실패했습니다.");
       });
     navigate("/");
-
 
     // 학생 회원가입 알림
 
@@ -261,10 +264,24 @@ const Register = ({ socket, props }) => {
       });
   };
 
+  useEffect(() => {
+    if (state.role === "u") {
+      setCourse_key("52D8EECC");
+      setIsKey(true);
+    }
+  }, []);
+
   return (
     <div className="registerContainer">
       <div>
         <p>{state.type}</p>
+        {/* <Terms/> */}
+        {Terms.map((agree) => (
+          <div className="agree_scroll" key={agree.title}>
+            <h5>{agree.title}</h5>
+            <p>{agree.contents}</p>
+          </div>
+        ))}
         <Agreement />
 
         <div>
@@ -386,7 +403,6 @@ const Register = ({ socket, props }) => {
 
         <button
           className="registerBtn"
-          style={{ display: state.role != "s" ? "none" : "" }}
           disabled={notAllow}
           onClick={(e) => {
             onClickRegister(e);
@@ -394,16 +410,6 @@ const Register = ({ socket, props }) => {
         >
           가입하기
         </button>
-        {/* <button
-          className="registerBtn"
-          style={{ display: state.role != "u" ? "none" : "" }}
-          disabled={notAllow}
-          onClick={(e) => {
-            onClickTRegister(e);
-          }}
-        >
-          가입하기
-        </button> */}
       </div>
     </div>
   );

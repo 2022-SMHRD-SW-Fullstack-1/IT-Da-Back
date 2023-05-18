@@ -12,9 +12,9 @@ const Login = ({socket}) => {
   const onClickRegister = () => {
     navigate('/register_select');
   };
-  const onClickE_Register = () => {
-    navigate('/e_register');
-  }
+  // const onClickE_Register = () => {
+  //   navigate('/e_register');
+  // }
 
   const [tab, setTab] = useState(true);
 
