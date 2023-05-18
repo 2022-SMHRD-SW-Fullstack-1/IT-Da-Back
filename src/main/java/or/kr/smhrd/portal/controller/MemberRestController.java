@@ -29,7 +29,26 @@ public class MemberRestController {
 
    @PostMapping("/register")
    public int register(@RequestBody Map<String, String> data) {
+      System.out.println("받아온 값 : " + data);
       return memberService.register(data);
+   }
+
+   // 선생님 승인
+   @GetMapping("/t_approve_list")
+   public List<Map<String, String>> t_approve_list() {
+      return memberService.t_approve_list();
+   }
+
+   @PostMapping("/t_approve")
+   public void t_approve(@RequestBody Map<String, String> data) {
+      System.out.println("받아온 값 : " + data.get("mb_id"));
+      memberService.t_approve(data.get("mb_id"));
+   }
+
+   @PostMapping("/t_approve_cancel")
+   public void t_approve_cancel(@RequestBody Map<String, String> data){
+      System.out.println("받아온 값 : " + data.get("mb_id"));
+      memberService.t_approve_cancel(data.get("mb_id"));
    }
 
    @PostMapping("/login")

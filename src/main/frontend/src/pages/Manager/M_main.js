@@ -6,6 +6,7 @@ import Col from 'react-bootstrap/esm/Col';
 import M_onCourse from './component/M_onCourse'
 import M_announcement from './component/M_announcement'
 import M_approve from './component/M_approve'
+import M_t_approve from './component/M_t_approve';
 
 const M_main = () => {
 
@@ -17,6 +18,7 @@ const M_main = () => {
                 </Col>
                 <Col xl={12} xxl={5}>
                     <M_approve />
+                    <M_t_approve/>
                     <M_announcement />
                 </Col>
             </Row>

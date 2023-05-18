@@ -181,7 +181,7 @@ const E_Register = ({socket}) => {
    return (
       <div className="registerContainer">
          <div>
-            <p>기업회원가입</p>
+            <p>기업 회원가입</p>
 
             <div>
                <span>아이디 (4~15자 영문,숫자)</span>

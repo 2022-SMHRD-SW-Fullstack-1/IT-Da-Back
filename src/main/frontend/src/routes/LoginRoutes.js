@@ -5,6 +5,7 @@ import { Routes, Route } from "react-router-dom";
 import Login from "../pages/Account/Login";
 import Register from "../pages/Account/Register";
 import E_Register from "../pages/Account/E_Register";
+import RegisterSel from "../pages/Account/RegisterSel";
 import Inquiry from "../pages/Account/Inquiry";
 // import PwChange from "../pages/Account/PwChange";
 
@@ -19,6 +20,7 @@ const LoginRoutes = ({socket, connect}) => {
   return (
     <Routes>
       <Route path="/" element={<Login socket={socket}/>} />
+      <Route path="/register_select" element={<RegisterSel/>}/>
       <Route path="/register" element={<Register socket={socket}/>} />
       <Route path="/e_register" element={<E_Register socket={socket}/>} />
       <Route path="/idInquiry" element={<Inquiry/>} />

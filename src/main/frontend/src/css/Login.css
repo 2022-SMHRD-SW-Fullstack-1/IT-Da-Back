@@ -9,18 +9,19 @@
   border-radius: 10px;
   margin: 2rem;
   padding: 1.5rem 0.7rem;
-  max-width: 30rem;
-  min-width: 24rem;
+  max-width: 40rem;
+  min-width: 30rem;
   display: flex;
   flex-direction: column;
   align-items: center;
+  background-color: red;
 }
 
 .loginDiv{
   box-shadow: 0 2px 8px 0 gray ;
   padding: 1rem 0.7rem ;
   background-color: #f8f9fa ;
-  margin: 4rem ;
+  margin: 5rem ;
 }
 
 .loginContainer {
