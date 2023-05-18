@@ -3,6 +3,10 @@
       "title": "수업 관리",
       "subtitle": [
          {
+            "title": "출석 체크",
+            "url": "/attendance"
+         },
+         {
             "title": "공지사항",
             "url": "/announcement"
          },
@@ -25,7 +29,7 @@
          },
          {
             "title": "학생 상담",
-            "url": "/consulting"
+            "url": "/#/consulting"
          }
       ]
    }
