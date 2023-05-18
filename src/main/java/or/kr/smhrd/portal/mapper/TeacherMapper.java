@@ -9,6 +9,7 @@ import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
 
+import or.kr.smhrd.portal.domain.Attendance;
 import or.kr.smhrd.portal.domain.Consulting;
 import or.kr.smhrd.portal.domain.Course;
 import or.kr.smhrd.portal.domain.Member;
@@ -41,4 +42,15 @@ public interface TeacherMapper {
     @Select("select mb_name from t_member where mb_job = #{job}")
     public List<String> getTeacherList(String job);
 
+    @Select("select ta.seq as seq, ta.mb_id as mb_id, tm.mb_name as mb_name, tm.mb_birthdate as mb_birthdate, tm.mb_gender as mb_gender, ta.att_check as att_check from t_attendance ta left join t_member tm on ta.mb_id = tm.mb_id where ta.course_key = UNHEX(concat(#{course_key},'000000000000000000000000')) and ta.att_dt = #{date}")
+    public List<Attendance> getAttendance(String course_key, String date);
+
+    @Select("select count(*) from t_attendance where course_key = UNHEX(concat(#{course_key},'000000000000000000000000')) and att_dt = #{date}")
+    public int isValueExist(String course_key, String date);
+
+    @Insert("insert into t_attendance values(null, #{mb_id}, UNHEX(concat(#{course_key},'000000000000000000000000')), 'n', #{date})")
+    public void setAttendance(String mb_id, String course_key, String date);
+
+    @Update("update t_attendance set att_check = #{att_check} where seq = #{seq}")
+    public void updateAttendance(int seq, String att_check);
 }
