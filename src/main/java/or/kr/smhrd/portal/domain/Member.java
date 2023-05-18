@@ -14,6 +14,6 @@ public class Member {
     private String mb_phone;
     private String mb_addr;
     private String mb_gender;
-    private String mb_expire_dt;
+    // private String mb_expire_dt;
     private String course_key;
 }

@@ -83,6 +83,8 @@ const Agreement = () => {
           <label htmlFor="check2">
             이용약관 <span>(필수)</span>
           </label>
+          <div>
+          </div>
         </div>
         <div>
           <input

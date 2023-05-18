@@ -32,6 +32,17 @@ public class MemberRestController {
       return memberService.register(data);
    }
 
+   // 선생님 승인
+   @GetMapping("/t_approve_list")
+   public List<Member> t_approve_list(){
+      return memberService.t_approve_list();
+   }
+
+   @PostMapping("/t_approve")
+   public void t_approve(@RequestParam String data){
+      memberService.t_approve(data);
+   }
+
    @PostMapping("/login")
    public Member login(@RequestBody Map<String, String> data) {
       return memberService.login(data);

@@ -31,7 +31,7 @@ public class MemberService {
             data.get("tel"),
             data.get("address"),
             data.get("gender"),
-            data.get("expire"),
+            // data.get("expire"),
             data.get("key")));
       studentMapper.createResume(
             data.get("id"),
@@ -43,6 +43,16 @@ public class MemberService {
       studentMapper.createCoverLetter(data.get("id"));
       memberMapper.createStdInfo(data.get("id"));
       return i;
+   }
+
+   // 연구원 승인
+   public List<Member> t_approve_list(){
+      System.out.println("받아온 값 : " + memberMapper.t_approve_list());
+      return memberMapper.t_approve_list();
+   }
+
+   public void t_approve(String mb_id){
+      memberMapper.t_approve(mb_id);
    }
 
    public Member login(Map<String, String> data) {

@@ -6,11 +6,11 @@ const RegisterSel = () => {
   const navigate = useNavigate();
 
   const onClickS_Register = () => {
-    navigate("/register", { state: { role: "s" } });
+    navigate("/register", { state: { role: "s", type:"수강생 회원가입" } } );
   };
 
   const onClickT_Register = () => {
-    navigate("/register", { state: { role: "t" } });
+    navigate("/register", { state: { role: "u", type:"연구원 회원가입" } });
   };
 
   const onClickE_Register = () => {
