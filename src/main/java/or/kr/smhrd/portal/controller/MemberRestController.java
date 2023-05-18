@@ -34,12 +34,12 @@ public class MemberRestController {
 
    // 선생님 승인
    @GetMapping("/t_approve_list")
-   public List<Member> t_approve_list(){
+   public List<Map<String, String>> t_approve_list() {
       return memberService.t_approve_list();
    }
 
    @PostMapping("/t_approve")
-   public void t_approve(@RequestParam String data){
+   public void t_approve(@RequestParam String data) {
       memberService.t_approve(data);
    }
 
@@ -63,33 +63,31 @@ public class MemberRestController {
       memberService.updateStdInfo(data.get("stdInfo"));
    }
 
-   
+   // 마이페이지 보안체크
+   @GetMapping("/memberEditCheck")
+   public String memberEditCheck(@RequestParam Map<String, String> data) {
+      System.out.println(data);
+      String pw = data.get("mb_pw");
+      String db_pw = memberService.memberEditCheck(data.get("mb_id"));
 
-//마이페이지 보안체크
-@GetMapping("/memberEditCheck")
-public String memberEditCheck(@RequestParam Map<String,String> data) {
- System.out.println(data);
- String pw = data.get("mb_pw");
- String db_pw = memberService.memberEditCheck(data.get("mb_id"));
-  
- if(pw.equals(db_pw)){
-   return "success";
- }else{
-   return"fail";
- }
-}
+      if (pw.equals(db_pw)) {
+         return "success";
+      } else {
+         return "fail";
+      }
+   }
 
-// 회원 정보 수정
-@GetMapping("/memberEdit")
-public Member memberEdit(@RequestParam Map<String,String> data) {
-   System.out.println(data);
-   return memberService.memberEdit(data.get("mb_id"));
-}
-@PostMapping("/memberEditUpdate")
-public void memberEditUpdate(@RequestBody Map<String,String> data) {
-   System.out.println(data);
-   memberService.memberEditUpdate(data);
-}
+   // 회원 정보 수정
+   @GetMapping("/memberEdit")
+   public Member memberEdit(@RequestParam Map<String, String> data) {
+      System.out.println(data);
+      return memberService.memberEdit(data.get("mb_id"));
+   }
 
+   @PostMapping("/memberEditUpdate")
+   public void memberEditUpdate(@RequestBody Map<String, String> data) {
+      System.out.println(data);
+      memberService.memberEditUpdate(data);
+   }
 
 }

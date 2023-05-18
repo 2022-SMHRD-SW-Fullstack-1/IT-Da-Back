@@ -46,12 +46,12 @@ public class MemberService {
    }
 
    // 연구원 승인
-   public List<Member> t_approve_list(){
+   public List<Map<String, String>> t_approve_list() {
       System.out.println("받아온 값 : " + memberMapper.t_approve_list());
       return memberMapper.t_approve_list();
    }
 
-   public void t_approve(String mb_id){
+   public void t_approve(String mb_id) {
       memberMapper.t_approve(mb_id);
    }
 
@@ -62,7 +62,7 @@ public class MemberService {
    public List<StudentInfo> getStudentInfo(Map<String, String> data) {
       return memberMapper.getStudentInfo(data.get("course_key"));
    }
-   
+
    public StudentInfo getOneStudentInfo(Map<String, String> data) {
       System.out.println(data);
       System.out.println(memberMapper.getOneStudentInfo(data.get("id"), data.get("course_key")));
@@ -75,14 +75,12 @@ public class MemberService {
       }
    }
 
-  
-
-    // 회원정보 수정 전 검사 페이지
-    public String memberEditCheck(String mb_id){
+   // 회원정보 수정 전 검사 페이지
+   public String memberEditCheck(String mb_id) {
       return memberMapper.memberEditCheck(mb_id);
    }
 
- // 회원 정보 수정
+   // 회원 정보 수정
    public Member memberEdit(String mb_id) {
       return memberMapper.memberEdit(mb_id);
    }
@@ -90,6 +88,5 @@ public class MemberService {
    public void memberEditUpdate(Map<String, String> data) {
       memberMapper.memberEditUpdate(data);
    }
-
 
 }

@@ -14,7 +14,9 @@ import or.kr.smhrd.portal.domain.StudentInfo;
 @Mapper
 public interface MemberMapper {
 
-   // @Insert("insert into t_member values(#{mb_id}, #{mb_pw}, #{mb_name}, 's', #{mb_birthdate}, #{mb_phone}, #{mb_addr}, #{mb_gender}, #{mb_expire_dt}, UNHEX(concat(#{course_key},'000000000000000000000000')), '1900-01-01')")
+   // @Insert("insert into t_member values(#{mb_id}, #{mb_pw}, #{mb_name}, 's',
+   // #{mb_birthdate}, #{mb_phone}, #{mb_addr}, #{mb_gender}, #{mb_expire_dt},
+   // UNHEX(concat(#{course_key},'000000000000000000000000')), '1900-01-01')")
    // public int register(Member member);
 
    // 회원가입 수정
@@ -23,7 +25,7 @@ public interface MemberMapper {
 
    // 선생님 승인
    @Select("select mb_id, mb_name from t_member where mb_job='u'")
-   public List<Member> t_approve_list();
+   public List<Map<String, String>> t_approve_list();
 
    @Update("update mb_job set 't' where mb_id=#{mb_id}")
    public void t_approve(String mb_id);
@@ -39,7 +41,7 @@ public interface MemberMapper {
 
    @Update("update t_std_info set perfect_att = #{example}, division = #{division}, uniqueness = #{special} where mb_id = #{id}")
    public void updateStdInfo(StudentInfo data);
-   
+
    @Select("select tm.mb_id as id, tm.mb_name as name, tm.mb_phone as phone, tm.mb_gender  as gender, tm.mb_birthdate as birthdate, MAX(tg.grad_school) as school, MAX(tg.school_type) as major ,GROUP_CONCAT(tc.cert_name) as certification, tr.wish_field as hope_jop, GROUP_CONCAT(tr.wish_area1 , ' ', tr.wish_area2, ' ', tr.wish_area3) as hope_city, tsi.perfect_att as example, tsi.division as division, tsi.uniqueness as special, tm.mb_addr as address from t_member tm left join t_graduation tg on tm.mb_id = tg.mb_id left join t_resume tr on tm.mb_id = tr.mb_id left join t_certification tc on tm.mb_id = tc.mb_id left join t_std_info tsi on tm.mb_id = tsi.mb_id where course_key = UNHEX(concat(#{course_key},'000000000000000000000000')) and tm.mb_id = #{id} and not tm.mb_job in ('t') and tm.mb_update>'2015-01-01' group by tm.mb_id order by name")
    public StudentInfo getOneStudentInfo(String id, String course_key);
 
