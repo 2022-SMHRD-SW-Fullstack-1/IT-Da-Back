@@ -81,8 +81,10 @@ const Agreement = () => {
             onChange={useBtnEvent}
           />
           <label htmlFor="check2">
-            이용약관 <span>(필수)</span>
+            서비스 이용약관동의<span>(필수)</span>
           </label>
+          <div>
+          </div>
         </div>
         <div>
           <input
@@ -92,7 +94,7 @@ const Agreement = () => {
             onChange={marketingBtnEvent}
           />
           <label htmlFor="check3">
-            마케팅 동의 <span>(선택)</span>
+            개인정보 수집동의 <span>(필수)</span>
           </label>
         </div>
       </div>
