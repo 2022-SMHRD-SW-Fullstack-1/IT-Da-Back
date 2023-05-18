@@ -17,6 +17,7 @@ const Header = ({socket}) => {
         window.sessionStorage.removeItem("loginId")
         window.sessionStorage.removeItem("userName")
         window.sessionStorage.removeItem("role")
+        window.sessionStorage.removeItem("course_key")
         socket.close()
         window.location.replace("/")
     }
