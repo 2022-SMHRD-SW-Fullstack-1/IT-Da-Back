@@ -7,9 +7,11 @@ const Navbar = ({menuList}) => {
 
   const navigate = useNavigate()
   const onClickNav = (e) => {
-    e.currentTarget.getAttribute('url') == `/C_consulting`
-    ? window.open(e.currentTarget.getAttribute('url'), "_blank", "height=800, width=1200")
-    : navigate(e.currentTarget.getAttribute('url'))
+    const url = e.currentTarget.getAttribute('url');
+    console.log(url)
+    url === `/#/consulting`
+    ? window.open(url, "_blank", "height=800, width=1200")
+    : navigate(url)
   }
 
   let navContent = menuList.map((item)=>(

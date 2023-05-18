@@ -103,9 +103,8 @@ const S_CL_main = () => {
           <button className="blueBtn" onClick={btnResume}>
             저장하기
           </button>
-        </span>
-        <span><button className="blueBtn" onClick={moveConfirm}>출력페이지</button></span>
-        <span><button style={{ display: "none" }} onClick={goToCoverLetterFrame} ref={goToFrame}></button></span>
+          <button className="blueBtn" onClick={moveConfirm}>출력페이지</button>
+          <button style={{ display: "none" }} onClick={goToCoverLetterFrame} ref={goToFrame}></button></span>
       </div>
     </div>
   );

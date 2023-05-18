@@ -12,7 +12,7 @@ const E_main_bookmark = () => {
   const navigate = useNavigate();
 
   //필터링 한 후 데이터 list
-  const [filterDate, setFilterData] = useState([]);
+  const [filterData, setFilterData] = useState([]);
   //수강생 데이터(MAP으로 뿌릴) 초기화용
   const [simple_info, setSimple_info] = useState([
     {
@@ -125,7 +125,7 @@ const E_main_bookmark = () => {
 
   /**MAP으로 보여줄 필터 데이터 */
 
-  let listMap = filterDate.map((item) => (
+  let listMap = filterData.map((item) => (
     <tr key={uuid()} className="E_main_info">
       {bookmark_info.includes(item.mb_id) ? (
         <>

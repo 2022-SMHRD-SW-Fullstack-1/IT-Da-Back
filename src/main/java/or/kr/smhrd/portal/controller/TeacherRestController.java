@@ -28,11 +28,11 @@ public class TeacherRestController {
     }
 
     @GetMapping("/getConsultingList")
-   public List<Consulting> getConsultingList(@RequestParam String student) {
-      return teacherService.getConsultingList(student);
-   }
+    public List<Consulting> getConsultingList(@RequestParam String student) {
+        return teacherService.getConsultingList(student);
+    }
 
-   @PostMapping("/updateConsulting")
+    @PostMapping("/updateConsulting")
     public void updateConsulting(@RequestBody Consulting data) {
         teacherService.updateConsulting(data);
     }
@@ -41,9 +41,17 @@ public class TeacherRestController {
     public String addConsulting(@RequestBody Map<String, String> data) {
         return teacherService.addConsulting(data);
     }
-    
+
     @GetMapping("/deleteConsulting")
-   public void deleteConsulting(@RequestParam String seq) {
-      teacherService.deleteConsulting(seq);
-   }
+    public void deleteConsulting(@RequestParam String seq) {
+        teacherService.deleteConsulting(seq);
+    }
+
+    /** 선생님 리스트 반환 */
+    @GetMapping("/getTeacherList")
+    public List<String> getTeacherList() {
+        /** 선생님 권한 */
+        String job = "t";
+        return teacherService.getTeacherList(job);
+    }
 }

@@ -328,7 +328,7 @@ const E_main_detail = ({ socket }) => {
     return (
       <div className="topDiv_resume">
         <div>
-          <span>
+          <span className="e_main_detail_category">
             <div className="btn_info" onClick={resume_info_view}>이력서</div>
             <div className="btn_info" onClick={coverLetter_info_view}>자기소개서</div>
             <div className="btn_info" onClick={portfolio_info_view}>포트폴리오</div>
@@ -338,7 +338,7 @@ const E_main_detail = ({ socket }) => {
           <div>
             <img
               className="id_photo"
-              src={`https://smhrd-portal.s3.ap-northeast-2.amazonaws.com/upload/photo/${state.mb_id}/${resume.photo}`}
+              src={process.env.PUBLIC_URL+resume.photo}
             ></img>
           </div>
           <div className="e_detail_info">
@@ -352,10 +352,10 @@ const E_main_detail = ({ socket }) => {
               </div>
             </div>
             <div>
-              <div>
+              {/* <div>
                 <p>연락처</p>
                 <p>{resume.phone}</p>
-              </div>
+              </div> */}
               <div>
                 <p>이메일</p>
                 <p>{resume.email}</p>

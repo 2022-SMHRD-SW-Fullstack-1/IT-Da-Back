@@ -50,7 +50,7 @@ public class MemberService {
    public List<StudentInfo> getStudentInfo(Map<String, String> data) {
       return memberMapper.getStudentInfo(data.get("course_key"));
    }
-   
+
    public StudentInfo getOneStudentInfo(Map<String, String> data) {
       System.out.println(data);
       System.out.println(memberMapper.getOneStudentInfo(data.get("id"), data.get("course_key")));
@@ -63,14 +63,12 @@ public class MemberService {
       }
    }
 
-  
-
-    // 회원정보 수정 전 검사 페이지
-    public String memberEditCheck(String mb_id){
+   // 회원정보 수정 전 검사 페이지
+   public String memberEditCheck(String mb_id) {
       return memberMapper.memberEditCheck(mb_id);
    }
 
- // 회원 정보 수정
+   // 회원 정보 수정
    public Member memberEdit(String mb_id) {
       return memberMapper.memberEdit(mb_id);
    }
@@ -79,5 +77,13 @@ public class MemberService {
       memberMapper.memberEditUpdate(data);
    }
 
+   // 아이디 찾기, 비밀번호 찾기
+   public String idInquiry(Map<String, String> data) {
+      return memberMapper.idInquiry(data);
+   }
+
+   public Member pwInquiry(Map<String, String> data) {
+      return memberMapper.pwInquiry(data.get("id"), data.get("name"), data.get("phone"));
+   }
 
 }

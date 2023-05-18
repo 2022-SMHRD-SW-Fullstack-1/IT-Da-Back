@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 const M_make_course = () => {
@@ -12,6 +12,8 @@ const M_make_course = () => {
   const [course_e_dt, setCourse_e_dt] = useState('');
   const [course_teacher, setCourse_teacher] = useState('');
   const [course_limit, setCourse_limit] = useState('');
+
+  const [teacher_list, setTeacher_list] = useState(['']);
 
   const onCourse_subject = (e) => {
     setCourse_subject(e.target.value);
@@ -37,26 +39,49 @@ const M_make_course = () => {
   // 과정 생성하기
   const make_course_submit = (e) => {
     e.preventDefault();
-    axios
-      .post('/course/make_course', {
-        course_subject: course_subject,
-        course_name: course_name,
-        course_campus: course_campus,
-        course_s_dt: course_s_dt,
-        course_e_dt: course_e_dt,
-        course_teacher: course_teacher,
-        course_limit: course_limit,
-      })
-      .then(function (res) {
-        alert('과정생성 완료');
-        navigate('/make_teacher', {
-          state: { course_teacher: course_teacher, course_s_dt: course_s_dt },
+    if(
+      course_campus!==''
+      &&course_e_dt!==''
+      &&course_limit!==''
+      &&course_name!==''
+      &&course_s_dt!==''
+      &&course_subject!==''
+      &&course_teacher!==''){
+      axios
+        .post('/course/make_course', {
+          course_subject: course_subject,
+          course_name: course_name,
+          course_campus: course_campus,
+          course_s_dt: course_s_dt,
+          course_e_dt: course_e_dt,
+          course_teacher: course_teacher,
+          course_limit: course_limit,
+        })
+        .then(function (res) {
+          alert('과정생성 완료');
+          navigate('/make_teacher', {
+            state: { course_teacher: course_teacher, course_s_dt: course_s_dt },
+          });
+        })
+        .catch(function (err) {
+          console.log('error');
         });
+      }else{
+        alert('입력한 과정 정보를 확인해주세요.')
+      }
+    }
+  /** 선생님 리스트 가져오기 */
+  useEffect(() => {
+    axios
+      .get("/teacher/getTeacherList")
+      .then((res) => {
+        console.log(res.data);
+        setTeacher_list(res.data);
+        setCourse_teacher(res.data[0]);
       })
-      .catch(function (err) {
-        console.log('error');
-      });
-  };
+      .catch((e) =>
+        console.error(e));
+  }, []);
 
   return (
     <div className="registerContainer M_make_course_container ">
@@ -109,12 +134,16 @@ const M_make_course = () => {
         </div>
         <div>
           <span>담임명</span>
-          <input
-            placeholder="입력해주세요."
-            type="text"
+          <select
             value={course_teacher}
             onChange={onCourse_teacher}
-          />
+          >
+            {teacher_list.map((teacher, key) => (
+              <option value={teacher} key={key+teacher}>
+                {teacher}
+              </option>
+            ))}
+          </select>
         </div>
         <div>
           <span>총원</span>
