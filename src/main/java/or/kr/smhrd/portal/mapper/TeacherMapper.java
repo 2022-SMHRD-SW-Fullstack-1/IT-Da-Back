@@ -53,4 +53,7 @@ public interface TeacherMapper {
 
     @Update("update t_attendance set att_check = #{att_check} where seq = #{seq}")
     public void updateAttendance(int seq, String att_check);
+
+    @Select("select mb_id from t_member where course_key = UNHEX(concat(#{course_key},'000000000000000000000000'))")
+    public List<String> getStudentList(String course_key);
 }
