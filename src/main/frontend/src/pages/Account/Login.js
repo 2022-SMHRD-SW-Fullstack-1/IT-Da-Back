@@ -49,7 +49,7 @@ const Login = ({socket}) => {
           window.sessionStorage.setItem('role', 't');
           window.sessionStorage.setItem('userName', res.data.mb_name);
           window.sessionStorage.setItem('course_key', '52D8EECC');
-          window.location.replace('/select');
+          navigate('/select')
 
         } else if (res.data.mb_job == 'a') {
           window.sessionStorage.setItem('loginId', res.data.mb_id);
@@ -199,14 +199,6 @@ const Login = ({socket}) => {
             </div>
             <button onClick={onELoginClick}>로그인</button>
             <div>
-              <span className='hoverHand' onClick={onInquiryClick}>
-                아이디 찾기
-              </span>
-              <span className='loginLine_1'>&nbsp;&nbsp;|&nbsp;&nbsp;</span>
-              <span className='hoverHand' onClick={onPwInquiryClick}>
-                비밀번호 찾기
-              </span>
-              <span className='loginLine_1'>&nbsp;&nbsp;|&nbsp;&nbsp;</span>
               <span className='hoverHand' onClick={onClickE_Register}>
                 회원가입
               </span>
