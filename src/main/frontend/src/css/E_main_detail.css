@@ -85,3 +85,7 @@
   border: 1px solid black;
   padding: 0.5rem;
 }
+
+.e_main_detail_category{
+  display: flex;
+}

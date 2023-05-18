@@ -41,4 +41,8 @@ public class TeacherService {
     public List<Course> getCourse(String mb_id) {
         return teacherMapper.getCourse(mb_id);
     }
+
+    public List<String> getTeacherList(String job) {
+        return teacherMapper.getTeacherList(job);
+    }
 }

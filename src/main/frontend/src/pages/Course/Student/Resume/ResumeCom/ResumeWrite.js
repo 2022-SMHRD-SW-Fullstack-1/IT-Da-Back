@@ -64,7 +64,7 @@ const ResumeWrite = ({ resume, setResume }) => {
                                 src={fileImage}
                             />
                         )
-                        :(<img className='r_photo' src={resume.photo} />)
+                        :(<img className='r_photo' src={process.env.PUBLIC_URL+resume.photo} />)
                     }
                     <SelectFileBtn btnText={"사진선택"} setFileImage={setFileImage} setSelectedFile={setSelectedFile} fileTypes={fileTypes} fileExts={fileExts} />
                 <UploadBtn btn_text={"저장"} selectedFile={selectedFile} resume={resume} setResume={setResume} />
@@ -82,11 +82,11 @@ const ResumeWrite = ({ resume, setResume }) => {
                             <p><span>{resume.email}</span>
                             </p>
                         </div>
-                        <div>
+                        {/* <div>
                             <p>연 락 처</p>
                             <p><span>{phone}</span>
                             </p>
-                        </div>
+                        </div> */}
 
                         <div>
                             <p>주&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;소</p>

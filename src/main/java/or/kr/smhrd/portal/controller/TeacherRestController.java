@@ -52,4 +52,12 @@ public class TeacherRestController {
     public List<Course> getCourse(@RequestBody Map<String, String> data) {
         return teacherService.getCourse(data.get("mb_id"));
     }
+
+    /** 선생님 리스트 반환 */
+    @GetMapping("/getTeacherList")
+    public List<String> getTeacherList() {
+        /** 선생님 권한 */
+        String job = "t";
+        return teacherService.getTeacherList(job);
+    }
 }
