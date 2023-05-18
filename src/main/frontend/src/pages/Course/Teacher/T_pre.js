@@ -55,11 +55,17 @@ const T_pre = () => {
         course_limit: '',
     }])
 
+    const goToCourse = (props) => {
+        console.log(props.item.course_key)
+        window.sessionStorage.setItem('course_key', props.course_key);
+        window.location.replace("/")
+    }
+
     const courseList =
-        newCourse.map((item) => <tr><td>{item.course_subject}</td><td>{item.course_name}</td><td>{item.course_campus}</td><td>{item.course_s_dt }~{item.course_e_dt}</td><td>{item.course_limit}</td><td>{item.course_key}</td></tr>)
+        newCourse.map((item) => <tr className='hoverHand hoverEffect' onClick={()=>goToCourse({item})}><td>{item.course_subject}</td><td>{item.course_name}</td><td>{item.course_campus}</td><td>{item.course_s_dt }~{item.course_e_dt}</td><td>{item.course_limit}</td><td>{item.course_key}</td></tr>)
 
     return (
-        <div className='t_pre'>
+        <div className='container'>
 
             <p>내 강의 목록</p>
 
@@ -88,9 +94,6 @@ const T_pre = () => {
                     </tbody>
                 </table>
             </div>
-
-            <button>눌러!</button>
-
 
         </div>
     )
