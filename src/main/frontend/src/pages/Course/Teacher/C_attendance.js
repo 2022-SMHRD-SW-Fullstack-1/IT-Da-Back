@@ -63,7 +63,7 @@ const C_attendance = () => {
               <td>{ageCaculate(item.mb_birthdate.substring(0, 4))}</td>
               <td>{item.mb_gender === 'm' ? '남' : '여'}</td>
               <td><select onChange={onAttChange} seq={item.seq} value={item.att_check}><option value="n">결석</option>
-                <option value="y">출석</option></select></td>
+                <option value="y">출석</option><option value="t">지각</option></select></td>
             </tr>)}
           </tbody>
         </table>
