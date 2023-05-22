@@ -27,6 +27,7 @@ const Register = ({ socket, props }) => {
 
   //유효성 검사
   const [isId, setIsId] = useState(false);
+  const [isIdCheck, setIsIdCheck] = useState(false)
   const [isPw, setIsPw] = useState(false);
   const [isPwCheck, setIsPwCheck] = useState(false);
   const [isName, setIsName] = useState(false);
@@ -164,6 +165,7 @@ const Register = ({ socket, props }) => {
   useEffect(() => {
     if (
       isId &&
+      isIdCheck &&
       isPw &&
       isPwCheck &&
       isName &&
@@ -176,7 +178,7 @@ const Register = ({ socket, props }) => {
       return;
     }
     setNotAllow(true);
-  }, [isId, isPw, isPwCheck, isName, isBd, isTel, isAddr, isKey]);
+  }, [isId, isIdCheck, isPw, isPwCheck, isName, isBd, isTel, isAddr, isKey]);
 
   // const [teacher, setTeacher] = useState('')
 
@@ -271,6 +273,29 @@ const Register = ({ socket, props }) => {
     }
   }, []);
 
+  // 아이디 중복확인
+  const id_check = (e) => {
+    axios
+      .get("/member/id_check", {
+        params: {
+          mb_id: id,
+        },
+      })
+      .then((res) => {
+        console.log(res.data)
+        if (res.data) {
+          alert("아이디가 중복되었습니다.");
+          setIsIdCheck(false);
+        } else {
+          alert("사용가능한 아이디입니다.");
+          setIsIdCheck(true);
+        }
+      })
+      .catch((e) => {
+        console.log(e);
+      });
+  };
+
   return (
     <div className="registerContainer">
       <div>
@@ -288,6 +313,13 @@ const Register = ({ socket, props }) => {
           <span>아이디 (4~15자 영문,숫자)</span>
           <input onChange={onIdChange} value={id} type="email"></input>
         </div>
+        <button
+          className="registerBtn"
+          style={{ marginTop: "0.5em" }}
+          onClick={(e) => id_check(e)}
+        >
+          아이디 중복확인
+        </button>
         <span>{idMessage}</span>
 
         <div>

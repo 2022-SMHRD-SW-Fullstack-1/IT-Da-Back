@@ -41,14 +41,19 @@ public class MemberRestController {
 
    @PostMapping("/t_approve")
    public void t_approve(@RequestBody Map<String, String> data) {
-      System.out.println("받아온 값 : " + data.get("mb_id"));
       memberService.t_approve(data.get("mb_id"));
    }
 
+   // 연구원 승인 취소
    @PostMapping("/t_approve_cancel")
    public void t_approve_cancel(@RequestBody Map<String, String> data){
-      System.out.println("받아온 값 : " + data.get("mb_id"));
       memberService.t_approve_cancel(data.get("mb_id"));
+   }
+
+   @GetMapping("/id_check")
+   public String id_check(@RequestParam Map<String, String> data){
+      System.out.println("값 : " + data);
+      return memberService.id_check(data.get("mb_id"));
    }
 
    @PostMapping("/login")
