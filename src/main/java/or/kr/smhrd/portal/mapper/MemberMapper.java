@@ -31,6 +31,10 @@ public interface MemberMapper {
    @Update("update t_member set mb_job = 't' where mb_id = #{mb_id}")
    public int t_approve(String mb_id);
 
+   // 아이디 중복 확인
+   @Select("select mb_id from t_member where mb_id=#{mb_id}")
+   public String id_check(String mb_id);
+
    @Delete("delete from t_member where mb_id=#{mb_id}")
    public void t_approve_cancel(String mb_id);
 

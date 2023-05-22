@@ -61,6 +61,11 @@ public class MemberService {
       memberMapper.t_approve_cancel(mb_id);
    }
 
+   // 아이디 중복
+   public String id_check(String mb_id){
+      return memberMapper.id_check(mb_id);
+   }
+
    public Member login(Map<String, String> data) {
       return memberMapper.login(data.get("id"), data.get("pw"));
    }
