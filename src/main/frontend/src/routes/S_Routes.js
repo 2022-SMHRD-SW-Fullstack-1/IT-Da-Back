@@ -21,7 +21,7 @@ import S_portfolio_write from '../pages/Course/Student/Portfolio/S_portfolio_wri
 import { MemberEditCheck } from '../pages/Account/MemberEditCheck.js'
 import MemberEdit from '../pages/Account/MemberEdit.js'
 import S_bookmark from '../pages/Course/Student/Resume/S_bookmark.js'
-const S_Routes = () => {
+const S_Routes = ({socket}) => {
    return (
       <Routes>
          <Route path='/' element={<S_main />}></Route>
@@ -42,7 +42,7 @@ const S_Routes = () => {
          <Route path='/archive/detail' element={<C_archive_detail />} />
          <Route path='/schedule' element={<C_schedule />} />
          <Route path='/memberEditCheck' element={<MemberEditCheck />} />
-         <Route path='/memberEdit' element={<MemberEdit />} />
+         <Route path='/memberEdit' element={<MemberEdit socket={socket}/>} />
          <Route path='/company/bookmark' element={<S_bookmark />} />
       </Routes>
    )

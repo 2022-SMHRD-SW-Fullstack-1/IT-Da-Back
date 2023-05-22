@@ -133,3 +133,13 @@
   overflow-x: hidden
   
 }
+
+.memberEditContainer {
+  flex-direction: column;
+}
+
+#memberWithdrawal>button {
+  margin-top: 0;
+  background-color: tomato;
+}
+

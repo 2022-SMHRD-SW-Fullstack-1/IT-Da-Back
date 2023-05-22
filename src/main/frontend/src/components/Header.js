@@ -17,6 +17,7 @@ const Header = ({socket}) => {
         window.sessionStorage.removeItem("loginId")
         window.sessionStorage.removeItem("userName")
         window.sessionStorage.removeItem("role")
+        window.sessionStorage.removeItem("course_key")
         socket.close()
         window.location.replace("/")
     }
@@ -76,6 +77,10 @@ const Header = ({socket}) => {
     const [allAlarm, setAllAlarm] = useState([])
 
     const allAlarmClick = () => {
+        if (myMenuShow.display === '') {
+            setMyMenuShow({ display: 'none' })
+            setAllAlarmShow({ display: '' })
+        }
         if (allAlarmShow.display === 'none') {
             setAllAlarmShow({ display: '' })
         } else {
@@ -100,17 +105,44 @@ const Header = ({socket}) => {
     const allAlarmList =
         allAlarm.map((item) => <AllAlarm_list allAlarm={allAlarm} setAllAlarm={setAllAlarm} item={item} key={item.alarm_num} />)
 
+    // myMenu
+    const [myMenuShow, setMyMenuShow] = useState({ display: 'none' })
+    
+    const userNameClick = () => {
+        if (allAlarmShow.display === '') {
+            setAllAlarmShow({ display: 'none' })
+            setMyMenuShow({ display: '' })
+        }
+        if (myMenuShow.display === 'none') {
+            setMyMenuShow({ display: '' })
+        } else {
+            setMyMenuShow({ display: 'none' })
+        }
+    }
+
+    const onClickCourseList = () => {
+        navigate('/select')
+    }
+
     return (
         <div className='headerTopDiv' style={{ zIndex: '99' }}>
             <div className='headerInnerDiv'>
                 <img onClick={onClickLogo} className='headerLogo hoverHand' src={logo} />
                 {(window.sessionStorage.getItem("role") === 's') && (
                     <div className='headerRight'>
-                        <p>{window.sessionStorage.getItem("userName")}</p>
-                        <img className='headerImgProfile' onClick={onClickEdit} src={profileImg} />
-                        <button onClick={onClickLogout} className='headerBtn'>로그아웃</button>
-                        <div><HiOutlineBellAlert onClick={allAlarmClick} style={alarmIconPo} className='alarmIcon' /></div>
-                        <div><HiBellAlert onClick={allAlarmClick} style={alarmIconOp} className='alarmIcon' /></div>
+                        <p className='hoverHand' onClick={userNameClick}>{window.sessionStorage.getItem("userName")}</p>
+                        <div className='myMenu'>
+                            <ListGroup style={myMenuShow}>
+                                <ListGroup.Item>
+                                    <div className='hoverHand' onClick={onClickEdit}>개인 정보 수정</div>
+                                </ListGroup.Item>
+                                <ListGroup.Item>
+                                    <div className='hoverHand' onClick={onClickLogout}>로그아웃</div>
+                                </ListGroup.Item>
+                            </ListGroup>
+                        </div>
+                        <div><HiOutlineBellAlert onClick={allAlarmClick} style={alarmIconPo} className='alarmIcon hoverHand' /></div>
+                        <div><HiBellAlert onClick={allAlarmClick} style={alarmIconOp} className='alarmIcon hoverHand' /></div>
                         <div className="AllAlarmListGroup">
                             <ListGroup style={allAlarmShow} >
                                 {allAlarmList}
@@ -118,11 +150,31 @@ const Header = ({socket}) => {
                         </div>
                     </div>
                 )}
-                {(window.sessionStorage.getItem("role") === 't') && (
+                {(window.sessionStorage.getItem("role") === 't' && window.sessionStorage.getItem("course_key") === '52D8EECC' ) && (
                     <div className='headerRight'>
-                        <p>{window.sessionStorage.getItem("userName")} 연구원</p>
-                        <img className='headerImgProfile' src={profileImg} />
-                        <button onClick={onClickLogout} className='headerBtn'>로그아웃</button>
+                        <p className='hoverHand' onClick={userNameClick}>{window.sessionStorage.getItem("userName")} 연구원</p>
+                        <div className='myMenu'>
+                            <ListGroup style={myMenuShow}>
+                                <ListGroup.Item>
+                                    <div className='hoverHand' onClick={onClickLogout}>로그아웃</div>
+                                </ListGroup.Item>
+                            </ListGroup>
+                        </div>
+                    </div>
+                )}
+                {(window.sessionStorage.getItem("role") === 't' && window.sessionStorage.getItem("course_key") !== '52D8EECC') && (
+                    <div className='headerRight'>
+                        <p className='hoverHand' onClick={userNameClick}>{window.sessionStorage.getItem("userName")} 연구원</p>
+                        <div className='myMenu'>
+                            <ListGroup style={myMenuShow}>
+                                <ListGroup.Item>
+                                    <div className='hoverHand' onClick={onClickCourseList}>내 강의 목록 보기</div>
+                                </ListGroup.Item>
+                                <ListGroup.Item>
+                                    <div className='hoverHand' onClick={onClickLogout}>로그아웃</div>
+                                </ListGroup.Item>
+                            </ListGroup>
+                        </div>
                         <div><HiOutlineBellAlert onClick={allAlarmClick} style={alarmIconPo} className='alarmIcon' /></div>
                         <div><HiBellAlert onClick={allAlarmClick} style={alarmIconOp} className='alarmIcon' /></div>
                         <div className="AllAlarmListGroup">

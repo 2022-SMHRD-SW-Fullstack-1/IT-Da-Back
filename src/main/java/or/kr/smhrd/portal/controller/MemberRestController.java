@@ -103,4 +103,21 @@ public class MemberRestController {
       memberService.memberEditUpdate(data);
    }
 
+   // 회원 탈퇴
+   @GetMapping("/memberWithdrawal")
+   public void memberWithdrawal(@RequestParam Map<String, String> data) {
+      memberService.memberWithdrawal(data.get("mb_id"));
+   }
+
+   // 아이디 찾기, 비밀번호 찾기
+   @GetMapping("/idInquiry")
+   public String idInquiry(@RequestParam Map<String, String> data) {
+      System.out.println(data);
+      return memberService.idInquiry(data);
+   }
+
+   @PostMapping("/pwInquiry")
+   public Member pwInquiry(@RequestBody Map<String, String> data) {
+      return memberService.pwInquiry(data);
+   }
 }
