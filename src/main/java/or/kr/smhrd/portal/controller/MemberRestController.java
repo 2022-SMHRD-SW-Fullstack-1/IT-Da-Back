@@ -44,6 +44,7 @@ public class MemberRestController {
       memberService.t_approve(data.get("mb_id"));
    }
 
+   // 연구원 승인 취소
    @PostMapping("/t_approve_cancel")
    public void t_approve_cancel(@RequestBody Map<String, String> data){
       memberService.t_approve_cancel(data.get("mb_id"));

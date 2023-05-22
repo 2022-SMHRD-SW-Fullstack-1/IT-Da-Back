@@ -14,7 +14,6 @@ const Register = ({ socket, props }) => {
 
   //오류 메시지 상태
   const [idMessage, setIdMessage] = useState("");
-  const [idCheckMessage, setIdCheckMessage] = useState("");
   const [pwMessage, setPwMessage] = useState("");
   const [pwCheckMessage, setPwCheckMessage] = useState("");
   const [nameMessage, setNameMessage] = useState("");

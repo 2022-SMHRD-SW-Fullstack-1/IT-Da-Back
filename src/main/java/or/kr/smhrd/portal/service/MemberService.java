@@ -57,6 +57,7 @@ public class MemberService {
       memberMapper.t_approve(mb_id);
    }
 
+   // 연구원 승인 취소
    public void t_approve_cancel(String mb_id){
       memberMapper.t_approve_cancel(mb_id);
    }

@@ -34,7 +34,8 @@ public interface MemberMapper {
    // 아이디 중복 확인
    @Select("select mb_id from t_member where mb_id=#{mb_id}")
    public String id_check(String mb_id);
-
+   
+   // 선생님 승인 취소
    @Delete("delete from t_member where mb_id=#{mb_id}")
    public void t_approve_cancel(String mb_id);
 
