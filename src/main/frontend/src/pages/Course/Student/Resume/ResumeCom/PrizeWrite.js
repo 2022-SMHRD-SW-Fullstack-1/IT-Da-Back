@@ -1,8 +1,6 @@
 import axios from 'axios'
 import uuid from 'react-uuid'
 import React, { useState } from 'react'
-import btnAdd from '../../../../../asset/img/btn_add.png'
-import btnDelete from '../../../../../asset/img/btn_delete.png'
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd'
 
 const reorder = (list, startIndex, endIndex) => {
