@@ -24,31 +24,37 @@ public class TeacherRestController {
 
     private final TeacherService teacherService;
 
+    /** 과정에 속한 학생 정보 가져오기 */
     @PostMapping("/getStdList")
     public List<Member> getStdList(@RequestBody Map<String, String> data) {
         return teacherService.getStdList(data.get("course_key"));
     }
 
+    /** 상담 정보 가져오기 */
     @GetMapping("/getConsultingList")
     public List<Consulting> getConsultingList(@RequestParam String student) {
         return teacherService.getConsultingList(student);
     }
 
+    /** 상담 정보 수정 */
     @PostMapping("/updateConsulting")
     public void updateConsulting(@RequestBody Consulting data) {
         teacherService.updateConsulting(data);
     }
 
+    /** 상담 정보 추가 */
     @PostMapping("/addConsulting")
     public String addConsulting(@RequestBody Map<String, String> data) {
         return teacherService.addConsulting(data);
     }
 
+    /** 상담정보 삭제 */
     @GetMapping("/deleteConsulting")
     public void deleteConsulting(@RequestParam String seq) {
         teacherService.deleteConsulting(seq);
     }
 
+    /** 과정 정보 가져오기 */
     @PostMapping("/getCourse")
     public List<Course> getCourse(@RequestBody Map<String, String> data) {
         return teacherService.getCourse(data.get("mb_id"));
@@ -68,6 +74,7 @@ public class TeacherRestController {
         return teacherService.getAttendance(data.get("course_key"), data.get("today"));
     }
 
+    /** 출석 정보 수정 */
     @PostMapping("/setAttendance")
     public void setAttendance(@RequestBody Map<String, List<Attendance>> data) {
         teacherService.setAttendance(data.get("attInfo"));
