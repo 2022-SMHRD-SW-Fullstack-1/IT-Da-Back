@@ -46,12 +46,12 @@ public class MemberRestController {
 
    // 연구원 승인 취소
    @PostMapping("/t_approve_cancel")
-   public void t_approve_cancel(@RequestBody Map<String, String> data){
+   public void t_approve_cancel(@RequestBody Map<String, String> data) {
       memberService.t_approve_cancel(data.get("mb_id"));
    }
 
    @GetMapping("/id_check")
-   public String id_check(@RequestParam Map<String, String> data){
+   public String id_check(@RequestParam Map<String, String> data) {
       System.out.println("값 : " + data);
       return memberService.id_check(data.get("mb_id"));
    }

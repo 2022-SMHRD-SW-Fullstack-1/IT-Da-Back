@@ -14,7 +14,7 @@ const S_main = () => {
       <Row>
         <Col lg={12} xl={5}>
           <Announcement />
-          <BoardButton />
+          {/* <BoardButton /> */}
         </Col>
         <Col lg={12} xl={7}>
           <Schedule />

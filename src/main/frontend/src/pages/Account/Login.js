@@ -98,10 +98,6 @@ const Login = ({socket}) => {
   const onInquiryClick = () => {
     navigate('/idInquiry')
   }
-  /**비밀번호 찾기 */
-  const onPwInquiryClick = () => {
-    navigate('/pwInquiry')
-  }
   return (
     <div>
         <div><img  className='loginLogo' src={logo} /></div>
@@ -159,10 +155,6 @@ const Login = ({socket}) => {
             <div>
               <span className='hoverHand' onClick={onInquiryClick}>
                 아이디 / 비밀번호 찾기
-              {/* </span>
-              <span className='loginLine_1'>&nbsp;&nbsp;|&nbsp;&nbsp;</span>
-              <span className='hoverHand' onClick={onPwInquiryClick}> */}
-                 {/* 비밀번호 찾기 */}
               </span>
               <span className='loginLine_1'>&nbsp;&nbsp;|&nbsp;&nbsp;</span>
               <span className="loginRegisterNav" onClick={onClickRegister}>
