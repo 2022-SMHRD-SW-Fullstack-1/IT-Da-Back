@@ -79,6 +79,9 @@ const ResumeFrame = () => {
                 <td>{skills.skill_grade}</td>
             </tr>
         ))
+
+    const date = new Date();
+
     return (
         <div className='resumePrintTopDiv'>
             <div className='resumePrintDiv print'
@@ -214,7 +217,7 @@ const ResumeFrame = () => {
                 </table>
                 <div>
                     <div><p>상기 내용은 사실과 다름 없음을 확인합니다.</p></div>
-                    <div><span>202&nbsp;&nbsp;년</span><span>월</span><span>일</span><span>작 성 자 :&nbsp;&nbsp; </span><span>(인)</span></div>
+                    <div><span>{date.getFullYear()}년</span><span>{date.getMonth()+1}월</span><span>{date.getDate()}일</span><span>작 성 자 :&nbsp;&nbsp; </span><span>(인)</span></div>
                 </div>
             </div>
             <ReactToPrint

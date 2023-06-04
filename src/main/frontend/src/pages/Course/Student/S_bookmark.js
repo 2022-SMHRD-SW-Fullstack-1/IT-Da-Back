@@ -1,7 +1,7 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import '../../../../css/Course.css'
-import M_company_bookmark_list from "../../../Manager/company/M_company_bookmark_list";
+import '../../../css/Course.css'
+import M_company_bookmark_list from "../../Manager/company/M_company_bookmark_list";
 
 const S_bookmark = () => {
 

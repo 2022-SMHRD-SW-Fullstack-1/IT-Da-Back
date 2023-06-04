@@ -61,12 +61,12 @@ const S_portfolio_detail = ({portfolio_info}) => {
         .catch((e)=>{console.log(e)})
     }
     const img = [
-        (state.portfolio_img1!==null)&&{id:1, image:process.env.PUBLIC_URL+`/file/portfolio/${sessionStorage.getItem("loginId")}/${state.portfolio_img1}`}
-        ||(portfolio_info!=undefined)&&{id:1, image:process.env.PUBLIC_URL+`/file/portfolio/${portfolio_info.mb_id}/${portfolio_info.portfolio_img1}`}||null,
-        (state.portfolio_img2!==null)&&{id:2, image:process.env.PUBLIC_URL+`/file/portfolio/${sessionStorage.getItem("loginId")}/${state.portfolio_img2}`}
-        ||(portfolio_info!==undefined)&&{id:2, image:process.env.PUBLIC_URL+`/file/portfolio/${portfolio_info.mb_id}/${portfolio_info.portfolio_img2}`}||null,
-        (state.portfolio_img3!==null)&&{id:3, image:process.env.PUBLIC_URL+`/file/portfolio/${sessionStorage.getItem("loginId")}/${state.portfolio_img3}`}
-        ||(portfolio_info!==undefined)&&{id:3, image:process.env.PUBLIC_URL+`/file/portfolio/${portfolio_info.mb_id}/${portfolio_info.portfolio_img3}`}||null,
+        (state.portfolio_img1!==null)&&{id:1, image:process.env.PUBLIC_URL+`/file/portfolio/${sessionStorage.getItem("loginId")}${state.portfolio_img1}`}
+        ||(portfolio_info!=undefined)&&{id:1, image:process.env.PUBLIC_URL+`/file/portfolio/${portfolio_info.mb_id}${portfolio_info.portfolio_img1}`}||null,
+        (state.portfolio_img2!==null)&&{id:2, image:process.env.PUBLIC_URL+`/file/portfolio/${sessionStorage.getItem("loginId")}${state.portfolio_img2}`}
+        ||(portfolio_info!==undefined)&&{id:2, image:process.env.PUBLIC_URL+`/file/portfolio/${portfolio_info.mb_id}${portfolio_info.portfolio_img2}`}||null,
+        (state.portfolio_img3!==null)&&{id:3, image:process.env.PUBLIC_URL+`/file/portfolio/${sessionStorage.getItem("loginId")}${state.portfolio_img3}`}
+        ||(portfolio_info!==undefined)&&{id:3, image:process.env.PUBLIC_URL+`/file/portfolio/${portfolio_info.mb_id}${portfolio_info.portfolio_img3}`}||null,
     ]
     const [datas, setDatas] = useState(img) //사진 데이터
     const [currItem, setCurrItem] = useState(datas[0]) //선택한 사진 상태설정

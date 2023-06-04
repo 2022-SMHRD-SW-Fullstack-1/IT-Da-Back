@@ -68,6 +68,8 @@ public class StudentRestController {
         System.out.println(data);
         studentService.updateResume(data);
     }
+
+    /** 희망분야 */
     @PostMapping("/wish_field/add")
     public void addWishField(@RequestBody Map<String, String> data) {
         studentService.addWishField(data);
@@ -77,6 +79,13 @@ public class StudentRestController {
     public void deleteWishField(@RequestBody Map<String, String> data) {
         studentService.deleteWishField(data);
     }
+
+    @PostMapping("/wish_field/update")
+    public void updateWishField(@RequestBody Map<String, Object> data) {
+        studentService.updateWishField(data);
+    }
+
+    /** 보유기술 */
     @PostMapping("/skill/add")
     public void addSkill(@RequestBody Map<String, String> data) {
         studentService.addSkill(data);
@@ -90,15 +99,11 @@ public class StudentRestController {
     }
 
     @PostMapping("/skill/update")
-    public void updateSkill(@RequestBody Map<String,Object> data){
+    public void updateSkill(@RequestBody Map<String, Object> data) {
         studentService.updateSkill(data);
     }
-    @PostMapping("/wish_field/update")
-    public void updateWishField(@RequestBody Map<String,Object> data){
-        studentService.updateWishField(data);
-    }
 
-    // 이미지 추가 삭제
+    // 이력서 이미지 추가 삭제
     @PostMapping("/photo/update")
     public void updatePhoto(@RequestBody Map<String, String> data) {
         System.out.println(data);
@@ -114,65 +119,42 @@ public class StudentRestController {
     // 프로젝트 포트폴리오
     // 확인
     @GetMapping("/portfolio")
-    public List<Portfolio> selectPortfolio(@RequestParam HashMap<String, String> params){
+    public List<Portfolio> selectPortfolio(@RequestParam HashMap<String, String> params) {
         return studentService.selectPortfolio(params);
     }
+
     @GetMapping("/portfolio/selectOne")
-    public Portfolio selectOnePortfolio(@RequestParam HashMap<String, String> params){
+    public Portfolio selectOnePortfolio(@RequestParam HashMap<String, String> params) {
         return studentService.selectOnePortfolio(params);
     }
 
     // 추가
     @PostMapping("/portfolio/add")
-    public void addPortfolio(@RequestBody Map<String, String> data){
-        studentService.addPortfolio(data);   
+    public void addPortfolio(@RequestBody Map<String, String> data) {
+        studentService.addPortfolio(data);
     }
+
     // 수정
     @PostMapping("/portfolio/edit")
-    public void editPortfolio(@RequestBody Map<String, String> data){
+    public void editPortfolio(@RequestBody Map<String, String> data) {
         studentService.editPortfolio(data);
     }
 
     // 삭제
     @PostMapping("/portfolio/delete")
-    public void deletePortfolio(@RequestBody Map<String, String> data){
+    public void deletePortfolio(@RequestBody Map<String, String> data) {
         studentService.deletePortfolio(data);
     }
 
+    /** 학력 */
     // 추가
-    /** 학력 추가 */
     @PostMapping("/graduation/add")
     public void addGraduation(@RequestBody Map<String, String> data) {
         System.out.println(data);
         studentService.addGraduation(data);
     }
 
-    /** 경력 추가 */
-    @PostMapping("/career/add")
-    public void addCareer(@RequestBody Map<String, String> data) {
-        studentService.addCareer(data);
-    }
-
-    /** 자격증 추가 */
-    @PostMapping("/certification/add")
-    public void addCertification(@RequestBody Map<String, String> data) {
-        studentService.addCertification(data);
-    }
-
-    /** 수상 추가 */
-    @PostMapping("/prize/add")
-    public void addPrize(@RequestBody Map<String, String> data) {
-        studentService.addPrize(data);
-    }
-
-    /** 병역 추가 */
-    @PostMapping("/military/add")
-    public void addMilitary(@RequestBody Map<String, String> data) {
-        studentService.addMilitary(data);
-    }
-
     // 삭제
-    /** 학력 제거 */
     @PostMapping("/graduation/delete")
     public void deleteGraduation(@RequestBody Map<String, String> data) {
         System.out.println("제거");
@@ -180,7 +162,20 @@ public class StudentRestController {
         studentService.deleteGraduation(data);
     }
 
-    /** 경력 제거 */
+    // 인덱싱 - frontend 드로그앤드롭을 하기 위함
+    @PostMapping("/graduation/idx")
+    public void graduationIdx(@RequestBody Map<String, Object> data) {
+        studentService.graduationIdx(data);
+    }
+
+    /** 경력 */
+    // 추가
+    @PostMapping("/career/add")
+    public void addCareer(@RequestBody Map<String, String> data) {
+        studentService.addCareer(data);
+    }
+
+    // 삭제
     @PostMapping("/career/delete")
     public void deleteCareer(@RequestBody Map<String, String> data) {
         System.out.println("제거");
@@ -188,7 +183,20 @@ public class StudentRestController {
         studentService.deleteCareer(data);
     }
 
-    /** 자격증 제거 */
+    // 인덱싱 - frontend 드로그앤드롭을 하기 위함
+    @PostMapping("/career/idx")
+    public void careerIdx(@RequestBody Map<String, Object> data) {
+        studentService.careerIdx(data);
+    }
+
+    /** 자격증 */
+    // 추가
+    @PostMapping("/certification/add")
+    public void addCertification(@RequestBody Map<String, String> data) {
+        studentService.addCertification(data);
+    }
+
+    // 삭제
     @PostMapping("/certification/delete")
     public void deleteCertification(@RequestBody Map<String, String> data) {
         System.out.println("제거");
@@ -196,7 +204,20 @@ public class StudentRestController {
         studentService.deleteCertification(data);
     }
 
-    /** 수상 제거 */
+    // 인덱싱 - frontend 드로그앤드롭을 하기 위함
+    @PostMapping("/certification/idx")
+    public void certificationIdx(@RequestBody Map<String, Object> data) {
+        studentService.certificationIdx(data);
+    }
+
+    /** 수상 */
+    // 추가
+    @PostMapping("/prize/add")
+    public void addPrize(@RequestBody Map<String, String> data) {
+        studentService.addPrize(data);
+    }
+
+    // 삭제
     @PostMapping("/prize/delete")
     public void deletePrize(@RequestBody Map<String, String> data) {
         System.out.println("제거");
@@ -204,7 +225,20 @@ public class StudentRestController {
         studentService.deletePrize(data);
     }
 
-    /** 병역 제거 */
+    // 인덱싱 - frontend 드로그앤드롭을 하기 위함
+    @PostMapping("/prize/idx")
+    public void prizeIdx(@RequestBody Map<String, Object> data) {
+        studentService.prizeIdx(data);
+    }
+
+    /** 병역 */
+    // 추가
+    @PostMapping("/military/add")
+    public void addMilitary(@RequestBody Map<String, String> data) {
+        studentService.addMilitary(data);
+    }
+
+    // 삭제
     @PostMapping("/military/delete")
     public void deleteMilitary(@RequestBody Map<String, String> data) {
         System.out.println("제거");
@@ -212,45 +246,34 @@ public class StudentRestController {
         studentService.deleteMilitary(data);
     }
 
+    // 인덱싱 - frontend 드로그앤드롭을 하기 위함
+    @PostMapping("/military/idx")
+    public void militaryIdx(@RequestBody Map<String, Object> data) {
+        studentService.militaryIdx(data);
+    }
+
+    /** 연장사용 신청 */
+    // 추가
     @PostMapping("/register_extend")
     public void addExtend(@RequestBody Extend extend) {
         studentService.addExtend(extend);
     }
 
+    // 불러오기
     @GetMapping("/select_extend")
     public List<Extend> selectExtend(@RequestParam String b_num) {
         return studentService.selectExtend(b_num);
     }
 
+    // 수정
     @PostMapping("/edit_extend")
     public void editExtend(@RequestBody Extend extend) {
         studentService.editExtend(extend);
     }
 
+    // 삭제
     @PostMapping("/delete_extend")
     public void deleteExtend(@RequestBody Extend extend) {
         studentService.deleteExtend(extend);
     }
-
-    @PostMapping("/career/idx")
-    public void careerIdx(@RequestBody Map<String,Object> data){
-        studentService.careerIdx(data);
-    }
-    @PostMapping("/certification/idx")
-    public void certificationIdx(@RequestBody Map<String,Object> data){
-        studentService.certificationIdx(data);
-    }
-    @PostMapping("/graduation/idx")
-    public void graduationIdx(@RequestBody Map<String,Object> data){
-        studentService.graduationIdx(data);
-    }
-    @PostMapping("/military/idx")
-    public void militaryIdx(@RequestBody Map<String,Object> data){
-        studentService.militaryIdx(data);
-    }
-    @PostMapping("/prize/idx")
-    public void prizeIdx(@RequestBody Map<String,Object> data){
-        studentService.prizeIdx(data);
-    }
-
 }

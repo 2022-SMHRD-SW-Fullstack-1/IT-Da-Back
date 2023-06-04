@@ -20,7 +20,7 @@ import S_portfolio_detail from '../pages/Course/Student/S_portfolio_detail.js'
 import S_portfolio_write from '../pages/Course/Student/Portfolio/S_portfolio_write.js'
 import { MemberEditCheck } from '../pages/Account/MemberEditCheck.js'
 import MemberEdit from '../pages/Account/MemberEdit.js'
-import S_bookmark from '../pages/Course/Student/Resume/S_bookmark.js'
+import S_bookmark from '../pages/Course/Student/S_bookmark.js'
 const S_Routes = ({socket}) => {
    return (
       <Routes>

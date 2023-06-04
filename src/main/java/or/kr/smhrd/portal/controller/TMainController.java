@@ -40,37 +40,44 @@ public class TMainController {
       return tMainService.getPost(key);
    }
 
+   // 선택한 정보 가져오기
    @GetMapping("/getOnePost")
    public Board getOnePost(@RequestParam String key) {
       return tMainService.getOnePost(key);
    }
 
+   // 삭제
    @GetMapping("/deletePost")
    public void deletePost(@RequestParam String key) {
       tMainService.deletePost(key);
    }
 
-   // 공유자료실 관련
+   // 공유자료실
+   // 추가
    @PostMapping("/addArchive")
    public void addArchive(@RequestBody Map<String, Object> data) {
       tMainService.addArchive(data);
    }
 
+   // 수정
    @PostMapping("/editArchive")
    public void editArchive(@RequestBody Map<String, Object> data) {
       tMainService.editArchive(data);
    }
 
+   // 모든 정보 가져오기
    @GetMapping("/getArchive")
    public List<Board> getArchive(@RequestParam String key) {
       return tMainService.getArchive(key);
    }
 
+   // 선택한 정보 가져오기
    @GetMapping("/getOneArchive")
    public Board getOneArchive(@RequestParam String key) {
       return tMainService.getOneArchive(key);
    }
 
+   // 삭제
    @GetMapping("/deleteArchive")
    public void deleteArchive(@RequestParam String key) {
       tMainService.deleteArchive(key);
@@ -106,7 +113,7 @@ public class TMainController {
    }
 
    @GetMapping("/get_one_extend")
-   public Board getOneExtend(@RequestParam String key){
+   public Board getOneExtend(@RequestParam String key) {
       return tMainService.getOneExtend(key);
    }
 
