@@ -27,12 +27,13 @@ public class BookmarkRestController {
     private final StudentService studentService;
     
 
-    //기업이 인재 북마크
+    // 기업의 수강생 북마크 하기
     @PostMapping("/add_bookmark")
     public void addCourse(@RequestBody Bookmark bookmark) {
         bookmarkService.addBookmark(bookmark);
     }
 
+    // 기업이 북마크한 수강생 불러오기
     @GetMapping("/select_bookmark")
     public HashMap<String, Object> selectBookmark(@RequestParam HashMap<String,String> data){
         
@@ -46,18 +47,20 @@ public class BookmarkRestController {
         return result;
     }
 
-    @PostMapping("/delete_bookmark")
+        // 기업의 수강생북마크 해제
+@PostMapping("/delete_bookmark")
     public void deleteBookmark(@RequestBody Bookmark bookmark){
         bookmarkService.deleteBookmark(bookmark);
     }
 
-    //수료생이 기업 북마크 
+    // 수강생의 기업공고 북마크
     @PostMapping("/add_bookmark_company")
     public void companyBookmark(@RequestBody Bookmark_company bookmark_company) {
         System.out.println(bookmark_company);
         bookmarkService.addBookmarkCompany(bookmark_company);
     }
 
+        // 기업공고가 북마크 된 수
     @GetMapping("/select_bookmark_company")
     public HashMap<String, Object> selectBookmarkCompany(@RequestParam String mb_id){
         System.out.println("프론트에서 보내는 값");
@@ -69,7 +72,7 @@ public class BookmarkRestController {
         return result;
     }
 
-
+    // 수강생의 기업공구 북마크 해제
     @PostMapping("/delete_bookmark_company")
     public void deleteBookmarkCompany(@RequestBody Bookmark_company bookmark){
         bookmarkService.deleteBookmarkCompany(bookmark);
