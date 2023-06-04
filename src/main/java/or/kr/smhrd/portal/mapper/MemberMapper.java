@@ -15,11 +15,6 @@ import or.kr.smhrd.portal.domain.StudentInfo;
 @Mapper
 public interface MemberMapper {
 
-   // @Insert("insert into t_member values(#{mb_id}, #{mb_pw}, #{mb_name}, 's',
-   // #{mb_birthdate}, #{mb_phone}, #{mb_addr}, #{mb_gender}, #{mb_expire_dt},
-   // UNHEX(concat(#{course_key},'000000000000000000000000')), '1900-01-01')")
-   // public int register(Member member);
-
    // 회원가입 수정
    @Insert("insert into t_member values(#{mb_id}, #{mb_pw}, #{mb_name}, #{mb_job}, #{mb_birthdate},  #{mb_phone}, #{mb_addr}, #{mb_gender},  '19000101', UNHEX(concat(#{course_key},'000000000000000000000000')), '1900-01-01')")
    public int register(Member member);

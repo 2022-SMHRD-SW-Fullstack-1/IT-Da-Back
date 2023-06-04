@@ -22,17 +22,19 @@ public class TMainController {
 
    private final TMainService tMainService;
 
-   // 공지사항 관련
+   // 공지사항 추가
    @PostMapping("/addPost")
    public void addPost(@RequestBody Map<String, String> data) {
       tMainService.addPost(data);
    }
 
+   // 공지사항 수정
    @PostMapping("/editPost")
    public void editPost(@RequestBody Map<String, String> data) {
       tMainService.editPost(data);
    }
 
+   // 공지사항 불러오기
    @GetMapping("/getPost")
    public List<Board> getPost(@RequestParam String key) {
       return tMainService.getPost(key);
@@ -80,12 +82,13 @@ public class TMainController {
       return tMainService.getCourseInfo(key);
    }
 
-   // 전체공지
+   // 전체공지 작성
    @PostMapping("/manager_write")
    public void managerAnnouncementWrite(@RequestBody Board board) {
       tMainService.managerAnnouncementWrite(board);
    }
 
+   // 전체공지 불러오기
    @GetMapping("/get_manager_post")
    public List<Board> getManagerPost(@RequestParam String key) {
       return tMainService.getManagerPost(key);
